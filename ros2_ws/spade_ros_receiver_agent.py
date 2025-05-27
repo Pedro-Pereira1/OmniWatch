@@ -44,6 +44,7 @@ if __name__ == "__main__":
     async def main():
         agent = ReceiverAgent("receiver@localhost", "your_password")
         await agent.start(auto_register=True)
-        await agent.stop()
+        while agent.is_alive():
+            await asyncio.sleep(1)
 
     asyncio.run(main())

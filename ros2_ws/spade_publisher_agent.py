@@ -4,6 +4,7 @@ from std_msgs.msg import String, Float32
 from threading import Thread
 from spade.agent import Agent
 from spade.behaviour import CyclicBehaviour
+from spade.message import Message
 import asyncio
 
 class ROSListener(Node):
@@ -30,11 +31,13 @@ class PublisherAgent(Agent):
     class PublishROSData(CyclicBehaviour):
         async def run(self):
             msg = self.agent.ros_node.latest_data
-            print(f"[SPADE] Sending to receiver: {msg}")
-            await self.send(self.agent.create_message(
-                to="receiver@localhost",
-                body=msg
-            ))
+            print(f"[SPADE] Sending to receiver: {msg}")         
+            msg_to_send = Message(
+                to="receiver@localhost",     
+                body=str(msg),               
+                metadata={"performative": "inform"}
+            )
+            await self.send(msg_to_send)
             await asyncio.sleep(2)
 
     async def setup(self):
@@ -48,6 +51,7 @@ if __name__ == "__main__":
     async def main():
         agent = PublisherAgent("publisher@localhost", "your_password")
         await agent.start(auto_register=True)
-        await agent.stop()
+        while agent.is_alive():
+            await asyncio.sleep(1)
 
     asyncio.run(main())
