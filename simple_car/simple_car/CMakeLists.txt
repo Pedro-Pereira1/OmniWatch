@@ -11,6 +11,13 @@ install(
   DESTINATION lib/${PROJECT_NAME}
 )
 
+install(
+  PROGRAMS
+  src/waypoint_follower.py
+  DESTINATION lib/${PROJECT_NAME}
+  RENAME waypoint_follower
+)
+
 # Instalar os ficheiros de launch
 install(
   DIRECTORY launch
