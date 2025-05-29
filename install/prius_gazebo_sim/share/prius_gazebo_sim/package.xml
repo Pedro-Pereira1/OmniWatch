@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>prius_gazebo_sim</name>        <!-- must match your folder + your ros2 launch target -->
+  <version>0.0.0</version>
+  <description>Gazebo launch for Prius Hybrid</description>
+
+  <maintainer email="you@example.com">Your Name</maintainer>
+  <license>Apache-2.0</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <depend>gazebo_ros</depend>          <!-- for spawn_entity and gazebo plugins -->
+  <depend>rclpy</depend>               <!-- if you ever add Python nodes -->
+  <exec_depend>launch</exec_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

@@ -1,0 +1,1 @@
+/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/build/prius_gazebo_sim/ament_cmake_environment_hooks/local_setup.sh

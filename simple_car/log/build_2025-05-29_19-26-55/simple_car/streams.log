@@ -1,0 +1,26 @@
+[0.053s] Invoking command in '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/build/simple_car': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/build/simple_car -- -j12 -l12
+[0.178s] Invoked command in '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/build/simple_car' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/build/simple_car -- -j12 -l12
+[0.213s] Invoking command in '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/build/simple_car': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/build/simple_car
+[0.237s] -- Install configuration: ""
+[0.239s] -- Execute custom install script
+[0.240s] -- Up-to-date symlink: /home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/simple_car/share/simple_car/launch/spawn_car.launch.py
+[0.242s] -- Up-to-date symlink: /home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/simple_car/share/simple_car/models/simple_car/model.config
+[0.242s] -- Up-to-date symlink: /home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/simple_car/share/simple_car/models/simple_car/model.urdf
+[0.243s] -- Up-to-date symlink: /home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/simple_car/share/ament_index/resource_index/package_run_dependencies/simple_car
+[0.244s] -- Up-to-date symlink: /home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/simple_car/share/ament_index/resource_index/parent_prefix_path/simple_car
+[0.244s] -- Up-to-date symlink: /home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/simple_car/share/simple_car/environment/ament_prefix_path.sh
+[0.245s] -- Up-to-date symlink: /home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/simple_car/share/simple_car/environment/ament_prefix_path.dsv
+[0.246s] -- Up-to-date symlink: /home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/simple_car/share/simple_car/environment/path.sh
+[0.246s] -- Up-to-date symlink: /home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/simple_car/share/simple_car/environment/path.dsv
+[0.247s] -- Up-to-date symlink: /home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/simple_car/share/simple_car/local_setup.bash
+[0.248s] -- Up-to-date symlink: /home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/simple_car/share/simple_car/local_setup.sh
+[0.249s] -- Up-to-date symlink: /home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/simple_car/share/simple_car/local_setup.zsh
+[0.249s] -- Up-to-date symlink: /home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/simple_car/share/simple_car/local_setup.dsv
+[0.250s] -- Symlinking: /home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/simple_car/share/simple_car/package.dsv
+[0.280s] -- Up-to-date symlink: /home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/simple_car/share/ament_index/resource_index/packages/simple_car
+[0.280s] -- Up-to-date symlink: /home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/simple_car/share/simple_car/cmake/simple_carConfig.cmake
+[0.281s] -- Up-to-date symlink: /home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/simple_car/share/simple_car/cmake/simple_carConfig-version.cmake
+[0.282s] -- Up-to-date symlink: /home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/simple_car/share/simple_car/package.xml
+[0.282s] -- Up-to-date: /home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/simple_car/lib/simple_car/car_controller
+[0.283s] -- Up-to-date: /home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/simple_car/lib/simple_car/waypoint_follower
+[0.288s] Invoked command in '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/build/simple_car' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/build/simple_car

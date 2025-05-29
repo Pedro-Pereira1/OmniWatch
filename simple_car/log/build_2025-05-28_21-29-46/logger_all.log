@@ -1,0 +1,273 @@
+[0.111s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build', '--symlink-install']
+[0.111s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=True, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=12, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=None, packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, mixin_files=None, mixin=None, verb_parser=<colcon_mixin.mixin.mixin_argument.MixinArgumentDecorator object at 0x7fc739cb8af0>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x7fc739dbd9c0>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x7fc739dbd9c0>>, mixin_verb=('build',))
+[0.278s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[0.278s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[0.278s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[0.278s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[0.278s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[0.278s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[0.278s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car'
+[0.278s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.278s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[0.278s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[0.278s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[0.279s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[0.279s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[0.279s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[0.279s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[0.279s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[0.292s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[0.292s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[0.292s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[0.292s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[0.292s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[0.292s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[0.292s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[0.292s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[0.292s] Level 1:colcon.colcon_core.package_identification:_identify(exemplo3) by extensions ['ignore', 'ignore_ament_install']
+[0.292s] Level 1:colcon.colcon_core.package_identification:_identify(exemplo3) by extension 'ignore'
+[0.292s] Level 1:colcon.colcon_core.package_identification:_identify(exemplo3) by extension 'ignore_ament_install'
+[0.293s] Level 1:colcon.colcon_core.package_identification:_identify(exemplo3) by extensions ['colcon_pkg']
+[0.293s] Level 1:colcon.colcon_core.package_identification:_identify(exemplo3) by extension 'colcon_pkg'
+[0.293s] Level 1:colcon.colcon_core.package_identification:_identify(exemplo3) by extensions ['colcon_meta']
+[0.293s] Level 1:colcon.colcon_core.package_identification:_identify(exemplo3) by extension 'colcon_meta'
+[0.293s] Level 1:colcon.colcon_core.package_identification:_identify(exemplo3) by extensions ['ros']
+[0.293s] Level 1:colcon.colcon_core.package_identification:_identify(exemplo3) by extension 'ros'
+[0.295s] DEBUG:colcon.colcon_core.package_identification:Package 'exemplo3' with type 'ros.ament_cmake' and name 'exemplo3'
+[0.296s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[0.296s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[0.296s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[0.296s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[0.296s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[0.296s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[0.296s] Level 1:colcon.colcon_core.package_identification:_identify(prius_gazebo_sim) by extensions ['ignore', 'ignore_ament_install']
+[0.296s] Level 1:colcon.colcon_core.package_identification:_identify(prius_gazebo_sim) by extension 'ignore'
+[0.296s] Level 1:colcon.colcon_core.package_identification:_identify(prius_gazebo_sim) by extension 'ignore_ament_install'
+[0.297s] Level 1:colcon.colcon_core.package_identification:_identify(prius_gazebo_sim) by extensions ['colcon_pkg']
+[0.297s] Level 1:colcon.colcon_core.package_identification:_identify(prius_gazebo_sim) by extension 'colcon_pkg'
+[0.297s] Level 1:colcon.colcon_core.package_identification:_identify(prius_gazebo_sim) by extensions ['colcon_meta']
+[0.297s] Level 1:colcon.colcon_core.package_identification:_identify(prius_gazebo_sim) by extension 'colcon_meta'
+[0.297s] Level 1:colcon.colcon_core.package_identification:_identify(prius_gazebo_sim) by extensions ['ros']
+[0.297s] Level 1:colcon.colcon_core.package_identification:_identify(prius_gazebo_sim) by extension 'ros'
+[0.297s] DEBUG:colcon.colcon_core.package_identification:Package 'prius_gazebo_sim' with type 'ros.ament_cmake' and name 'prius_gazebo_sim'
+[0.298s] Level 1:colcon.colcon_core.package_identification:_identify(simple_car) by extensions ['ignore', 'ignore_ament_install']
+[0.298s] Level 1:colcon.colcon_core.package_identification:_identify(simple_car) by extension 'ignore'
+[0.298s] Level 1:colcon.colcon_core.package_identification:_identify(simple_car) by extension 'ignore_ament_install'
+[0.298s] Level 1:colcon.colcon_core.package_identification:_identify(simple_car) by extensions ['colcon_pkg']
+[0.298s] Level 1:colcon.colcon_core.package_identification:_identify(simple_car) by extension 'colcon_pkg'
+[0.298s] Level 1:colcon.colcon_core.package_identification:_identify(simple_car) by extensions ['colcon_meta']
+[0.298s] Level 1:colcon.colcon_core.package_identification:_identify(simple_car) by extension 'colcon_meta'
+[0.298s] Level 1:colcon.colcon_core.package_identification:_identify(simple_car) by extensions ['ros']
+[0.298s] Level 1:colcon.colcon_core.package_identification:_identify(simple_car) by extension 'ros'
+[0.299s] DEBUG:colcon.colcon_core.package_identification:Package 'simple_car' with type 'ros.ament_cmake' and name 'simple_car'
+[0.299s] Level 1:colcon.colcon_core.package_identification:_identify(venv) by extensions ['ignore', 'ignore_ament_install']
+[0.299s] Level 1:colcon.colcon_core.package_identification:_identify(venv) by extension 'ignore'
+[0.299s] Level 1:colcon.colcon_core.package_identification:_identify(venv) by extension 'ignore_ament_install'
+[0.299s] Level 1:colcon.colcon_core.package_identification:_identify(venv) by extensions ['colcon_pkg']
+[0.299s] Level 1:colcon.colcon_core.package_identification:_identify(venv) by extension 'colcon_pkg'
+[0.299s] Level 1:colcon.colcon_core.package_identification:_identify(venv) by extensions ['colcon_meta']
+[0.299s] Level 1:colcon.colcon_core.package_identification:_identify(venv) by extension 'colcon_meta'
+[0.299s] Level 1:colcon.colcon_core.package_identification:_identify(venv) by extensions ['ros']
+[0.299s] Level 1:colcon.colcon_core.package_identification:_identify(venv) by extension 'ros'
+[0.299s] Level 1:colcon.colcon_core.package_identification:_identify(venv) by extensions ['cmake', 'python']
+[0.300s] Level 1:colcon.colcon_core.package_identification:_identify(venv) by extension 'cmake'
+[0.300s] Level 1:colcon.colcon_core.package_identification:_identify(venv) by extension 'python'
+[0.300s] Level 1:colcon.colcon_core.package_identification:_identify(venv) by extensions ['python_setup_py']
+[0.300s] Level 1:colcon.colcon_core.package_identification:_identify(venv) by extension 'python_setup_py'
+[0.300s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[0.300s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[0.300s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[0.300s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[0.300s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[0.322s] Level 5:colcon.colcon_core.verb:set package 'exemplo3' build argument 'cmake_args' from command line to 'None'
+[0.322s] Level 5:colcon.colcon_core.verb:set package 'exemplo3' build argument 'cmake_target' from command line to 'None'
+[0.322s] Level 5:colcon.colcon_core.verb:set package 'exemplo3' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.322s] Level 5:colcon.colcon_core.verb:set package 'exemplo3' build argument 'cmake_clean_cache' from command line to 'False'
+[0.322s] Level 5:colcon.colcon_core.verb:set package 'exemplo3' build argument 'cmake_clean_first' from command line to 'False'
+[0.322s] Level 5:colcon.colcon_core.verb:set package 'exemplo3' build argument 'cmake_force_configure' from command line to 'False'
+[0.322s] Level 5:colcon.colcon_core.verb:set package 'exemplo3' build argument 'ament_cmake_args' from command line to 'None'
+[0.322s] Level 5:colcon.colcon_core.verb:set package 'exemplo3' build argument 'catkin_cmake_args' from command line to 'None'
+[0.322s] Level 5:colcon.colcon_core.verb:set package 'exemplo3' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.322s] DEBUG:colcon.colcon_core.verb:Building package 'exemplo3' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/build/exemplo3', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/exemplo3', 'merge_install': False, 'path': '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/exemplo3', 'symlink_install': True, 'test_result_base': None}
+[0.323s] Level 5:colcon.colcon_core.verb:set package 'prius_gazebo_sim' build argument 'cmake_args' from command line to 'None'
+[0.323s] Level 5:colcon.colcon_core.verb:set package 'prius_gazebo_sim' build argument 'cmake_target' from command line to 'None'
+[0.323s] Level 5:colcon.colcon_core.verb:set package 'prius_gazebo_sim' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.323s] Level 5:colcon.colcon_core.verb:set package 'prius_gazebo_sim' build argument 'cmake_clean_cache' from command line to 'False'
+[0.323s] Level 5:colcon.colcon_core.verb:set package 'prius_gazebo_sim' build argument 'cmake_clean_first' from command line to 'False'
+[0.323s] Level 5:colcon.colcon_core.verb:set package 'prius_gazebo_sim' build argument 'cmake_force_configure' from command line to 'False'
+[0.323s] Level 5:colcon.colcon_core.verb:set package 'prius_gazebo_sim' build argument 'ament_cmake_args' from command line to 'None'
+[0.323s] Level 5:colcon.colcon_core.verb:set package 'prius_gazebo_sim' build argument 'catkin_cmake_args' from command line to 'None'
+[0.323s] Level 5:colcon.colcon_core.verb:set package 'prius_gazebo_sim' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.323s] DEBUG:colcon.colcon_core.verb:Building package 'prius_gazebo_sim' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/build/prius_gazebo_sim', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/prius_gazebo_sim', 'merge_install': False, 'path': '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/prius_gazebo_sim', 'symlink_install': True, 'test_result_base': None}
+[0.323s] Level 5:colcon.colcon_core.verb:set package 'simple_car' build argument 'cmake_args' from command line to 'None'
+[0.323s] Level 5:colcon.colcon_core.verb:set package 'simple_car' build argument 'cmake_target' from command line to 'None'
+[0.323s] Level 5:colcon.colcon_core.verb:set package 'simple_car' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.324s] Level 5:colcon.colcon_core.verb:set package 'simple_car' build argument 'cmake_clean_cache' from command line to 'False'
+[0.324s] Level 5:colcon.colcon_core.verb:set package 'simple_car' build argument 'cmake_clean_first' from command line to 'False'
+[0.324s] Level 5:colcon.colcon_core.verb:set package 'simple_car' build argument 'cmake_force_configure' from command line to 'False'
+[0.324s] Level 5:colcon.colcon_core.verb:set package 'simple_car' build argument 'ament_cmake_args' from command line to 'None'
+[0.324s] Level 5:colcon.colcon_core.verb:set package 'simple_car' build argument 'catkin_cmake_args' from command line to 'None'
+[0.324s] Level 5:colcon.colcon_core.verb:set package 'simple_car' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.324s] DEBUG:colcon.colcon_core.verb:Building package 'simple_car' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/build/simple_car', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/simple_car', 'merge_install': False, 'path': '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/simple_car', 'symlink_install': True, 'test_result_base': None}
+[0.324s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[0.325s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[0.325s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/exemplo3' with build type 'ament_cmake'
+[0.326s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/exemplo3'
+[0.328s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[0.328s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.328s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.329s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/simple_car' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[0.329s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/exemplo3' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[0.329s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/prius_gazebo_sim' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[0.329s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/simple_car' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[0.329s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/exemplo3' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[0.329s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/prius_gazebo_sim' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[0.335s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/prius_gazebo_sim' with build type 'ament_cmake'
+[0.336s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/prius_gazebo_sim'
+[0.336s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.336s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.340s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/simple_car' with build type 'ament_cmake'
+[0.340s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/simple_car'
+[0.341s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.341s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.348s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/build/exemplo3': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake /home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/exemplo3 -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/exemplo3
+[0.352s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/build/prius_gazebo_sim': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake /home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/prius_gazebo_sim -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/prius_gazebo_sim
+[0.355s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/build/simple_car': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake /home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/simple_car -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/simple_car
+[0.963s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/build/exemplo3' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake /home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/exemplo3 -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/exemplo3
+[0.964s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/build/exemplo3': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/build/exemplo3 -- -j12 -l12
+[0.969s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/build/simple_car' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake /home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/simple_car -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/simple_car
+[0.971s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/build/simple_car': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/build/simple_car -- -j12 -l12
+[0.994s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/build/exemplo3' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/build/exemplo3 -- -j12 -l12
+[1.003s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/build/exemplo3': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/build/exemplo3
+[1.004s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/build/simple_car' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/build/simple_car -- -j12 -l12
+[1.006s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/build/simple_car': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/build/simple_car
+[1.146s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(exemplo3)
+[1.146s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/build/exemplo3' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/build/exemplo3
+[1.150s] Level 1:colcon.colcon_core.environment:checking '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/exemplo3' for CMake module files
+[1.152s] Level 1:colcon.colcon_core.environment:checking '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/exemplo3' for CMake config files
+[1.152s] Level 1:colcon.colcon_core.shell:create_environment_hook('exemplo3', 'cmake_prefix_path')
+[1.152s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/exemplo3/share/exemplo3/hook/cmake_prefix_path.ps1'
+[1.153s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/exemplo3/share/exemplo3/hook/cmake_prefix_path.dsv'
+[1.154s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/exemplo3/share/exemplo3/hook/cmake_prefix_path.sh'
+[1.154s] Level 1:colcon.colcon_core.environment:checking '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/exemplo3/bin'
+[1.154s] Level 1:colcon.colcon_core.environment:checking '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/exemplo3/lib/pkgconfig/exemplo3.pc'
+[1.157s] Level 1:colcon.colcon_core.environment:checking '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/exemplo3/lib/python3.10/site-packages'
+[1.157s] Level 1:colcon.colcon_core.environment:checking '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/exemplo3/bin'
+[1.157s] INFO:colcon.colcon_core.shell:Creating package script '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/exemplo3/share/exemplo3/package.ps1'
+[1.159s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/exemplo3/share/exemplo3/package.dsv'
+[1.159s] INFO:colcon.colcon_core.shell:Creating package script '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/exemplo3/share/exemplo3/package.sh'
+[1.160s] INFO:colcon.colcon_core.shell:Creating package script '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/exemplo3/share/exemplo3/package.bash'
+[1.161s] INFO:colcon.colcon_core.shell:Creating package script '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/exemplo3/share/exemplo3/package.zsh'
+[1.162s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/exemplo3/share/colcon-core/packages/exemplo3)
+[1.163s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(exemplo3)
+[1.163s] Level 1:colcon.colcon_core.environment:checking '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/exemplo3' for CMake module files
+[1.164s] Level 1:colcon.colcon_core.environment:checking '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/exemplo3' for CMake config files
+[1.164s] Level 1:colcon.colcon_core.shell:create_environment_hook('exemplo3', 'cmake_prefix_path')
+[1.165s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/exemplo3/share/exemplo3/hook/cmake_prefix_path.ps1'
+[1.165s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/exemplo3/share/exemplo3/hook/cmake_prefix_path.dsv'
+[1.166s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/exemplo3/share/exemplo3/hook/cmake_prefix_path.sh'
+[1.166s] Level 1:colcon.colcon_core.environment:checking '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/exemplo3/bin'
+[1.166s] Level 1:colcon.colcon_core.environment:checking '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/exemplo3/lib/pkgconfig/exemplo3.pc'
+[1.167s] Level 1:colcon.colcon_core.environment:checking '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/exemplo3/lib/python3.10/site-packages'
+[1.167s] Level 1:colcon.colcon_core.environment:checking '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/exemplo3/bin'
+[1.167s] INFO:colcon.colcon_core.shell:Creating package script '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/exemplo3/share/exemplo3/package.ps1'
+[1.168s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/exemplo3/share/exemplo3/package.dsv'
+[1.169s] INFO:colcon.colcon_core.shell:Creating package script '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/exemplo3/share/exemplo3/package.sh'
+[1.169s] INFO:colcon.colcon_core.shell:Creating package script '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/exemplo3/share/exemplo3/package.bash'
+[1.170s] INFO:colcon.colcon_core.shell:Creating package script '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/exemplo3/share/exemplo3/package.zsh'
+[1.181s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/exemplo3/share/colcon-core/packages/exemplo3)
+[1.182s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(simple_car)
+[1.182s] Level 1:colcon.colcon_core.environment:checking '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/simple_car' for CMake module files
+[1.183s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/build/simple_car' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/build/simple_car
+[1.183s] Level 1:colcon.colcon_core.environment:checking '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/simple_car' for CMake config files
+[1.184s] Level 1:colcon.colcon_core.shell:create_environment_hook('simple_car', 'cmake_prefix_path')
+[1.184s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/simple_car/share/simple_car/hook/cmake_prefix_path.ps1'
+[1.185s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/simple_car/share/simple_car/hook/cmake_prefix_path.dsv'
+[1.185s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/simple_car/share/simple_car/hook/cmake_prefix_path.sh'
+[1.186s] Level 1:colcon.colcon_core.environment:checking '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/simple_car/lib'
+[1.186s] Level 1:colcon.colcon_core.environment:checking '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/simple_car/bin'
+[1.186s] Level 1:colcon.colcon_core.environment:checking '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/simple_car/lib/pkgconfig/simple_car.pc'
+[1.186s] Level 1:colcon.colcon_core.environment:checking '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/simple_car/lib/python3.10/site-packages'
+[1.187s] Level 1:colcon.colcon_core.environment:checking '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/simple_car/bin'
+[1.187s] INFO:colcon.colcon_core.shell:Creating package script '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/simple_car/share/simple_car/package.ps1'
+[1.188s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/simple_car/share/simple_car/package.dsv'
+[1.188s] INFO:colcon.colcon_core.shell:Creating package script '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/simple_car/share/simple_car/package.sh'
+[1.188s] INFO:colcon.colcon_core.shell:Creating package script '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/simple_car/share/simple_car/package.bash'
+[1.189s] INFO:colcon.colcon_core.shell:Creating package script '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/simple_car/share/simple_car/package.zsh'
+[1.189s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/simple_car/share/colcon-core/packages/simple_car)
+[1.189s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(simple_car)
+[1.190s] Level 1:colcon.colcon_core.environment:checking '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/simple_car' for CMake module files
+[1.190s] Level 1:colcon.colcon_core.environment:checking '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/simple_car' for CMake config files
+[1.190s] Level 1:colcon.colcon_core.shell:create_environment_hook('simple_car', 'cmake_prefix_path')
+[1.191s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/simple_car/share/simple_car/hook/cmake_prefix_path.ps1'
+[1.191s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/simple_car/share/simple_car/hook/cmake_prefix_path.dsv'
+[1.191s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/simple_car/share/simple_car/hook/cmake_prefix_path.sh'
+[1.192s] Level 1:colcon.colcon_core.environment:checking '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/simple_car/lib'
+[1.192s] Level 1:colcon.colcon_core.environment:checking '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/simple_car/bin'
+[1.192s] Level 1:colcon.colcon_core.environment:checking '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/simple_car/lib/pkgconfig/simple_car.pc'
+[1.192s] Level 1:colcon.colcon_core.environment:checking '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/simple_car/lib/python3.10/site-packages'
+[1.192s] Level 1:colcon.colcon_core.environment:checking '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/simple_car/bin'
+[1.192s] INFO:colcon.colcon_core.shell:Creating package script '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/simple_car/share/simple_car/package.ps1'
+[1.193s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/simple_car/share/simple_car/package.dsv'
+[1.193s] INFO:colcon.colcon_core.shell:Creating package script '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/simple_car/share/simple_car/package.sh'
+[1.194s] INFO:colcon.colcon_core.shell:Creating package script '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/simple_car/share/simple_car/package.bash'
+[1.194s] INFO:colcon.colcon_core.shell:Creating package script '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/simple_car/share/simple_car/package.zsh'
+[1.195s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/simple_car/share/colcon-core/packages/simple_car)
+[2.598s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/build/prius_gazebo_sim' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake /home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/prius_gazebo_sim -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/prius_gazebo_sim
+[2.599s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/build/prius_gazebo_sim': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/build/prius_gazebo_sim -- -j12 -l12
+[2.638s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/build/prius_gazebo_sim' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/build/prius_gazebo_sim -- -j12 -l12
+[2.639s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/build/prius_gazebo_sim': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/build/prius_gazebo_sim
+[2.795s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(prius_gazebo_sim)
+[2.796s] Level 1:colcon.colcon_core.environment:checking '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/prius_gazebo_sim' for CMake module files
+[2.797s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/build/prius_gazebo_sim' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/build/prius_gazebo_sim
+[2.798s] Level 1:colcon.colcon_core.environment:checking '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/prius_gazebo_sim' for CMake config files
+[2.798s] Level 1:colcon.colcon_core.shell:create_environment_hook('prius_gazebo_sim', 'cmake_prefix_path')
+[2.798s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/prius_gazebo_sim/share/prius_gazebo_sim/hook/cmake_prefix_path.ps1'
+[2.799s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/prius_gazebo_sim/share/prius_gazebo_sim/hook/cmake_prefix_path.dsv'
+[2.800s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/prius_gazebo_sim/share/prius_gazebo_sim/hook/cmake_prefix_path.sh'
+[2.801s] Level 1:colcon.colcon_core.environment:checking '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/prius_gazebo_sim/bin'
+[2.801s] Level 1:colcon.colcon_core.environment:checking '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/prius_gazebo_sim/lib/pkgconfig/prius_gazebo_sim.pc'
+[2.802s] Level 1:colcon.colcon_core.environment:checking '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/prius_gazebo_sim/lib/python3.10/site-packages'
+[2.802s] Level 1:colcon.colcon_core.environment:checking '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/prius_gazebo_sim/bin'
+[2.803s] INFO:colcon.colcon_core.shell:Creating package script '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/prius_gazebo_sim/share/prius_gazebo_sim/package.ps1'
+[2.804s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/prius_gazebo_sim/share/prius_gazebo_sim/package.dsv'
+[2.805s] INFO:colcon.colcon_core.shell:Creating package script '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/prius_gazebo_sim/share/prius_gazebo_sim/package.sh'
+[2.806s] INFO:colcon.colcon_core.shell:Creating package script '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/prius_gazebo_sim/share/prius_gazebo_sim/package.bash'
+[2.807s] INFO:colcon.colcon_core.shell:Creating package script '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/prius_gazebo_sim/share/prius_gazebo_sim/package.zsh'
+[2.808s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/prius_gazebo_sim/share/colcon-core/packages/prius_gazebo_sim)
+[2.809s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(prius_gazebo_sim)
+[2.809s] Level 1:colcon.colcon_core.environment:checking '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/prius_gazebo_sim' for CMake module files
+[2.811s] Level 1:colcon.colcon_core.environment:checking '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/prius_gazebo_sim' for CMake config files
+[2.811s] Level 1:colcon.colcon_core.shell:create_environment_hook('prius_gazebo_sim', 'cmake_prefix_path')
+[2.812s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/prius_gazebo_sim/share/prius_gazebo_sim/hook/cmake_prefix_path.ps1'
+[2.813s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/prius_gazebo_sim/share/prius_gazebo_sim/hook/cmake_prefix_path.dsv'
+[2.814s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/prius_gazebo_sim/share/prius_gazebo_sim/hook/cmake_prefix_path.sh'
+[2.816s] Level 1:colcon.colcon_core.environment:checking '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/prius_gazebo_sim/bin'
+[2.816s] Level 1:colcon.colcon_core.environment:checking '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/prius_gazebo_sim/lib/pkgconfig/prius_gazebo_sim.pc'
+[2.817s] Level 1:colcon.colcon_core.environment:checking '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/prius_gazebo_sim/lib/python3.10/site-packages'
+[2.817s] Level 1:colcon.colcon_core.environment:checking '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/prius_gazebo_sim/bin'
+[2.818s] INFO:colcon.colcon_core.shell:Creating package script '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/prius_gazebo_sim/share/prius_gazebo_sim/package.ps1'
+[2.820s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/prius_gazebo_sim/share/prius_gazebo_sim/package.dsv'
+[2.821s] INFO:colcon.colcon_core.shell:Creating package script '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/prius_gazebo_sim/share/prius_gazebo_sim/package.sh'
+[2.823s] INFO:colcon.colcon_core.shell:Creating package script '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/prius_gazebo_sim/share/prius_gazebo_sim/package.bash'
+[2.825s] INFO:colcon.colcon_core.shell:Creating package script '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/prius_gazebo_sim/share/prius_gazebo_sim/package.zsh'
+[2.826s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/prius_gazebo_sim/share/colcon-core/packages/prius_gazebo_sim)
+[2.827s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[2.828s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[2.829s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[2.829s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[2.851s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.notify_send': Could not find 'notify-send'
+[2.851s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[2.852s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[2.852s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[2.906s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[2.907s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/local_setup.ps1'
+[2.911s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/_local_setup_util_ps1.py'
+[2.917s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/setup.ps1'
+[2.922s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/local_setup.sh'
+[2.924s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/_local_setup_util_sh.py'
+[2.927s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/setup.sh'
+[2.932s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/local_setup.bash'
+[2.934s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/setup.bash'
+[2.939s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/local_setup.zsh'
+[2.941s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/install/setup.zsh'

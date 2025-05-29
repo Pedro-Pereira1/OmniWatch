@@ -1,0 +1,108 @@
+#!/usr/bin/env python3
+
+import rclpy
+from rclpy.node import Node
+from geometry_msgs.msg import Twist
+from nav_msgs.msg import Odometry
+from math import atan2, sqrt
+import math
+
+ANGLE_TOLERANCE = 0.10
+MAX_ANG        = 2.5
+K_ANG          = 2.0
+MIN_LIN        = 0.10
+MAX_LIN         = 5.0
+MIN_ROTATE_LIN = 0.05  # avanço durante rotação
+
+def quaternion_to_yaw(q):
+    siny_cosp = 2 * (q.w * q.z + q.x * q.y)
+    cosy_cosp = 1 - 2 * (q.y * q.y + q.z * q.z)
+    return math.atan2(siny_cosp, cosy_cosp)
+
+class WaypointFollower(Node):
+    def __init__(self):
+        super().__init__('waypoint_follower')
+        self.publisher = self.create_publisher(Twist, '/cmd_vel', 10)
+        self.subscription = self.create_subscription(
+            Odometry, '/odom', self.odom_callback, 10)
+        # Lista de waypoints [(x, y)]
+        self.waypoints = [
+            (2.0, 0.0),
+            (2.0, 2.0),
+            (0.0, 2.0),
+            (0.0, 0.0)
+        ]
+        self.current_waypoint_index = 0
+        self.pose = None
+        self.yaw = 0.0
+
+    
+    def odom_callback(self, msg):
+        # Posição atual
+        self.pose = msg.pose.pose
+        x = self.pose.position.x
+        y = self.pose.position.y
+
+        orientation_q = self.pose.orientation
+        self.yaw = quaternion_to_yaw(orientation_q)
+        # Se já não houver waypoints, para
+        if self.current_waypoint_index >= len(self.waypoints):
+            self.stop()
+            return
+
+        L = 0.6
+
+        # Posição da frente do robô
+        front_x = x + L * math.cos(self.yaw)
+        front_y = y + L * math.sin(self.yaw)
+
+        target_x, target_y = self.waypoints[self.current_waypoint_index]
+        dx = target_x - front_x
+        dy = target_y - front_y
+
+        # Distância ao próximo waypoint
+        distance = sqrt(dx**2 + dy**2)
+        self.get_logger().info(f"({target_x}, {target_y}):({x}, {y})")
+
+        angle_to_goal = atan2(dy, dx)
+        angle_diff = angle_to_goal - self.yaw
+
+        # Normaliza o ângulo entre -pi e pi
+        from math import pi
+        while angle_diff > pi:
+            angle_diff -= 2 * pi
+        while angle_diff < -pi:
+            angle_diff += 2 * pi
+
+        msg_twist = Twist()
+        # Se está virado, anda em frente; senão roda primeiro
+        # dentro de odom_callback, substitua:
+        if abs(angle_diff) > ANGLE_TOLERANCE:
+            # gira mantendo um pequeno avanço
+            msg_twist.angular.z = max(-MAX_ANG, min(MAX_ANG, K_ANG * angle_diff))
+            msg_twist.linear.x = MIN_ROTATE_LIN
+        elif distance > 0.1:
+            # segue em frente normal
+            v = max(MIN_LIN, min(MAX_LIN, 0.2 * distance))
+            msg_twist.linear.x = v
+            msg_twist.angular.z = max(-MAX_ANG, min(MAX_ANG, 0.4 * angle_diff))
+        else:
+            self.get_logger().info(f"Chegou ao waypoint {self.current_waypoint_index + 1}: ({target_x}, {target_y})")
+            self.current_waypoint_index += 1
+
+        self.publisher.publish(msg_twist)
+
+    def stop(self):
+        # Para o robô
+        stop_msg = Twist()
+        self.publisher.publish(stop_msg)
+
+def main(args=None):
+    rclpy.init(args=args)
+    node = WaypointFollower()
+    rclpy.spin(node)
+    node.destroy_node()
+    rclpy.shutdown()
+
+if __name__ == '__main__':
+    main()
