@@ -3,9 +3,11 @@
 import rclpy
 from rclpy.node import Node
 from geometry_msgs.msg import Twist
+from std_msgs.msg import String, Float32
 from nav_msgs.msg import Odometry
 from rclpy.qos import QoSProfile
 import math
+import numpy as np
 
 WAYPOINTS = [
     (2.0, 0.0),
@@ -23,6 +25,9 @@ class WaypointFollower(Node):
     def __init__(self):
         super().__init__('waypoint_follower')
         self.publisher = self.create_publisher(Twist, 'car_1/cmd_vel', QoSProfile(depth=10))
+        self.publisher_logs = self.create_publisher(String, 'car_1/logs', QoSProfile(depth=10))
+        self.publisher_pose = self.create_publisher(String, 'car_1/pose', QoSProfile(depth=10))
+        self.publisher_weight = self.create_publisher(Float32, 'car_1/weight', QoSProfile(depth=10))
         self.subscription = self.create_subscription(Odometry, 'car_1/odom', self.odom_callback, QoSProfile(depth=10))
         self.pose = None
         self.yaw = None
@@ -57,6 +62,7 @@ class WaypointFollower(Node):
         msg = Twist()
 
         # Debug prints
+        """
         print("----- DEBUG -----")
         print(f"Waypoint atual: {self.current_waypoint} -> ({goal_x:.2f}, {goal_y:.2f})")
         print(f"Posição atual: ({self.pose.x:.2f}, {self.pose.y:.2f})")
@@ -64,7 +70,7 @@ class WaypointFollower(Node):
         print(f"Distância ao waypoint: {distance:.2f} m")
         print(f"Ângulo ao waypoint: {angle_to_goal:.2f} rad")
         print(f"Ângulo diff: {angle_diff:.2f} rad")
-
+        """
         if abs(angle_diff) > ALIGN_THRESHOLD:
             msg.angular.z = max(min(ANGULAR_SPEED * angle_diff, ANGULAR_SPEED), -ANGULAR_SPEED)
             msg.linear.x = 0.0
@@ -80,6 +86,12 @@ class WaypointFollower(Node):
 
         print("-----------------\n")
         self.publisher.publish(msg)
+        #self.publisher_pose.publish(f'({self.pose.x}, {self.pose.y})')
+        # Simulate weight
+        random_value = np.random.uniform(15, 300)
+        msg = Float32()
+        msg.data = random_value
+        self.publisher_weight.publish(msg)
 
     @staticmethod
     def normalize_angle(angle):

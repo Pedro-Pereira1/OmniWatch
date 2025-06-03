@@ -1,10 +1,5 @@
-ros2_ws/build
-ros2_ws/install
-ros2_ws/log
-ros2_ws/venv
-spade_agents/venv
 HowTo.md
-simple_car/build
-simple_car/install
-simple_car/log
-simple_car/venv
+venv
+build
+install
+log

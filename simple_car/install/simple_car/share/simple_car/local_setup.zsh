@@ -1,1 +1,0 @@
-/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/build/simple_car/ament_cmake_environment_hooks/local_setup.zsh

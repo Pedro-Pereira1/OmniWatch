@@ -1,1 +1,0 @@
-/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/exemplo3/launch/bringup.launch.py

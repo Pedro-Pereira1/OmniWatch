@@ -1,1 +1,0 @@
-/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/simple_car/launch/spawn_car.launch.py

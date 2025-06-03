@@ -1,1 +1,0 @@
-/home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/prius_gazebo_sim/launch/spawn_prius.launch.py
