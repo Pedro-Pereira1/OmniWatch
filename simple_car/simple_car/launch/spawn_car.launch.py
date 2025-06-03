@@ -7,21 +7,23 @@ from ament_index_python.packages import get_package_share_directory
 
 def generate_launch_description():
     pkg_share = get_package_share_directory('simple_car')
-    sdf_file = os.path.join(pkg_share, 'models', 'simple_car', 'model.sdf')
+    shell_script = os.path.join(pkg_share, 'launch', 'spawn_entity.sh')
 
-    return LaunchDescription([
+    launch_description = LaunchDescription([
         ExecuteProcess(
             cmd=['gazebo', '--verbose', '-s', 'libgazebo_ros_factory.so'],
             output='screen'
-        ),
-        Node(
-            package='gazebo_ros',
-            executable='spawn_entity.py',
-            arguments=[
-                '-entity', 'simple_car',
-                '-file', sdf_file,
-                '-x', '0', '-y', '0', '-z', '0.1'
-            ],
-            output='screen'
-        ),
+        )
     ])
+
+    # Adiciona os carros de car_1 a car_20
+    for i in range(1, 7):
+        car_name = f'car_{i}'
+        launch_description.add_action(
+            ExecuteProcess(
+                cmd=[shell_script, car_name, f'{i}', '0'],
+                output='screen'
+            )
+        )
+
+    return launch_description
