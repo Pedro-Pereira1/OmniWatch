@@ -1,6 +1,0 @@
-# CMake generated Testfile for 
-# Source directory: /home/rafaelbranco/Documentos/ISEP/OmniWatch/simple_car/prius_gazebo_sim
-# Build directory: /home/rafaelbranco/Documentos/ISEP/OmniWatch/build/prius_gazebo_sim
-# 
-# This file includes the relevant testing commands required for 
-# testing this directory and lists subdirectories to be tested as well.

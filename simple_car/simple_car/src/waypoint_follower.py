@@ -22,8 +22,8 @@ LINEAR_SPEED = 1.0       # m/s
 class WaypointFollower(Node):
     def __init__(self):
         super().__init__('waypoint_follower')
-        self.publisher = self.create_publisher(Twist, 'car_2/cmd_vel', QoSProfile(depth=10))
-        self.subscription = self.create_subscription(Odometry, 'car_2/odom', self.odom_callback, QoSProfile(depth=10))
+        self.publisher = self.create_publisher(Twist, 'car_1/cmd_vel', QoSProfile(depth=10))
+        self.subscription = self.create_subscription(Odometry, 'car_1/odom', self.odom_callback, QoSProfile(depth=10))
         self.pose = None
         self.yaw = None
         self.current_waypoint = 0

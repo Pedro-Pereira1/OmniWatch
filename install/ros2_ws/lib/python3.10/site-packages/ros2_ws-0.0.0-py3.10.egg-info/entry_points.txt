@@ -1,3 +1,0 @@
-[console_scripts]
-sensor_manager = ros2_ws.sensor_manager:main
-
