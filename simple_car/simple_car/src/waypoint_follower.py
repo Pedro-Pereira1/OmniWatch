@@ -8,12 +8,7 @@ from nav_msgs.msg import Odometry
 from rclpy.qos import QoSProfile
 import math
 import numpy as np
-
-WAYPOINTS = [
-    (-0.5, -9.5),
-    (-0.5, 8.5),
-    (8.5, 8.5)
-]
+import json  # Para ler o ponto publicado
 
 ALIGN_THRESHOLD = 0.08   # radianos (~5 graus)
 DIST_THRESHOLD = 0.1     # metros
@@ -25,17 +20,26 @@ class WaypointFollower(Node):
         super().__init__('waypoint_follower')
         self.declare_parameter('car_name', 'car_1')
         car_name = self.get_parameter('car_name').get_parameter_value().string_value
-        
+
         self.publisher = self.create_publisher(Twist, f'{car_name}/cmd_vel', QoSProfile(depth=10))
         self.publisher_logs = self.create_publisher(String, f'{car_name}/logs', QoSProfile(depth=10))
         self.publisher_pose = self.create_publisher(String, f'{car_name}/pose', QoSProfile(depth=10))
         self.publisher_weight = self.create_publisher(Float32, f'{car_name}/weight', QoSProfile(depth=10))
         self.subscription = self.create_subscription(Odometry, f'{car_name}/odom', self.odom_callback, QoSProfile(depth=10))
+
+        # Subscrever ao novo tópico para receber um waypoint dinâmico
+        self.subscription_new_wp = self.create_subscription(
+            String,
+            'new_waypoint',  # note singular!
+            self.new_waypoint_callback,
+            QoSProfile(depth=10)
+        )
+
         self.pose = None
         self.yaw = None
-        self.current_waypoint = 0
-        self.timer = self.create_timer(0.1, self.follow_waypoints)
-        self.waypoints = WAYPOINTS
+        self.current_goal = None  # Só um ponto atual
+
+        self.timer = self.create_timer(0.1, self.move_to_goal)
 
     def odom_callback(self, msg):
         self.pose = msg.pose.pose.position
@@ -44,17 +48,29 @@ class WaypointFollower(Node):
         cosy_cosp = 1.0 - 2.0 * (orientation_q.y ** 2 + orientation_q.z ** 2)
         self.yaw = math.atan2(siny_cosp, cosy_cosp)
 
-    def follow_waypoints(self):
+    def new_waypoint_callback(self, msg):
+        try:
+            # Espera JSON simples: [x, y]
+            point = json.loads(msg.data)
+            if isinstance(point, list) and len(point) == 2:
+                self.current_goal = (float(point[0]), float(point[1]))
+                self.get_logger().info(f"Novo objetivo recebido: {self.current_goal}")
+            else:
+                self.get_logger().error("Formato inválido. Espera: [x, y]")
+        except Exception as e:
+            self.get_logger().error(f"Erro ao processar novo waypoint: {e}")
+
+    def move_to_goal(self):
         if self.pose is None or self.yaw is None:
             print("Aguardando dados de odometria...")
             return
 
-        if self.current_waypoint >= len(self.waypoints):
-            print("Todos os waypoints foram atingidos. A parar o robô.")
-            self.publisher.publish(Twist())
+        if self.current_goal is None:
+            print("Nenhum objetivo atual definido.")
+            self.publisher.publish(Twist())  # Para garantir que o carro pare
             return
 
-        goal_x, goal_y = self.waypoints[self.current_waypoint]
+        goal_x, goal_y = self.current_goal
         dx = goal_x - self.pose.x
         dy = goal_y - self.pose.y
         distance = math.hypot(dx, dy)
@@ -62,17 +78,6 @@ class WaypointFollower(Node):
         angle_diff = self.normalize_angle(angle_to_goal - self.yaw)
 
         msg = Twist()
-
-        # Debug prints
-        """
-        print("----- DEBUG -----")
-        print(f"Waypoint atual: {self.current_waypoint} -> ({goal_x:.2f}, {goal_y:.2f})")
-        print(f"Posição atual: ({self.pose.x:.2f}, {self.pose.y:.2f})")
-        print(f"Yaw atual: {self.yaw:.2f} rad")
-        print(f"Distância ao waypoint: {distance:.2f} m")
-        print(f"Ângulo ao waypoint: {angle_to_goal:.2f} rad")
-        print(f"Ângulo diff: {angle_diff:.2f} rad")
-        """
         if abs(angle_diff) > ALIGN_THRESHOLD:
             msg.angular.z = max(min(ANGULAR_SPEED * angle_diff, ANGULAR_SPEED), -ANGULAR_SPEED)
             msg.linear.x = 0.0
@@ -83,17 +88,16 @@ class WaypointFollower(Node):
             print("Modo: A avançar (em frente)")
 
         if distance < DIST_THRESHOLD:
-            print(f"Cheguei ao waypoint {self.current_waypoint}. A ir para o {self.current_waypoint + 1}")
-            self.current_waypoint += 1
+            print("Objetivo alcançado!")
+            self.current_goal = None  # Limpa o objetivo ao chegar
 
-        print("-----------------\n")
         self.publisher.publish(msg)
-        #self.publisher_pose.publish(f'({self.pose.x}, {self.pose.y})')
-        # Simulate weight
+
+        # Simular peso
         random_value = np.random.uniform(15, 300)
-        msg = Float32()
-        msg.data = random_value
-        self.publisher_weight.publish(msg)
+        weight_msg = Float32()
+        weight_msg.data = random_value
+        self.publisher_weight.publish(weight_msg)
 
     @staticmethod
     def normalize_angle(angle):
@@ -112,7 +116,3 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
-
-class A_star:
-    def __init__(self):
-        pass
