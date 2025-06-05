@@ -56,7 +56,8 @@ class AStarPlanner:
             current = came_from[current]
             path.append(current)
         path.reverse()
-        world_coords = [(x * self.resolution, y * self.resolution) for x, y in path]
+        world_coords = [(x * self.resolution + 0.5 * self.resolution,
+                  y * self.resolution + 0.5 * self.resolution) for x, y in path]
         return world_coords
 
     def publish_path(self, node, topic, path):

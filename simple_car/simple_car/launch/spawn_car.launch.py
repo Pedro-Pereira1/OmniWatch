@@ -11,7 +11,7 @@ def generate_launch_description():
 
     launch_description = LaunchDescription([
         ExecuteProcess(
-            cmd=['gazebo', '--verbose', '-s', 'libgazebo_ros_factory.so'],
+            cmd=['gazebo', '--verbose', '-s', 'libgazebo_ros_factory.so', '/home/rafaelbranco/Documentos/ISEP/OmniWatch/aqui.sdf'],
             output='screen'
         ),
         ExecuteProcess(
