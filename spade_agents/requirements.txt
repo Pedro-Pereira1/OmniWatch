@@ -1,3 +1,0 @@
-pyjabber==0.2
-slixmpp==1.9.1
-spade==4.0.3

@@ -1,0 +1,35 @@
+omniwatch/
+├── README.md
+├── LICENSE
+├── .gitignore
+├── requirements.txt
+├── install.sh
+├── ros2_ws/
+│   ├── src/
+│   │   ├── omniwatch/
+│   │   │   ├── package.xml
+│   │   │   ├── setup.py
+│   │   │   ├── resource/
+│   │   │   ├── omniwatch/
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── robot_controller.py      # UC1
+│   │   │   │   ├── sensor_manager.py        # UC2
+│   │   │   │   ├── sprinkler_controller.py  # UC3
+│   │   │   │   ├── co2_logic.py             # UC4
+│   │   │   │   ├── intrusion_detector.py    # UC5
+│   │   │   │   ├── perimeter_guard.py       # UC6
+│   │   │   │   ├── learning_module.py       # UC7
+│   │   │   │   ├── coordination.py          # UC8
+│   │   │   └── launch/
+│   │   │       └── bot.launch.py
+├── spade_agents/
+│   ├── __init__.py
+│   ├── base_agent.py           # Agente base SPADE
+│   ├── robot_agent.py          # Agente que representa robô
+│   ├── camera_agent.py         # Agente que representa câmara
+│   └── coordination_agent.py   # Coordenação e competição (UC8)
+├── simulation/
+│   ├── world_description/
+│   └── gazebo_plugins/
+└── docs/
+    └── architecture.md         # Diagrama e explicação
