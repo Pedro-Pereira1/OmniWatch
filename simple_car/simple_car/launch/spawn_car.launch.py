@@ -13,17 +13,18 @@ def generate_launch_description():
         ExecuteProcess(
             cmd=['gazebo', '--verbose', '-s', 'libgazebo_ros_factory.so'],
             output='screen'
-        )
+        ),
+        ExecuteProcess(
+                cmd=[shell_script, 'car_1', '-9.5', '-9.5'],
+                output='screen'
+            )
     ])
 
     # Adiciona os carros de car_1 a car_20
-    for i in range(1, 7):
-        car_name = f'car_{i}'
-        launch_description.add_action(
-            ExecuteProcess(
-                cmd=[shell_script, car_name, f'{i}', '0'],
-                output='screen'
-            )
-        )
+    #for i in range(1, 7):
+        #car_name = f'car_{i}'
+        #launch_description.add_action(
+            
+        #)
 
     return launch_description
