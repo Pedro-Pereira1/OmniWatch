@@ -10,10 +10,9 @@ import math
 import numpy as np
 
 WAYPOINTS = [
-    (2.0, 0.0),
-    (2.0, 2.0),
-    (0.0, 2.0),
-    (0.0, 0.0)
+    (-0.5, -9.5),
+    (-0.5, 8.5),
+    (8.5, 8.5)
 ]
 
 ALIGN_THRESHOLD = 0.08   # radianos (~5 graus)
@@ -113,3 +112,7 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
+
+class A_star:
+    def __init__(self):
+        pass
