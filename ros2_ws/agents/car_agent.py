@@ -50,32 +50,51 @@ class CarAgent(Agent):
     def __init__(self, jid, password, car_id):
         super().__init__(jid, password)
         self.car_id = car_id
-        self.quarantine = False  # Initial state
+        self.quarantine = False
+        self._stop_requested = False
 
     class SendDataBehaviour(CyclicBehaviour):
         async def run(self):
-            data = {
-                "car_id": self.agent.car_id,
-                "log": self.agent.ros_node.log_data,
-                "weight": self.agent.ros_node.weight_data,
-                "position": {
-                    "lat": self.agent.ros_node.position_data[0],
-                    "lon": self.agent.ros_node.position_data[1]
-                },
-                "quarantine": self.agent.quarantine
-            }
+            if self.agent._stop_requested:
+                print(f"[{self.agent.car_id}] STOP requested, halting data transmission.")
+                await asyncio.sleep(50)
+            else:
+                data = {
+                    "car_id": self.agent.car_id,
+                    "log": self.agent.ros_node.log_data,
+                    "weight": self.agent.ros_node.weight_data,
+                    "position": {
+                        "lat": self.agent.ros_node.position_data[0],
+                        "lon": self.agent.ros_node.position_data[1]
+                    },
+                    "quarantine": self.agent.quarantine
+                }
 
-            msg = Message(
-                to="main@localhost",  # Replace with actual receiver JID
-                body=json.dumps(data),
-                metadata={"performative": "inform"}
-            )
-            print(f"[{self.agent.car_id}] Sending: {msg.body}")
-            await self.send(msg)
+                msg = Message(
+                    to="main@localhost",
+                    body=json.dumps(data),
+                    metadata={"performative": "inform"}
+                )
+                print(f"[{self.agent.car_id}] Sending: {msg.body}")
+                await self.send(msg)
 
-            # Quarantine sends more frequently
-            interval = 1 if self.agent.quarantine else 5
-            await asyncio.sleep(interval)
+                await asyncio.sleep(10 if self.agent.quarantine else 5)
+
+    class ControlBehaviour(CyclicBehaviour):
+        async def run(self):
+            msg = await self.receive(timeout=5)
+            if msg:
+                try:
+                    data = json.loads(msg.body)
+                    cmd = data.get("command")
+                    if cmd == "stop":
+                        print(f"[{self.agent.car_id}] Received STOP command.")
+                        self.agent._stop_requested = True
+                    elif cmd == "quarantine":
+                        print(f"[{self.agent.car_id}] Quarantine set to: {self.agent.quarantine}")
+                        self.agent.quarantine = data.get("state", True)
+                except Exception as e:
+                    print(f"[{self.agent.car_id}] Error handling control message: {e}")
 
     async def setup(self):
         print(f"[{self.car_id}] Agent started")
@@ -83,15 +102,8 @@ class CarAgent(Agent):
         thread.start()
         await asyncio.sleep(2)
         self.add_behaviour(self.SendDataBehaviour())
+        self.add_behaviour(self.ControlBehaviour())
 
-        # Optional: toggle quarantine every 15 seconds (for demo/testing)
-        #self.add_behaviour(self.ToggleQuarantineBehaviour())
-
-    class ToggleQuarantineBehaviour(CyclicBehaviour):
-        async def run(self):
-            await asyncio.sleep(15)
-            self.agent.quarantine = not self.agent.quarantine
-            print(f"[{self.agent.car_id}] Quarantine toggled to: {self.agent.quarantine}")
 
 if __name__ == "__main__":
     async def main():
