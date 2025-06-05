@@ -23,14 +23,14 @@ class WaypointFollower(Node):
 
         self.publisher = self.create_publisher(Twist, f'{car_name}/cmd_vel', QoSProfile(depth=10))
         self.publisher_logs = self.create_publisher(String, f'{car_name}/logs', QoSProfile(depth=10))
-        self.publisher_pose = self.create_publisher(String, f'{car_name}/pose', QoSProfile(depth=10))
+        #self.publisher_pose = self.create_publisher(String, f'{car_name}/pose', QoSProfile(depth=10))
         self.publisher_weight = self.create_publisher(Float32, f'{car_name}/weight', QoSProfile(depth=10))
         self.subscription = self.create_subscription(Odometry, f'{car_name}/odom', self.odom_callback, QoSProfile(depth=10))
 
         # Subscrever ao novo tópico para receber um waypoint dinâmico
         self.subscription_new_wp = self.create_subscription(
             String,
-            'new_waypoint',  # note singular!
+            'new_waypoint',
             self.new_waypoint_callback,
             QoSProfile(depth=10)
         )
