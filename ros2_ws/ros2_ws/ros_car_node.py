@@ -21,7 +21,7 @@ class CarNode(Node):
         self.log_pub = self.create_publisher(String, f'{car_id}/logs', 10)
         self.weight_pub = self.create_publisher(Float32, f'{car_id}/weight', 10)
         self.pos_pub = self.create_publisher(Twist, f'{car_id}/odom', 10)
-        self.timer = self.create_timer(2.0, self.publish_data)
+        self.timer = self.create_timer(20.0, self.publish_data)
 
         self.get_logger().info(f"{car_id} node started")
 

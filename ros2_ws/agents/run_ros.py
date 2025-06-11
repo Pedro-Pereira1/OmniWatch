@@ -3,7 +3,7 @@ import time
 import signal
 import sys
 
-car_ids = [f"car_{i+1}" for i in range(1)]
+car_ids = [f"car_{i+1}" for i in range(2)]
 ros_processes = []
 
 try:

@@ -3,10 +3,10 @@ import time
 import sys
 
 zone_car_map = {
-    "zone1": ["car1", "car2"],
-    # "zone2": ["car3", "car4"],
-    # "zone3": ["car5"],
-    # "zone4": ["car6"]
+    "zone1": ["car_1", "car_2"],
+    # "zone2": ["car_3", "car_4"],
+    # "zone3": ["car_5"],
+    # "zone4": ["car_6"]
 }
 
 zone_ids = list(zone_car_map.keys())

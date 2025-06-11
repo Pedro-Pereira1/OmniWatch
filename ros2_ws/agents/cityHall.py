@@ -40,8 +40,13 @@ class CityHallAgent(Agent):
                         zone_jid = self.zone_map.get(car_id)
                         if zone_jid:
                             print(f"[CityHall] 🚨 Detected malicious log from {car_id}. Notifying {zone_jid}")
-                            alert = Message(to=zone_jid)
-                            alert.body = json.dumps({"malicious_car": f"{car_id}@localhost"})
+                            msg = Message(to=zone_jid)
+                            data = {
+                                "command": "threat",
+                                "car_id": car_id,
+                            }
+                            msg.body = json.dumps(data)
+                            msg.set_metadata("performative", "request")
                             await self.send(alert)
                         else:
                             print(f"[CityHall] ⚠️ No zone manager found for {car_id}")

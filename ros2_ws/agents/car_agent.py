@@ -15,6 +15,8 @@ import math
 import json
 import rclpy
 from std_msgs.msg import String as StringMsg
+from geometry_msgs.msg import Twist
+
 
 class AStarPlanner:
     def __init__(self, grid, resolution=1.0):
@@ -78,7 +80,7 @@ class ROSCarListener(Node):
         
         self.create_subscription(StringMsg, prefix + 'logs', self.log_callback, 10)
         self.create_subscription(Float32, prefix + 'weight', self.weight_callback, 10)
-        self.create_subscription(Odometry, prefix + 'odom', self.position_callback, 10)
+        self.create_subscription(Twist, prefix + 'odom', self.position_callback, 10)
 
     def log_callback(self, msg):
         self.log_data = msg.data
@@ -87,8 +89,7 @@ class ROSCarListener(Node):
         self.weight_data = msg.data
 
     def position_callback(self, msg: Twist):
-        self.pose = msg.pose.pose.position
-        self.position_data = (self.pose.x, self.pose.y)
+        self.position_data = (msg.linear.x, msg.linear.y)
 
 def start_ros_node(agent, car_id):
     rclpy.init()
@@ -184,23 +185,81 @@ class CarAgent(Agent):
             msg = await self.receive(timeout=5)
             if msg:
                 try:
+                    print("MESSAGE")
                     data = json.loads(msg.body)
-                    print(data)
                     cmd = data.get("command")
-                    if cmd == "plan_path":
+                    if cmd == "plan_path_request":
                         goal = data.get("goal")
-                        if len(goal) == 2 and not self.agent.goal: 
-                            self.agent.goal = goal
-                            print(f"[{self.agent.car_id}] Recebido comando para planear caminho até {goal}")
-                            self.agent.add_behaviour(self.agent.RepeatedPathPlanner(goal))
-                        else:
-                            print(f"[{self.agent.car_id}] Objetivo inválido para planeamento ou o carro já tem um objetivo.")
+                        cars = data.get("cars", [])
+                        if len(goal) == 2:
+                            self.agent.temp_goal = goal
+                            self.agent.add_behaviour(self.agent.CompetitivePathEvaluator(goal, msg.sender,cars))
                     elif cmd == "stop":
                         self.agent._stop_requested = True
                     elif cmd == "quarantine":
                         self.agent.quarantine = data.get("state", True)
                 except Exception as e:
                     print(f"[{self.agent.car_id}] Erro ao processar controlo: {e}")
+
+    class CompetitivePathEvaluator(CyclicBehaviour):
+        def __init__(self, goal, sender, cars):
+            super().__init__()
+            self.goal = goal
+            self.zone_manager_jid = str(sender)
+            self.known_cars = cars
+
+        async def run(self):
+            my_position = self.agent.ros_node.position_data
+            my_distance = math.hypot(self.goal[0] - my_position[0], self.goal[1] - my_position[1])
+
+            # Inform other cars
+            for other_car in self.known_cars:
+                if other_car == self.agent.jid:  # ou f"{self.agent.car_id}@localhost" se necessário
+                    continue
+                msg = Message(to=str(other_car))
+                msg.body = json.dumps({
+                    "car_id": self.agent.car_id,
+                    "distance": my_distance
+                })
+                msg.set_metadata("performative", "inform")
+                await self.send(msg)
+
+            await asyncio.sleep(2)
+
+            best_car = self.agent.car_id
+            best_distance = my_distance
+
+            for _ in range(len(self.known_cars) - 1):
+                msg = await self.receive(timeout=1)
+                if msg:
+                    try:
+                        data = json.loads(msg.body)
+                        if data["distance"] < best_distance:
+                            best_car = data["car_id"]
+                            best_distance = data["distance"]
+                    except:
+                        continue
+
+            if best_car == self.agent.car_id:
+                print(f"[{self.agent.car_id}] I am the closest to the goal. Taking the task.")
+                self.agent.goal = self.goal
+
+                # Notify Zone Manager
+                msg = Message(to=self.zone_manager_jid)
+                msg.body = json.dumps({
+                    "command" : "handling_goal",
+                    "response": "handling_goal",
+                    "car_id": self.agent.car_id
+                })
+                msg.set_metadata("performative", "inform")
+                await self.send(msg)
+
+                # Start path planning
+                self.agent.add_behaviour(self.agent.RepeatedPathPlanner(self.goal))
+
+            self.kill()
+  
+
 
     class RepeatedPathPlanner(CyclicBehaviour):
         def __init__(self, goal, tolerance=0.1):
