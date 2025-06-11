@@ -9,11 +9,11 @@ class ClientAgent(Agent):
         async def run(self):
             print("=== Client Agent ===")
             try:
-                x = 18.0
-                y = 18.0
+                x = 1.0
+                y = 9.0
                 zone = "zone1"  # Hardcoded zone for simplicity
 
-                zone_jid = f"{zone}@localhost"
+                zone_jid = f"car_1@localhost"
                 data = {
                     "command": "plan_path",
                     "goal": [x, y]

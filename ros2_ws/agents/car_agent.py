@@ -56,8 +56,7 @@ class AStarPlanner:
             current = came_from[current]
             path.append(current)
         path.reverse()
-        world_coords = [(x * self.resolution + 0.5 * self.resolution,
-                  y * self.resolution + 0.5 * self.resolution) for x, y in path]
+        world_coords = [(x * self.resolution, y * self.resolution) for x, y in path]
         return world_coords
 
     def publish_path(self, node, topic, path):
@@ -106,7 +105,6 @@ def start_ros_node(agent, car_id):
             print(f"[{car_id}] Shutdown warning: {e}")
 
 def calculate_and_publish_path(agent, goal_x, goal_y):
-            # Exemplo de grid 20x20 (igual ao teu anterior)
             grid = [
                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -138,6 +136,10 @@ def calculate_and_publish_path(agent, goal_x, goal_y):
 
             path = planner.plan(start_cell, goal_cell)
             if path:
+                print(len(path))
+                if len(path) == 0:
+                    print(f"Objetivo alcançado! Parando o planejamento.")
+
                 planner.publish_path(agent.ros_node, 'new_waypoint', path[1])
             else:
                 print("A*: Nenhum caminho possível.")
@@ -187,12 +189,12 @@ class CarAgent(Agent):
                     cmd = data.get("command")
                     if cmd == "plan_path":
                         goal = data.get("goal")
-                        if len(goal) == 2 and (not self.agent.goal or (self.agent.goal[0] != goal[0] and self.agent.goal[1] != goal[1])): 
+                        if len(goal) == 2 and not self.agent.goal: 
                             self.agent.goal = goal
                             print(f"[{self.agent.car_id}] Recebido comando para planear caminho até {goal}")
                             self.agent.add_behaviour(self.agent.RepeatedPathPlanner(goal))
                         else:
-                            print(f"[{self.agent.car_id}] Objetivo inválido para planeamento.")
+                            print(f"[{self.agent.car_id}] Objetivo inválido para planeamento ou o carro já tem um objetivo.")
                     elif cmd == "stop":
                         self.agent._stop_requested = True
                     elif cmd == "quarantine":
@@ -211,13 +213,16 @@ class CarAgent(Agent):
             current_x, current_y = self.agent.ros_node.position_data
             distance = math.hypot(self.goal[0] - current_x, self.goal[1] - current_y)
             print(f"[{self.agent.car_id}] Distância ao objetivo: {distance:.2f} m")
-                
             if distance > self.tolerance:
-                calculate_and_publish_path(self.agent, self.goal[0], self.goal[1])
-                await asyncio.sleep(5)  # Intervalo para recalcular e publicar o novo caminho
+                try:
+                    calculate_and_publish_path(self.agent, self.goal[0], self.goal[1])
+                except:
+                    pass
+                await asyncio.sleep(3)
             else:
                 print(f"[{self.agent.car_id}] Objetivo alcançado! Parando o planejamento.")
-                self.kill()  # Finaliza o comportamento de planejamento repetido
+                self.agent.goal = None
+                self.kill()
 
     async def setup(self):
         print(f"[{self.car_id}] Agent started")
@@ -226,7 +231,6 @@ class CarAgent(Agent):
         await asyncio.sleep(2)
         self.add_behaviour(self.SendDataBehaviour())
         self.add_behaviour(self.ControlBehaviour())
-        #self.add_behaviour(self.RepeatedPathPlanner())
 
 
 
