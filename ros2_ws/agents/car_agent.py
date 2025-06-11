@@ -174,7 +174,7 @@ class CarAgent(Agent):
                 print(f"[{self.agent.car_id}] Sending: {msg.body}")
                 await self.send(msg)
 
-                await asyncio.sleep(10 if self.agent.quarantine else 5)
+                await asyncio.sleep(60 if self.agent.quarantine else 30)
 
     class ControlBehaviour(CyclicBehaviour):
         async def run(self):

@@ -4,27 +4,38 @@ from std_msgs.msg import String, Float32
 from geometry_msgs.msg import Twist
 import random
 import sys
+from sklearn.preprocessing import LabelEncoder
+import pandas as pd
+import joblib
+import numpy as np
 
 class CarNode(Node):
     def __init__(self, car_id):
         super().__init__(f'{car_id}_node')
         self.car_id = car_id
 
+        df = pd.read_parquet("models/cic-collection_reduzido.parquet")
+        self.X = df.drop(columns=["Label", "ClassLabel"])
+
         # Publishers
         self.log_pub = self.create_publisher(String, f'{car_id}/logs', 10)
         self.weight_pub = self.create_publisher(Float32, f'{car_id}/weight', 10)
-        self.pos_pub = self.create_publisher(Twist, f'{car_id}/position', 10)
-
+        self.pos_pub = self.create_publisher(Twist, f'{car_id}/odom', 10)
         self.timer = self.create_timer(2.0, self.publish_data)
 
         self.get_logger().info(f"{car_id} node started")
 
     def publish_data(self):
         # Simulated log message
-        is_malicious = random.random() < 0.01  # 5% chance
-        label = "malicious" if is_malicious else "benign"
+        #is_malicious = random.random() < 0.01  # 5% chance
+        #label = "malicious" if is_malicious else "benign"
+        #log_msg = String()
+        #log_msg.data = f"{label}"
+
+        index = random.randint(0, len(self.X) - 1)
+        sample = self.X.iloc[[index]]
         log_msg = String()
-        log_msg.data = f"{label}"
+        log_msg.data = sample.to_json()
         self.log_pub.publish(log_msg)
 
         # Simulated weight (0 = empty, ~75kg = someone inside)
