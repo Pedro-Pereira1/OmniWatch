@@ -76,7 +76,7 @@ class ROSCarListener(Node):
         self.log_data = "No logs yet"
         self.weight_data = 0.0
         self.position_data = (0.0, 0.0)
-
+        
         self.create_subscription(StringMsg, prefix + 'logs', self.log_callback, 10)
         self.create_subscription(Float32, prefix + 'weight', self.weight_callback, 10)
         self.create_subscription(Odometry, prefix + 'odom', self.position_callback, 10)
@@ -148,6 +148,7 @@ class CarAgent(Agent):
         self.car_id = car_id
         self.quarantine = False
         self._stop_requested = False
+        self.goal = None
     
     class SendDataBehaviour(CyclicBehaviour):
         async def run(self):
@@ -185,10 +186,11 @@ class CarAgent(Agent):
                     print(data)
                     cmd = data.get("command")
                     if cmd == "plan_path":
-                        goal = data.get("goal")  # espera: {"goal": [x, y]}
-                        if goal and len(goal) == 2:
+                        goal = data.get("goal")
+                        if len(goal) == 2 and (not self.agent.goal or (self.agent.goal[0] != goal[0] and self.agent.goal[1] != goal[1])): 
+                            self.agent.goal = goal
                             print(f"[{self.agent.car_id}] Recebido comando para planear caminho até {goal}")
-                            calculate_and_publish_path(self.agent, goal[0], goal[1])
+                            self.agent.add_behaviour(self.agent.RepeatedPathPlanner(goal))
                         else:
                             print(f"[{self.agent.car_id}] Objetivo inválido para planeamento.")
                     elif cmd == "stop":
@@ -198,6 +200,24 @@ class CarAgent(Agent):
                 except Exception as e:
                     print(f"[{self.agent.car_id}] Erro ao processar controlo: {e}")
 
+    class RepeatedPathPlanner(CyclicBehaviour):
+        def __init__(self, goal, tolerance=0.1):
+            super().__init__()
+            self.goal = goal
+            self.tolerance = tolerance
+
+        async def run(self):
+        # Calcular a distância até o objetivo
+            current_x, current_y = self.agent.ros_node.position_data
+            distance = math.hypot(self.goal[0] - current_x, self.goal[1] - current_y)
+            print(f"[{self.agent.car_id}] Distância ao objetivo: {distance:.2f} m")
+                
+            if distance > self.tolerance:
+                calculate_and_publish_path(self.agent, self.goal[0], self.goal[1])
+                await asyncio.sleep(5)  # Intervalo para recalcular e publicar o novo caminho
+            else:
+                print(f"[{self.agent.car_id}] Objetivo alcançado! Parando o planejamento.")
+                self.kill()  # Finaliza o comportamento de planejamento repetido
 
     async def setup(self):
         print(f"[{self.car_id}] Agent started")
@@ -206,6 +226,8 @@ class CarAgent(Agent):
         await asyncio.sleep(2)
         self.add_behaviour(self.SendDataBehaviour())
         self.add_behaviour(self.ControlBehaviour())
+        #self.add_behaviour(self.RepeatedPathPlanner())
+
 
 
 if __name__ == "__main__":

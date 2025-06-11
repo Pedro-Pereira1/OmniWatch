@@ -14,7 +14,7 @@ tmux send-keys -t 0 "source install/setup.zsh; ros2 run simple_car waypoint_foll
 # Para cada carro de car_2 a car_20, cria um novo painel e envia o comando
 for i in $(seq 2 6); do
   tmux split-window -v
-  tmux select-layout tiled
+  tmux select-layout tiledw
   tmux send-keys "source install/setup.zsh; ros2 run simple_car waypoint_follower --ros-args -p car_name:=car_${i}" C-m
 done
 

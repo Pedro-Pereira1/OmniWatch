@@ -7,7 +7,7 @@ import json
 class TestAgent(Agent):
     class SendGoalBehaviour(CyclicBehaviour):
         async def run(self):
-            goal = [18.0, 18.0]
+            goal = [10.0, 15.0]
             data = {
                 "command": "plan_path",
                 "goal": goal
@@ -28,8 +28,7 @@ async def main():
 
     # Mantém o agente ativo até Ctrl+C
     try:
-        while True:
-            await asyncio.sleep(1)
+        await asyncio.sleep(1)
     except KeyboardInterrupt:
         print("Ctrl+C recebido. A terminar...")
     await agent.stop()
