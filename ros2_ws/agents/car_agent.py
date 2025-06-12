@@ -107,7 +107,7 @@ def start_ros_node(agent, car_id):
             print(f"[{car_id}] Shutdown warning: {e}")
 
 def calculate_and_publish_path(agent, goal_x, goal_y):
-            grid = [
+            original_grid = [
                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                 [0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0],
@@ -129,18 +129,25 @@ def calculate_and_publish_path(agent, goal_x, goal_y):
                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
             ]
+            grid = [row[:] for row in original_grid]
+
+            for car_id, (x, y) in agent.other_cars_positions.items():
+                if car_id != agent.car_id:
+                    gx, gy = int(round(x)), int(round(y))
+                    if 0 <= gx < len(grid) and 0 <= gy < len(grid[0]):
+                        grid[gx][gy] = 1
+
             planner = AStarPlanner(grid, resolution=1.0)
 
-            # Posição atual do carro
             current_x, current_y = agent.ros_node.position_data
             start_cell = (int(round(current_x)), int(round(current_y)))
             goal_cell = (int(round(goal_x)), int(round(goal_y)))
 
             path = planner.plan(start_cell, goal_cell)
             if path:
-                if len(path) == 0:
-                    print(f"Objetivo alcançado! Parando o planejamento.")
-                planner.publish_path(agent.ros_node, f'{agent.car_id}/new_waypoint', path[1])
+                if len(path) == 1:
+                    print(f"[{agent.car_id}] Objetivo alcançado! Parando o planejamento.")
+                planner.publish_path(agent.ros_node, 'new_waypoint', path[1])
             else:
                 print("A*: Nenhum caminho possível.")
 
@@ -153,6 +160,8 @@ class CarAgent(Agent):
         self._stop_requested = False
         self.goal = None
         self.is_moving = False
+        self.other_cars_positions = {}
+        self.known_cars = ["car_1@localhost", "car_2@localhost", "car_3@localhost", "car_4@localhost","car_5@localhost", "car_6@localhost" ]
     
     class SendDataBehaviour(CyclicBehaviour):
         async def run(self):
@@ -186,7 +195,6 @@ class CarAgent(Agent):
             msg = await self.receive(timeout=5)
             if msg:
                 try:
-                    print("MESSAGE")
                     data = json.loads(msg.body)
                     cmd = data.get("command")
                     if cmd == "plan_path_request":
@@ -199,8 +207,13 @@ class CarAgent(Agent):
                         self.agent._stop_requested = True
                     elif cmd == "quarantine":
                         self.agent.quarantine = data.get("state", True)
+                    elif cmd == "position_update":
+                        car_id = data.get("car_id")
+                        position = data.get("position", {})
+                        if car_id and "lat" in position and "lon" in position:
+                            self.agent.other_cars_positions[car_id] = (position["lat"], position["lon"])
                 except Exception as e:
-                    print(f"[{self.agent.car_id}] Erro ao processar controlo: {e}")
+                    print(f"[{self.agent.car_id}] Erro ao processar controle: {e}")
 
     class CompetitivePathEvaluator(CyclicBehaviour):
         def __init__(self, goal, sender, cars):
@@ -262,7 +275,28 @@ class CarAgent(Agent):
 
             self.kill()
   
+    class SharePositionBehaviour(CyclicBehaviour):
+        async def run(self):
+            if self.agent._stop_requested:
+                print(f"[{self.agent.car_id}] STOP requested, halting position sharing.")
+                await asyncio.sleep(50)
+            else:
+                for other_car in self.agent.known_cars:
+                    if other_car == self.agent.jid:
+                        continue
+                    msg = Message(to=str(other_car))
+                    msg.body = json.dumps({
+                        "command": "position_update",
+                        "car_id": self.agent.car_id,
+                         "position": {
+                            "lat": self.agent.ros_node.position_data[0],
+                            "lon": self.agent.ros_node.position_data[1]
+                        }
+                    })
+                    msg.set_metadata("performative", "inform")
+                    await self.send(msg)
 
+                await asyncio.sleep(10)
 
     class RepeatedPathPlanner(CyclicBehaviour):
         def __init__(self, goal, tolerance=0.1):
