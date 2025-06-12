@@ -30,7 +30,7 @@ class WaypointFollower(Node):
         # Subscrever ao novo tópico para receber um waypoint dinâmico
         self.subscription_new_wp = self.create_subscription(
             String,
-            'new_waypoint',
+            f'{car_name}/new_waypoint',
             self.new_waypoint_callback,
             QoSProfile(depth=10)
         )

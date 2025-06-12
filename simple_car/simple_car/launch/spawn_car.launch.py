@@ -15,7 +15,7 @@ def generate_launch_description():
             output='screen'
         ),
         ExecuteProcess(
-                cmd=[shell_script, 'car_1', '1', '1'],
+                cmd=[shell_script, 'car_2', '1', '1'],
                 output='screen'
             )
     ])

@@ -80,7 +80,7 @@ class ROSCarListener(Node):
         
         self.create_subscription(StringMsg, prefix + 'logs', self.log_callback, 10)
         self.create_subscription(Float32, prefix + 'weight', self.weight_callback, 10)
-        self.create_subscription(Twist, prefix + 'odom', self.position_callback, 10)
+        self.create_subscription(Odometry, prefix + 'odom', self.position_callback, 10)
 
     def log_callback(self, msg):
         self.log_data = msg.data
@@ -88,8 +88,9 @@ class ROSCarListener(Node):
     def weight_callback(self, msg):
         self.weight_data = msg.data
 
-    def position_callback(self, msg: Twist):
-        self.position_data = (msg.linear.x, msg.linear.y)
+    def position_callback(self, msg: Odometry):
+        self.pose = msg.pose.pose.position
+        self.position_data = (self.pose.x, self.pose.y)
 
 def start_ros_node(agent, car_id):
     rclpy.init()
@@ -137,11 +138,9 @@ def calculate_and_publish_path(agent, goal_x, goal_y):
 
             path = planner.plan(start_cell, goal_cell)
             if path:
-                print(len(path))
                 if len(path) == 0:
                     print(f"Objetivo alcançado! Parando o planejamento.")
-
-                planner.publish_path(agent.ros_node, 'new_waypoint', path[1])
+                planner.publish_path(agent.ros_node, f'{agent.car_id}/new_waypoint', path[1])
             else:
                 print("A*: Nenhum caminho possível.")
 
@@ -214,7 +213,7 @@ class CarAgent(Agent):
 
             # Inform other cars
             for other_car in self.known_cars:
-                if other_car == self.agent.jid:  # ou f"{self.agent.car_id}@localhost" se necessário
+                if other_car == self.agent.jid:
                     continue
                 msg = Message(to=str(other_car))
                 msg.body = json.dumps({
@@ -239,7 +238,11 @@ class CarAgent(Agent):
                             best_distance = data["distance"]
                     except:
                         continue
-
+            
+            print(best_car)
+            print(best_distance)
+            print(self.agent.car_id)
+            print(my_distance)
             if best_car == self.agent.car_id:
                 print(f"[{self.agent.car_id}] I am the closest to the goal. Taking the task.")
                 self.agent.goal = self.goal
