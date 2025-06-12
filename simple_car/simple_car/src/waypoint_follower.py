@@ -53,7 +53,7 @@ class WaypointFollower(Node):
         sample = self.X.iloc[[index]]
         log_msg = String()
         log_msg.data = sample.to_json()
-        print("[ROS2] Log Published")
+        self.get_logger().info(f"[ROS2] Novo objetivo recebido: {self.current_goal}")
         self.publisher_logs.publish(log_msg)
 
     def odom_callback(self, msg):
@@ -69,19 +69,19 @@ class WaypointFollower(Node):
             point = json.loads(msg.data)
             if isinstance(point, list) and len(point) == 2:
                 self.current_goal = (float(point[0]), float(point[1]))
-                self.get_logger().info(f"Novo objetivo recebido: {self.current_goal}")
+                self.get_logger().info(f"[ROS2] Novo objetivo recebido: {self.current_goal}")
             else:
-                self.get_logger().error("Formato inválido. Espera: [x, y]")
+                self.get_logger().error("[ROS2] Formato inválido. Espera: [x, y]")
         except Exception as e:
-            self.get_logger().error(f"Erro ao processar novo waypoint: {e}")
+            self.get_logger().error(f"[ROS2] Erro ao processar novo waypoint: {e}")
 
     def move_to_goal(self):
         if self.pose is None or self.yaw is None:
-            print("Aguardando dados de odometria...")
+            print("[ROS2] Aguardando dados de odometria...")
             return
 
         if self.current_goal is None:
-            print("Nenhum objetivo atual definido.")
+            print("[ROS2] Nenhum objetivo atual definido.")
             self.publisher.publish(Twist())  # Para garantir que o carro pare
             return
 
@@ -96,14 +96,14 @@ class WaypointFollower(Node):
         if abs(angle_diff) > ALIGN_THRESHOLD:
             msg.angular.z = max(min(ANGULAR_SPEED * angle_diff, ANGULAR_SPEED), -ANGULAR_SPEED)
             msg.linear.x = 0.0
-            print("Modo: A alinhar (rodar parado)")
+            print("[ROS2] Modo: A alinhar (rodar parado)")
         else:
             msg.linear.x = min(LINEAR_SPEED, distance)
             msg.angular.z = 0.0
-            print("Modo: A avançar (em frente)")
+            print("[ROS2] Modo: A avançar (em frente)")
 
         if distance < DIST_THRESHOLD:
-            print("Objetivo alcançado!")
+            print("[ROS2] Objetivo alcançado!")
             self.current_goal = None  # Limpa o objetivo ao chegar
 
         self.publisher.publish(msg)

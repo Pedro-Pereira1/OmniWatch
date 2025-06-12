@@ -8,16 +8,20 @@ from ament_index_python.packages import get_package_share_directory
 def generate_launch_description():
     pkg_share = get_package_share_directory('simple_car')
     shell_script = os.path.join(pkg_share, 'launch', 'spawn_entity.sh')
-
+    world = os.path.join(pkg_share, 'launch', 'aqui.sdf')
     launch_description = LaunchDescription([
         ExecuteProcess(
-            cmd=['gazebo', '--verbose', '-s', 'libgazebo_ros_factory.so', '/home/rafaelbranco/Documentos/ISEP/OmniWatch/aqui.sdf'],
+            cmd=['gazebo', '--verbose', '-s', 'libgazebo_ros_factory.so', world],
             output='screen'
         ),
         ExecuteProcess(
-                cmd=[shell_script, 'car_2', '1', '1'],
-                output='screen'
-            )
+            cmd=[shell_script, 'car_2', '18', '18'],
+            output='screen'
+        ),
+        ExecuteProcess(
+            cmd=[shell_script, 'car_1', '1', '1'],
+            output='screen'
+        )
     ])
 
     # Adiciona os carros de car_1 a car_20

@@ -136,7 +136,6 @@ def calculate_and_publish_path(agent, goal_x, goal_y):
                     gx, gy = int(round(x)), int(round(y))
                     if 0 <= gx < len(grid) and 0 <= gy < len(grid[0]):
                         grid[gx][gy] = 1
-
             planner = AStarPlanner(grid, resolution=1.0)
 
             current_x, current_y = agent.ros_node.position_data
@@ -147,9 +146,9 @@ def calculate_and_publish_path(agent, goal_x, goal_y):
             if path:
                 if len(path) == 1:
                     print(f"[{agent.car_id}] Objetivo alcançado! Parando o planejamento.")
-                planner.publish_path(agent.ros_node, 'new_waypoint', path[1])
+                planner.publish_path(agent.ros_node, f'{agent.car_id}/new_waypoint', path[1])
             else:
-                print("A*: Nenhum caminho possível.")
+                print(f"[{agent.car_id}] A*: Nenhum caminho possível.")
 
 class CarAgent(Agent):
     def __init__(self, jid, password, car_id):
@@ -185,7 +184,7 @@ class CarAgent(Agent):
                     body=json.dumps(data),
                     metadata={"performative": "inform"}
                 )
-                print(f"[{self.agent.car_id}] Sending: {msg.body}")
+                #print(f"[{self.agent.car_id}] Sending: {msg.body}")
                 await self.send(msg)
 
                 await asyncio.sleep(60 if self.agent.quarantine else 30)
@@ -233,6 +232,7 @@ class CarAgent(Agent):
                     continue
                 msg = Message(to=str(other_car))
                 msg.body = json.dumps({
+                    "command":"distance_update",
                     "car_id": self.agent.car_id,
                     "distance": my_distance
                 })
@@ -249,12 +249,18 @@ class CarAgent(Agent):
                 if msg:
                     try:
                         data = json.loads(msg.body)
-                        if data["distance"] < best_distance:
-                            best_car = data["car_id"]
-                            best_distance = data["distance"]
+                        # Filtre a mensagem aqui:
+                        if data.get("command") == "distance_update":
+                            print(f"I'm {self.agent.car_id} and I received the data:{data}")
+                            if data["distance"] < best_distance:
+                                best_car = data["car_id"]
+                                best_distance = data["distance"]
+                        else:
+                            continue
                     except:
                         continue
-            
+            print(f"Im car {self.agent.car_id} and my distance is: {my_distance}")
+
             if best_car == self.agent.car_id:
                 print(f"[{self.agent.car_id}] I am the closest to the goal. Taking the task.")
                 self.agent.goal = self.goal
@@ -296,7 +302,7 @@ class CarAgent(Agent):
                     msg.set_metadata("performative", "inform")
                     await self.send(msg)
 
-                await asyncio.sleep(10)
+                await asyncio.sleep(1)
 
     class RepeatedPathPlanner(CyclicBehaviour):
         def __init__(self, goal, tolerance=0.1):
@@ -328,6 +334,7 @@ class CarAgent(Agent):
         await asyncio.sleep(2)
         self.add_behaviour(self.SendDataBehaviour())
         self.add_behaviour(self.ControlBehaviour())
+        self.add_behaviour(self.SharePositionBehaviour())
 
 
 
