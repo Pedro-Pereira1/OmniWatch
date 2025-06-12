@@ -149,8 +149,10 @@ class CarAgent(Agent):
         super().__init__(jid, password)
         self.car_id = car_id
         self.quarantine = False
+        self.is_infected = False
         self._stop_requested = False
         self.goal = None
+        self.is_moving = False
     
     class SendDataBehaviour(CyclicBehaviour):
         async def run(self):
@@ -210,7 +212,8 @@ class CarAgent(Agent):
         async def run(self):
             my_position = self.agent.ros_node.position_data
             my_distance = math.hypot(self.goal[0] - my_position[0], self.goal[1] - my_position[1])
-
+            if self.agent.is_moving or self.agent.is_infected:
+                my_distance = float('inf')
             # Inform other cars
             for other_car in self.known_cars:
                 if other_car == self.agent.jid:
@@ -227,7 +230,7 @@ class CarAgent(Agent):
 
             best_car = self.agent.car_id
             best_distance = my_distance
-
+            
             for _ in range(len(self.known_cars) - 1):
                 msg = await self.receive(timeout=1)
                 if msg:
@@ -239,10 +242,6 @@ class CarAgent(Agent):
                     except:
                         continue
             
-            print(best_car)
-            print(best_distance)
-            print(self.agent.car_id)
-            print(my_distance)
             if best_car == self.agent.car_id:
                 print(f"[{self.agent.car_id}] I am the closest to the goal. Taking the task.")
                 self.agent.goal = self.goal
@@ -259,6 +258,7 @@ class CarAgent(Agent):
 
                 # Start path planning
                 self.agent.add_behaviour(self.agent.RepeatedPathPlanner(self.goal))
+                self.agent.is_moving = True
 
             self.kill()
   
@@ -284,6 +284,7 @@ class CarAgent(Agent):
             else:
                 print(f"[{self.agent.car_id}] Objetivo alcançado! Parando o planejamento.")
                 self.agent.goal = None
+                self.agent.is_moving = False
                 self.kill()
 
     async def setup(self):

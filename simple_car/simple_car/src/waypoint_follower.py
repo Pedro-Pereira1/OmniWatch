@@ -9,7 +9,10 @@ from rclpy.qos import QoSProfile
 import math
 import numpy as np
 import json  # Para ler o ponto publicado
-
+import pandas as pd
+import random
+from ament_index_python.packages import get_package_share_directory
+import os
 ALIGN_THRESHOLD = 0.08   # radianos (~5 graus)
 DIST_THRESHOLD = 0.1     # metros
 ANGULAR_SPEED = 0.8      # rad/s
@@ -20,7 +23,10 @@ class WaypointFollower(Node):
         super().__init__('waypoint_follower')
         self.declare_parameter('car_name', 'car_1')
         car_name = self.get_parameter('car_name').get_parameter_value().string_value
-
+        pkg = get_package_share_directory('simple_car')
+        dir = os.path.join(pkg, 'models', 'cic-collection_reduzido.parquet')
+        df = pd.read_parquet(dir)
+        self.X = df.drop(columns=["Label", "ClassLabel"])
         self.publisher = self.create_publisher(Twist, f'{car_name}/cmd_vel', QoSProfile(depth=10))
         self.publisher_logs = self.create_publisher(String, f'{car_name}/logs', QoSProfile(depth=10))
         #self.publisher_pose = self.create_publisher(String, f'{car_name}/pose', QoSProfile(depth=10))
@@ -38,8 +44,17 @@ class WaypointFollower(Node):
         self.pose = None
         self.yaw = None
         self.current_goal = None  # Só um ponto atual
-
+        
+        self.logs_timer = self.create_timer(1, self.publish_logs_callback)
         self.timer = self.create_timer(0.1, self.move_to_goal)
+
+    def publish_logs_callback(self):
+        index = random.randint(0, len(self.X) - 1)
+        sample = self.X.iloc[[index]]
+        log_msg = String()
+        log_msg.data = sample.to_json()
+        print("[ROS2] Log Published")
+        self.publisher_logs.publish(log_msg)
 
     def odom_callback(self, msg):
         self.pose = msg.pose.pose.position
