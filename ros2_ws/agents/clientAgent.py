@@ -10,7 +10,7 @@ class ClientAgent(Agent):
             print("=== Client Agent ===")
             try:
                 x = 1.0
-                y = 9.0
+                y = 1.0
                 zone = "zone1"  # Hard7oded zone for simplicity
 
                 zone_jid = f"{zone}@localhost"

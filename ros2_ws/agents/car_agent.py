@@ -148,7 +148,7 @@ def calculate_and_publish_path(agent, goal_x, goal_y):
                     print(f"[{agent.car_id}] Objetivo alcançado! Parando o planejamento.")
                 planner.publish_path(agent.ros_node, f'{agent.car_id}/new_waypoint', path[1])
             else:
-                print(f"[{agent.car_id}] A*: Nenhum caminho possível.")
+                print(f"[{agent.car_id}] A*: Nenhum caminho possível. Objectivo: {goal_cell}")
 
 class CarAgent(Agent):
     def __init__(self, jid, password, car_id):
@@ -161,7 +161,7 @@ class CarAgent(Agent):
         self.is_moving = False
         self.other_cars_positions = {}
         self.known_cars = ["car_1@localhost", "car_2@localhost", "car_3@localhost", "car_4@localhost","car_5@localhost", "car_6@localhost" ]
-    
+        
     class SendDataBehaviour(CyclicBehaviour):
         async def run(self):
             if self.agent._stop_requested:
@@ -220,66 +220,100 @@ class CarAgent(Agent):
             self.goal = goal
             self.zone_manager_jid = str(sender)
             self.known_cars = cars
+            self.ready_cars = set()
 
         async def run(self):
+            # Step 1: Send "I'm ready"
+            for car in self.known_cars:
+                if car == self.agent.jid:
+                    continue
+                msg = Message(to=car)
+                msg.body = json.dumps({
+                    "command": "ready_for_election",
+                    "car_id": self.agent.car_id
+                })
+                msg.set_metadata("performative", "inform")
+                await self.send(msg)
+
+            self.ready_cars.add(self.agent.jid)  # I'm ready
+
+            # Step 2: Wait for other ready messages
+            timeout = 5  # seconds max to wait
+            start_time = self.agent.loop.time()
+            while len(self.ready_cars) < len(self.known_cars):
+                msg = await self.receive(timeout=1)
+                if msg:
+                    try:
+                        data = json.loads(msg.body)
+                        if data.get("command") == "ready_for_election":
+                            self.ready_cars.add(data["car_id"] + "@localhost")
+                    except:
+                        continue
+                if self.agent.loop.time() - start_time > timeout:
+                    print(f"[{self.agent.car_id}] Timeout waiting for ready signals.")
+                    break
+
+            print(f"[{self.agent.car_id}] All ready: {self.ready_cars}")
+
+            # Phase 2: Perform the actual election
+            await self.perform_distance_election()
+
+            self.kill()
+
+        async def perform_distance_election(self):
             my_position = self.agent.ros_node.position_data
             my_distance = math.hypot(self.goal[0] - my_position[0], self.goal[1] - my_position[1])
             if self.agent.is_moving or self.agent.is_infected:
                 my_distance = float('inf')
+
             # Inform other cars
             for other_car in self.known_cars:
                 if other_car == self.agent.jid:
                     continue
                 msg = Message(to=str(other_car))
                 msg.body = json.dumps({
-                    "command":"distance_update",
+                    "command": "distance_update",
                     "car_id": self.agent.car_id,
                     "distance": my_distance
                 })
                 msg.set_metadata("performative", "inform")
                 await self.send(msg)
 
-            await asyncio.sleep(2)
-
+            # Wait to receive distances
             best_car = self.agent.car_id
             best_distance = my_distance
-            
+
             for _ in range(len(self.known_cars) - 1):
-                msg = await self.receive(timeout=1)
+                msg = await self.receive(timeout=3)
                 if msg:
                     try:
                         data = json.loads(msg.body)
-                        # Filtre a mensagem aqui:
                         if data.get("command") == "distance_update":
                             print(f"I'm {self.agent.car_id} and I received the data:{data}")
                             if data["distance"] < best_distance:
                                 best_car = data["car_id"]
                                 best_distance = data["distance"]
-                        else:
-                            continue
-                    except:
+                    except Exception as e:
+                        print(f"[{self.agent.car_id}] Error reading distance update: {e}")
                         continue
-            print(f"Im car {self.agent.car_id} and my distance is: {my_distance}")
+
+            print(f"Im car {self.agent.car_id} and my distance is: {my_distance}. The best car is {best_car}")
 
             if best_car == self.agent.car_id:
                 print(f"[{self.agent.car_id}] I am the closest to the goal. Taking the task.")
                 self.agent.goal = self.goal
 
-                # Notify Zone Manager
                 msg = Message(to=self.zone_manager_jid)
                 msg.body = json.dumps({
-                    "command" : "handling_goal",
+                    "command": "handling_goal",
                     "response": "handling_goal",
                     "car_id": self.agent.car_id
                 })
                 msg.set_metadata("performative", "inform")
                 await self.send(msg)
 
-                # Start path planning
                 self.agent.add_behaviour(self.agent.RepeatedPathPlanner(self.goal))
                 self.agent.is_moving = True
-
-            self.kill()
   
     class SharePositionBehaviour(CyclicBehaviour):
         async def run(self):

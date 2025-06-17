@@ -43,7 +43,7 @@ class WaypointFollower(Node):
 
         self.pose = None
         self.yaw = None
-        self.current_goal = None  # Só um ponto atual
+        self.current_goal = None
         
         self.logs_timer = self.create_timer(1, self.publish_logs_callback)
         self.timer = self.create_timer(0.1, self.move_to_goal)
