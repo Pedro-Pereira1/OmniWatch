@@ -9,7 +9,7 @@ class ClientAgent(Agent):
         async def run(self):
             print("=== Client Agent ===")
             try:
-                x = 18.0
+                x = 9.0
                 y = 18.0
                 zone = "zone_1"  # Hard7oded zone for simplicity
 

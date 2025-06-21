@@ -88,7 +88,7 @@ class WaypointFollower(Node):
             return
 
         if self.current_goal is None:
-            print("[ROS2] Nenhum objetivo atual definido.")
+            #print("[ROS2] Nenhum objetivo atual definido.")
             self.publisher.publish(Twist())  # Para garantir que o carro pare
             return
 

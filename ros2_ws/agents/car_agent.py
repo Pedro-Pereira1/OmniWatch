@@ -160,7 +160,7 @@ class CarAgent(Agent):
         self.goal = None
         self.is_moving = False
         self.other_cars_positions = {}
-        self.known_cars = ["car_1@localhost", "car_2@localhost"] #, "car_3@localhost", "car_4@localhost", "car_5@localhost", "car_6@localhost"]
+        self.known_cars = ["car_1@localhost", "car_2@localhost", "car_3@localhost", "car_4@localhost"]#, "car_5@localhost", "car_6@localhost"]
         self.known_zone_managers = ["zone_1@localhost", "zone_2@localhost", "zone_3@localhost", "zone_4@localhost"]
         self.patrol_points = patrol_points if patrol_points else [(1.0, 1.0), (1.0, 9.0), (9.0, 9.0), (9.0, 1.0)]
         self.patrol_index = 0
