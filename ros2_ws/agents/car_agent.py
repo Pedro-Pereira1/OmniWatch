@@ -151,7 +151,7 @@ def calculate_and_publish_path(agent, goal_x, goal_y):
                 print(f"[{agent.car_id}] A*: Nenhum caminho possível. Objectivo: {goal_cell}")
 
 class CarAgent(Agent):
-    def __init__(self, jid, password, car_id):
+    def __init__(self, jid, password, car_id, patrol_points):
         super().__init__(jid, password)
         self.car_id = car_id
         self.quarantine = False
@@ -160,11 +160,14 @@ class CarAgent(Agent):
         self.goal = None
         self.is_moving = False
         self.other_cars_positions = {}
-        self.known_cars = ["car_1@localhost", "car_2@localhost", "car_3@localhost", "car_4@localhost","car_5@localhost", "car_6@localhost" ]
-        self.patrol_points = [(1.0, 1.0), (1.0, 9.0), (9.0, 9.0), (9.0, 1.0)]
+        self.known_cars = ["car_1@localhost", "car_2@localhost"]
+        self.patrol_points = patrol_points if patrol_points else [(1.0, 1.0), (1.0, 9.0), (9.0, 9.0), (9.0, 1.0)]
         self.patrol_index = 0
         self.mission_type = "patrol"
+        self.ready_cars = set()
+        self.distances = []
 
+    # Sends message
     class SendDataBehaviour(CyclicBehaviour):
         async def run(self):
             if self.agent._stop_requested:
@@ -192,6 +195,7 @@ class CarAgent(Agent):
 
                 await asyncio.sleep(60 if self.agent.quarantine else 30)
 
+    # basically a queue
     class ControlBehaviour(CyclicBehaviour):
         async def run(self):
             msg = await self.receive(timeout=5)
@@ -209,6 +213,11 @@ class CarAgent(Agent):
                         self.agent._stop_requested = True
                     elif cmd == "quarantine":
                         self.agent.quarantine = data.get("state", True)
+                    elif cmd == "ready_for_election":
+                        self.agent.ready_cars.add(data["car_id"] + "@localhost")
+                    elif cmd == "distance_update":
+                        print("I received an update on the distance.")
+                        self.agent.distances.append((data["car_id"], data["distance"]))
                     elif cmd == "position_update":
                         car_id = data.get("car_id")
                         position = data.get("position", {})
@@ -223,7 +232,6 @@ class CarAgent(Agent):
             self.goal = goal
             self.zone_manager_jid = str(sender)
             self.known_cars = cars
-            self.ready_cars = set()
 
         async def run(self):
             # Step 1: Send "I'm ready"
@@ -238,25 +246,21 @@ class CarAgent(Agent):
                 msg.set_metadata("performative", "inform")
                 await self.send(msg)
 
-            self.ready_cars.add(self.agent.jid)  # I'm ready
+            self.agent.ready_cars.add(self.agent.jid)  # I'm ready
 
             # Step 2: Wait for other ready messages
             timeout = 5  # seconds max to wait
             start_time = self.agent.loop.time()
-            while len(self.ready_cars) < len(self.known_cars):
-                msg = await self.receive(timeout=1)
-                if msg:
-                    try:
-                        data = json.loads(msg.body)
-                        if data.get("command") == "ready_for_election":
-                            self.ready_cars.add(data["car_id"] + "@localhost")
-                    except:
-                        continue
+            print(self.agent.ready_cars)
+            while len(self.agent.ready_cars) < len(self.known_cars):
+                print(f"[{self.agent.car_id}] {len(self.agent.ready_cars)}/{len(self.known_cars)}")
+                print(f"[{self.agent.car_id}] I'm missing some cars.")
+                await asyncio.sleep(1)
                 if self.agent.loop.time() - start_time > timeout:
                     print(f"[{self.agent.car_id}] Timeout waiting for ready signals.")
                     break
 
-            print(f"[{self.agent.car_id}] All ready: {self.ready_cars}")
+            print(f"[{self.agent.car_id}] All ready: {self.agent.ready_cars}")
 
             # Phase 2: Perform the actual election
             await self.perform_distance_election()
@@ -286,19 +290,15 @@ class CarAgent(Agent):
             best_car = self.agent.car_id
             best_distance = my_distance
 
-            for _ in range(len(self.known_cars) - 1):
-                msg = await self.receive(timeout=3)
-                if msg:
-                    try:
-                        data = json.loads(msg.body)
-                        if data.get("command") == "distance_update":
-                            print(f"I'm {self.agent.car_id} and I received the data:{data}")
-                            if data["distance"] < best_distance:
-                                best_car = data["car_id"]
-                                best_distance = data["distance"]
-                    except Exception as e:
-                        print(f"[{self.agent.car_id}] Error reading distance update: {e}")
-                        continue
+            while len(self.agent.distances) != len(self.agent.known_cars) - 1:
+                print(f"[{self.agent.car_id}] It's missing some distances. {len(self.agent.distances)}/{len(self.agent.known_cars)}")
+                await asyncio.sleep(1)
+                continue
+
+            for car_distance in self.agent.distances:
+                if car_distance[1] < best_distance:
+                    best_car = car_distance[0]
+                    best_distance = car_distance[1]
 
             print(f"Im car {self.agent.car_id} and my distance is: {my_distance}. The best car is {best_car}")
 
@@ -314,8 +314,14 @@ class CarAgent(Agent):
                 })
                 msg.set_metadata("performative", "inform")
                 await self.send(msg)
+                print(f"[{self.agent.car_id}] Starting a mission...")
+                self.agent.add_behaviour(self.agent.RepeatedPathPlanner(self.goal, mission="mission"))
+                
+            # Clean the distances and the ready cars
+            self.agent.ready_cars = set()
+            self.agent.distances = []
 
-                self.agent.add_behaviour(self.agent.RepeatedPathPlanner(self.goal))
+                
   
     class SharePositionBehaviour(CyclicBehaviour):
         async def run(self):
@@ -341,16 +347,21 @@ class CarAgent(Agent):
                 await asyncio.sleep(1)
 
     class RepeatedPathPlanner(CyclicBehaviour):
-        def __init__(self, goal, tolerance=0.1):
+        def __init__(self, goal, tolerance=0.1, mission=None):
             super().__init__()
             self.goal = goal
             self.tolerance = tolerance
+            self.mission = mission
 
         async def run(self):
-        # Calcular a distância até o objetivo
+            print(f"[{self.agent.car_id}] I'm executing ", self.agent.mission_type)
             current_x, current_y = self.agent.ros_node.position_data
             distance = math.hypot(self.goal[0] - current_x, self.goal[1] - current_y)
             print(f"[{self.agent.car_id}] Distância ao objetivo: {distance:.2f} m")
+            print(f"[{self.agent.car_id}] My mission: {self.mission}/{self.agent.mission_type}")
+            if self.mission != self.agent.mission_type:
+                self.kill()
+                return
             if distance > self.tolerance:
                 try:
                     calculate_and_publish_path(self.agent, self.goal[0], self.goal[1])
@@ -364,7 +375,7 @@ class CarAgent(Agent):
                 if self.agent.mission_type == "mission":
                     print(f"[{self.agent.car_id}] Missão finalizada. Retomando patrulha.")
                     self.agent.mission_type = "patrol"
-                    self.agent.add_behaviour(self.PatrolBehaviour())
+                    self.agent.add_behaviour(self.agent.PatrolBehaviour())
 
                 self.kill()
 
@@ -384,7 +395,7 @@ class CarAgent(Agent):
             print(f"[{self.agent.car_id}] Iniciando patrulha para o ponto {next_point}")
             self.agent.goal = next_point
             self.agent.mission_type = "patrol"
-            self.agent.add_behaviour(self.agent.RepeatedPathPlanner(next_point))
+            self.agent.add_behaviour(self.agent.RepeatedPathPlanner(next_point, mission="patrol"))
 
             # Avança para o próximo ponto na próxima iteração
             self.agent.patrol_index = (self.agent.patrol_index + 1) % len(self.agent.patrol_points)
@@ -406,10 +417,21 @@ class CarAgent(Agent):
 if __name__ == "__main__":
     async def main():
         car_id = sys.argv[1]
-        agent = CarAgent(f"{car_id}@localhost", "pass", car_id)
+
+        # Parse optional patrol points from command-line arguments
+        patrol_args = sys.argv[2:]  # Expecting a flat list like: 1.0 1.0 1.0 9.0 9.0 9.0 ...
+        patrol_points = []
+        if patrol_args and len(patrol_args) % 2 == 0:
+            for i in range(0, len(patrol_args), 2):
+                x = float(patrol_args[i])
+                y = float(patrol_args[i + 1])
+                patrol_points.append((x, y))
+
+        agent = CarAgent(f"{car_id}@localhost", "pass", car_id, patrol_points)
         await agent.start(auto_register=True)
         while agent.is_alive():
             await asyncio.sleep(1)
+
     asyncio.run(main())
 
 
