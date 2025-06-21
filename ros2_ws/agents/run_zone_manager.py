@@ -2,21 +2,20 @@ import subprocess
 import time
 import sys
 
-zone_car_map = {
-    "zone1": ["car_1", "car_2"],
-    # "zone2": ["car_3", "car_4"],
-    # "zone3": ["car_5"],
-    # "zone4": ["car_6"]
+# Define the four zones
+zone_configs = {
+    "zone_1": [0, 9, 0, 9],
+    "zone_2": [10, 19, 0, 9],
+    "zone_3": [0, 9, 10, 19],
+    "zone_4": [10, 19, 10, 19],
 }
 
-zone_ids = list(zone_car_map.keys())
 zone_processes = []
 
 try:
-    for zone_id in zone_ids:
-        cars = zone_car_map[zone_id]
-        print(f"Starting Zone Manager for {zone_id} with cars {cars}")
-        p = subprocess.Popen(["python3", "zone_manager.py", zone_id] + cars)
+    for zone_id, bounds in zone_configs.items():
+        print(f"🚀 Starting Zone Manager for {zone_id} with bounds {bounds}")
+        p = subprocess.Popen(["python3", "zone_manager.py", zone_id] + list(map(str, bounds)))
         zone_processes.append(p)
         time.sleep(0.5)
 
@@ -24,7 +23,7 @@ try:
         p.wait()
 
 except KeyboardInterrupt:
-    print("Caught CTRL+C, terminating zone manager subprocesses...")
+    print("🛑 Caught CTRL+C, terminating zone managers...")
     for p in zone_processes:
         p.kill()
     sys.exit(0)

@@ -160,7 +160,8 @@ class CarAgent(Agent):
         self.goal = None
         self.is_moving = False
         self.other_cars_positions = {}
-        self.known_cars = ["car_1@localhost", "car_2@localhost"]
+        self.known_cars = ["car_1@localhost", "car_2@localhost", "car_3@localhost", "car_4@localhost", "car_5@localhost", "car_6@localhost"]
+        self.known_zone_managers = ["zone_1@localhost", "zone_2@localhost", "zone_3@localhost", "zone_4@localhost"]
         self.patrol_points = patrol_points if patrol_points else [(1.0, 1.0), (1.0, 9.0), (9.0, 9.0), (9.0, 1.0)]
         self.patrol_index = 0
         self.mission_type = "patrol"
@@ -210,9 +211,11 @@ class CarAgent(Agent):
                             self.agent.temp_goal = goal
                             self.agent.add_behaviour(self.agent.CompetitivePathEvaluator(goal, msg.sender,cars))
                     elif cmd == "stop":
+                        print(f"STOP command received.")
                         self.agent._stop_requested = True
                     elif cmd == "quarantine":
-                        self.agent.quarantine = data.get("state", True)
+                        print(f"Quarantine command received.")
+                        self.agent.quarantine = True
                     elif cmd == "ready_for_election":
                         self.agent.ready_cars.add(data["car_id"] + "@localhost")
                     elif cmd == "distance_update":
@@ -329,14 +332,15 @@ class CarAgent(Agent):
                 print(f"[{self.agent.car_id}] STOP requested, halting position sharing.")
                 await asyncio.sleep(50)
             else:
-                for other_car in self.agent.known_cars:
-                    if other_car == self.agent.jid:
+                all_targets = self.agent.known_cars + self.agent.known_zone_managers
+                for target in all_targets:
+                    if target == self.agent.jid:
                         continue
-                    msg = Message(to=str(other_car))
+                    msg = Message(to=str(target))
                     msg.body = json.dumps({
                         "command": "position_update",
                         "car_id": self.agent.car_id,
-                         "position": {
+                        "position": {
                             "lat": self.agent.ros_node.position_data[0],
                             "lon": self.agent.ros_node.position_data[1]
                         }

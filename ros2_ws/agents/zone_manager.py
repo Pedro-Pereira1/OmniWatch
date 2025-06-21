@@ -4,66 +4,98 @@ from spade.message import Message
 import json
 import asyncio
 
+
 class ZoneManagerAgent(Agent):
-    def __init__(self, jid, password, zone_id, managed_cars):
+    def __init__(self, jid, password, zone_id, zone_bounds):
         super().__init__(jid, password)
         self.zone_id = zone_id
-        self.managed_cars = [car if "@" in car else f"{car}@localhost" for car in managed_cars]
-        self.waiting_for_response = False
-        self.client_jid = None
-        self.pending_request = None
+        self.zone_bounds = zone_bounds
+        self.known_cars_positions = {}  # car_jid: (x, y)
+
+    def is_in_zone(self, position):
+        x, y = position
+        return (
+            self.zone_bounds["x_min"] <= x <= self.zone_bounds["x_max"]
+            and self.zone_bounds["y_min"] <= y <= self.zone_bounds["y_max"]
+        )
 
     class ReceiveControlBehaviour(CyclicBehaviour):
         async def run(self):
             msg = await self.receive(timeout=5)
-            #print(msg)
             if msg:
                 try:
                     data = json.loads(msg.body)
-                    #print(data)
-                    if data.get("command") == "threat":
+                    command = data.get("command")
+
+                    if command == "threat":
                         await self.handle_threat(data.get("car_id"))
-                    elif data.get("command") == "plan_path":
+                    elif command == "plan_path":
                         await self.handle_client_request(data.get("goal"))
-                    elif data.get("command") == "handling_goal":
-                        await self.handle_cars_responde(data.get("car_id"))
+                    elif command == "handling_goal":
+                        await self.handle_cars_response(data.get("car_id"))
+                    elif command == "position_update":
+                        await self.handle_position_update(data)
                 except Exception as e:
                     print(f"[{self.agent.zone_id}] Error processing message: {e}")
             else:
                 await asyncio.sleep(1)
 
         async def handle_threat(self, malicious_car):
-            print(f"[{self.agent.zone_id}] Threat detected: {malicious_car}")
-            #for car in self.agent.managed_cars:
-            #    msg = Message(to=car)
-            #    if car == malicious_car:
-            #        msg.body = json.dumps({"command": "stop"})
-            #        print(f"[{self.agent.zone_id}] Sent STOP to {car}")
-            #    else:
-            #        msg.body = json.dumps({"command": "quarantine", "state": True})
-            #        print(f"[{self.agent.zone_id}] Sent QUARANTINE to {car}")
-            #    await self.send(msg)
+            print(f"[{self.agent.zone_id}] ⚠️ Threat detected: {malicious_car}")
+            
+            # Build list of all cars currently in this zone
+            cars_in_zone = [
+                car_jid for car_jid, pos in self.agent.known_cars_positions.items()
+                if self.agent.is_in_zone(pos)
+            ]
+        
+            malicious_jid = f"{malicious_car}@localhost"
+        
+            for car_jid in cars_in_zone:
+                msg = Message(to=car_jid)
+                if car_jid == malicious_jid:
+                    msg.body = json.dumps({"command": "stop"})
+                    print(f"[{self.agent.zone_id}] 🚨 Sending STOP to {malicious_jid}")
+                else:
+                    msg.body = json.dumps({"command": "quarantine", "state": True})
+                    print(f"[{self.agent.zone_id}] 🧪 Sending QUARANTINE to {car_jid}")
+                
+                msg.set_metadata("performative", "inform")
+                await self.send(msg)
+
+            
 
         async def handle_client_request(self, goal):
-            print(f"[{self.agent.zone_id}] 🧭 Forwarded goal {goal} to cars: {self.agent.managed_cars}")
+            cars_in_zone = [
+                car for car, pos in self.agent.known_cars_positions.items()
+                if self.agent.is_in_zone(pos)
+            ]
+            print(f"[{self.agent.zone_id}] 🧭 Sending goal {goal} to cars in zone: {cars_in_zone}")
+
             msg_body = json.dumps({
                 "command": "plan_path_request",
                 "goal": goal,
-                "cars": self.agent.managed_cars
+                "cars": cars_in_zone
             })
 
-            for car in self.agent.managed_cars:
+            for car in cars_in_zone:
                 msg = Message(to=car)
                 msg.body = msg_body
                 msg.set_metadata("performative", "request")
                 await self.send(msg)
 
-        async def handle_cars_responde(self, response):
-            print(f"[{self.agent.zone_id}] Received response from car: {response} - I'm going")
+        async def handle_cars_response(self, response):
+            print(f"[{self.agent.zone_id}] ✅ Car {response} is handling the goal.")
 
+        async def handle_position_update(self, data):
+            car_id = data.get("car_id")
+            pos = data.get("position", {})
+            if "lat" in pos and "lon" in pos:
+                self.agent.known_cars_positions[f"{car_id}@localhost"] = (pos["lat"], pos["lon"])
+                print(f"[{self.agent.zone_id}] 📍 Updated {car_id} to ({pos['lat']}, {pos['lon']})")
 
     async def setup(self):
-        print(f"[{self.zone_id}] Zone Manager Agent started.")
+        print(f"[{self.zone_id}] 🛡️ Zone Manager Agent started.")
         self.add_behaviour(self.ReceiveControlBehaviour())
 
 
@@ -72,18 +104,30 @@ if __name__ == "__main__":
     import sys
 
     async def main():
-        if len(sys.argv) < 3:
-            print("Usage: python3 zone_manager.py <zone_id> <car1> [<car2> ...]")
+        if len(sys.argv) != 6:
+            print("Usage: python3 zone_manager.py <zone_id> <x_min> <x_max> <y_min> <y_max>")
             return
 
         zone_id = sys.argv[1]
-        cars = sys.argv[2:]
+        x_min = int(sys.argv[2])
+        x_max = int(sys.argv[3])
+        y_min = int(sys.argv[4])
+        y_max = int(sys.argv[5])
+
+        zone_bounds = {
+            "x_min": x_min,
+            "x_max": x_max,
+            "y_min": y_min,
+            "y_max": y_max,
+        }
+
         jid = f"{zone_id}@localhost"
         password = "pass"
 
-        agent = ZoneManagerAgent(jid, password, zone_id, cars)
+        agent = ZoneManagerAgent(jid, password, zone_id, zone_bounds)
         await agent.start(auto_register=True)
-        print(f"[{zone_id}] Managing cars: {cars}")
+
+        print(f"[{zone_id}] Managing bounds: {zone_bounds}")
 
         while agent.is_alive():
             await asyncio.sleep(1)
