@@ -161,7 +161,10 @@ class CarAgent(Agent):
         self.is_moving = False
         self.other_cars_positions = {}
         self.known_cars = ["car_1@localhost", "car_2@localhost", "car_3@localhost", "car_4@localhost","car_5@localhost", "car_6@localhost" ]
-        
+        self.patrol_points = [(1.0, 1.0), (1.0, 9.0), (9.0, 9.0), (9.0, 1.0)]
+        self.patrol_index = 0
+        self.mission_type = "patrol"
+
     class SendDataBehaviour(CyclicBehaviour):
         async def run(self):
             if self.agent._stop_requested:
@@ -263,7 +266,7 @@ class CarAgent(Agent):
         async def perform_distance_election(self):
             my_position = self.agent.ros_node.position_data
             my_distance = math.hypot(self.goal[0] - my_position[0], self.goal[1] - my_position[1])
-            if self.agent.is_moving or self.agent.is_infected:
+            if self.agent.mission_type == "mission" or self.agent.is_infected:
                 my_distance = float('inf')
 
             # Inform other cars
@@ -302,7 +305,7 @@ class CarAgent(Agent):
             if best_car == self.agent.car_id:
                 print(f"[{self.agent.car_id}] I am the closest to the goal. Taking the task.")
                 self.agent.goal = self.goal
-
+                self.agent.mission_type = "mission"
                 msg = Message(to=self.zone_manager_jid)
                 msg.body = json.dumps({
                     "command": "handling_goal",
@@ -313,7 +316,6 @@ class CarAgent(Agent):
                 await self.send(msg)
 
                 self.agent.add_behaviour(self.agent.RepeatedPathPlanner(self.goal))
-                self.agent.is_moving = True
   
     class SharePositionBehaviour(CyclicBehaviour):
         async def run(self):
@@ -358,8 +360,36 @@ class CarAgent(Agent):
             else:
                 print(f"[{self.agent.car_id}] Objetivo alcançado! Parando o planejamento.")
                 self.agent.goal = None
-                self.agent.is_moving = False
+                
+                if self.agent.mission_type == "mission":
+                    print(f"[{self.agent.car_id}] Missão finalizada. Retomando patrulha.")
+                    self.agent.mission_type = "patrol"
+                    self.agent.add_behaviour(self.PatrolBehaviour())
+
                 self.kill()
+
+
+    class PatrolBehaviour(CyclicBehaviour):
+        async def run(self):
+            if self.agent._stop_requested or self.agent.mission_type != "patrol":
+                self.kill()
+                return
+
+            if self.agent.goal is not None:
+                await asyncio.sleep(2)
+                return
+
+            # Definir o próximo ponto da patrulha
+            next_point = self.agent.patrol_points[self.agent.patrol_index]
+            print(f"[{self.agent.car_id}] Iniciando patrulha para o ponto {next_point}")
+            self.agent.goal = next_point
+            self.agent.mission_type = "patrol"
+            self.agent.add_behaviour(self.agent.RepeatedPathPlanner(next_point))
+
+            # Avança para o próximo ponto na próxima iteração
+            self.agent.patrol_index = (self.agent.patrol_index + 1) % len(self.agent.patrol_points)
+
+            await asyncio.sleep(5)
 
     async def setup(self):
         print(f"[{self.car_id}] Agent started")
@@ -369,6 +399,7 @@ class CarAgent(Agent):
         self.add_behaviour(self.SendDataBehaviour())
         self.add_behaviour(self.ControlBehaviour())
         self.add_behaviour(self.SharePositionBehaviour())
+        self.add_behaviour(self.PatrolBehaviour())
 
 
 
