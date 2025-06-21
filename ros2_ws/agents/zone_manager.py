@@ -40,26 +40,34 @@ class ZoneManagerAgent(Agent):
             else:
                 await asyncio.sleep(1)
 
+        
         async def handle_threat(self, malicious_car):
-            print(f"[{self.agent.zone_id}] ⚠️ Threat detected: {malicious_car}")
-            
-            # Build list of all cars currently in this zone
+            print(f"[{self.agent.zone_id}] ⚠️ Threat received for {malicious_car}")
+
+            pos = self.agent.known_cars_positions.get(malicious_car)
+            if not pos:
+                print(f"[{self.agent.zone_id}] No position known for {malicious_car}, ignoring threat.")
+                return
+
+            if not self.agent.is_in_zone(pos):
+                print(f"[{self.agent.zone_id}] {malicious_car} is NOT in this zone. Ignoring.")
+                return
+
+            print(f"[{self.agent.zone_id}] 🚨 {malicious_car} is in this zone. Taking action.")
+
             cars_in_zone = [
-                car_jid for car_jid, pos in self.agent.known_cars_positions.items()
-                if self.agent.is_in_zone(pos)
+                car_jid for car_jid, p in self.agent.known_cars_positions.items()
+                if self.agent.is_in_zone(p)
             ]
-        
-            malicious_jid = f"{malicious_car}@localhost"
-        
+
             for car_jid in cars_in_zone:
                 msg = Message(to=car_jid)
-                if car_jid == malicious_jid:
+                if car_jid == malicious_car:
                     msg.body = json.dumps({"command": "stop"})
-                    print(f"[{self.agent.zone_id}] 🚨 Sending STOP to {malicious_jid}")
+                    print(f"[{self.agent.zone_id}] 🔴 Sending STOP to {malicious_car}")
                 else:
                     msg.body = json.dumps({"command": "quarantine", "state": True})
-                    print(f"[{self.agent.zone_id}] 🧪 Sending QUARANTINE to {car_jid}")
-                
+                    print(f"[{self.agent.zone_id}] 🟡 Sending QUARANTINE to {car_jid}")
                 msg.set_metadata("performative", "inform")
                 await self.send(msg)
 
