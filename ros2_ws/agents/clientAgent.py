@@ -9,9 +9,9 @@ class ClientAgent(Agent):
         async def run(self):
             print("=== Client Agent ===")
             try:
-                x = 9.0
-                y = 9.0
-                zone = "zone1"  # Hard7oded zone for simplicity
+                x = 18.0
+                y = 18.0
+                zone = "zone_1"  # Hard7oded zone for simplicity
 
                 zone_jid = f"{zone}@localhost"
                 data = {

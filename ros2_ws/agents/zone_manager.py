@@ -26,7 +26,7 @@ class ZoneManagerAgent(Agent):
                 try:
                     data = json.loads(msg.body)
                     command = data.get("command")
-
+                    print(command)
                     if command == "threat":
                         await self.handle_threat(data.get("car_id"))
                     elif command == "plan_path":
@@ -66,19 +66,19 @@ class ZoneManagerAgent(Agent):
             
 
         async def handle_client_request(self, goal):
-            cars_in_zone = [
-                car for car, pos in self.agent.known_cars_positions.items()
-                if self.agent.is_in_zone(pos)
+            print(self.agent.known_cars_positions)
+            cars = [
+                car for car, _ in self.agent.known_cars_positions.items()
             ]
-            print(f"[{self.agent.zone_id}] 🧭 Sending goal {goal} to cars in zone: {cars_in_zone}")
+            print(f"[{self.agent.zone_id}] 🧭 Sending goal {goal} to cars in zone: {cars}")
 
             msg_body = json.dumps({
                 "command": "plan_path_request",
                 "goal": goal,
-                "cars": cars_in_zone
+                "cars": cars
             })
 
-            for car in cars_in_zone:
+            for car in cars:
                 msg = Message(to=car)
                 msg.body = msg_body
                 msg.set_metadata("performative", "request")

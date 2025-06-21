@@ -41,6 +41,13 @@ class WaypointFollower(Node):
             QoSProfile(depth=10)
         )
 
+        self.subscription_color = self.create_subscription(
+            String,
+            f'{car_name}/set_color',
+            self.set_color_callback,
+            QoSProfile(depth=10)
+        )
+
         self.pose = None
         self.yaw = None
         self.current_goal = None
@@ -77,7 +84,7 @@ class WaypointFollower(Node):
 
     def move_to_goal(self):
         if self.pose is None or self.yaw is None:
-            print("[ROS2] Aguardando dados de odometria...")
+            #print("[ROS2] Aguardando dados de odometria...")
             return
 
         if self.current_goal is None:
@@ -96,11 +103,11 @@ class WaypointFollower(Node):
         if abs(angle_diff) > ALIGN_THRESHOLD:
             msg.angular.z = max(min(ANGULAR_SPEED * angle_diff, ANGULAR_SPEED), -ANGULAR_SPEED)
             msg.linear.x = 0.0
-            print("[ROS2] Modo: A alinhar (rodar parado)")
+            #print("[ROS2] Modo: A alinhar (rodar parado)")
         else:
             msg.linear.x = min(LINEAR_SPEED, distance)
             msg.angular.z = 0.0
-            print("[ROS2] Modo: A avançar (em frente)")
+            #print("[ROS2] Modo: A avançar (em frente)")
 
         if distance < DIST_THRESHOLD:
             print("[ROS2] Objetivo alcançado!")
@@ -113,6 +120,31 @@ class WaypointFollower(Node):
         weight_msg = Float32()
         weight_msg.data = random_value
         self.publisher_weight.publish(weight_msg)
+
+    def set_color_callback(self, msg):
+        color = msg.data.lower()
+        car_name = self.get_parameter('car_name').get_parameter_value().string_value
+
+        self.get_logger().info(f"[ROS2] Mudando cor de {car_name} para {color}")
+
+        # Mapeamento simples para materiais do Gazebo
+        material_map = {
+            'red': 'Gazebo/Red',
+            'green': 'Gazebo/Green',
+            'blue': 'Gazebo/Blue',
+            'yellow': 'Gazebo/Yellow',
+            'white': 'Gazebo/White',
+            'black': 'Gazebo/Black'
+        }
+
+        material = material_map.get(color)
+        if not material:
+            self.get_logger().error(f"[ROS2] Cor '{color}' não suportada.")
+            return
+
+        # Comando de sistema para mudar o material via gz command
+        cmd = f'gz model -m {car_name} -v 0 -M {material}'
+        os.system(cmd)
 
     @staticmethod
     def normalize_angle(angle):
