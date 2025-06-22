@@ -35,6 +35,10 @@ class ZoneManagerAgent(Agent):
                         await self.handle_cars_response(data.get("car_id"))
                     elif command == "position_update":
                         await self.handle_position_update(data)
+                    elif command == "request_ride":
+                        start = data["start"]
+                        end = data["end"]
+                        await self.handle_ride_request(start, end)
                 except Exception as e:
                     print(f"[{self.agent.zone_id}] Error processing message: {e}")
             else:
@@ -71,8 +75,6 @@ class ZoneManagerAgent(Agent):
                 msg.set_metadata("performative", "inform")
                 await self.send(msg)
 
-            
-
         async def handle_client_request(self, goal):
             print(self.agent.known_cars_positions)
             cars = [
@@ -102,6 +104,25 @@ class ZoneManagerAgent(Agent):
                 self.agent.known_cars_positions[f"{car_id}@localhost"] = (pos["lat"], pos["lon"])
                 print(f"[{self.agent.zone_id}] 📍 Updated {car_id} to ({pos['lat']}, {pos['lon']})")
 
+        async def handle_ride_request(self, start, end):
+            print(f"[{self.agent.zone_id}] 🚕 Ride request from {start} to {end}")
+            cars = [
+                car for car, _ in self.agent.known_cars_positions.items()
+            ]
+
+            msg_body = json.dumps({
+                "command": "ride_request",
+                "start": start,
+                "end": end,
+                "cars": cars
+            })
+
+            for car in cars:
+                msg = Message(to=car)
+                msg.body = msg_body
+                msg.set_metadata("performative", "request")
+                await self.send(msg)
+            
     async def setup(self):
         print(f"[{self.zone_id}] 🛡️ Zone Manager Agent started.")
         self.add_behaviour(self.ReceiveControlBehaviour())

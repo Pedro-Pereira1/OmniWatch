@@ -9,16 +9,21 @@ class ClientAgent(Agent):
         async def run(self):
             print("=== Client Agent ===")
             try:
-                x = 9.0
-                y = 18.0
-                zone = "zone_1"  # Hard7oded zone for simplicity
-
+                zone = "zone_1"
                 zone_jid = f"{zone}@localhost"
+
+                #data = {
+                #    "command": "plan_path",
+                #    "goal": [9.0, 18.0]
+                #}
+
                 data = {
-                    "command": "plan_path",
-                    "goal": [x, y]
+                    "command": "request_ride",
+                    "start": [10.0, 15.0],
+                    "end": [50.0, 60.0]
                 }
 
+                
                 msg = Message(to=zone_jid)
                 msg.body = json.dumps(data)
                 msg.set_metadata("performative", "request")

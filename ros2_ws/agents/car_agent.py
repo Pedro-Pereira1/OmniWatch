@@ -208,7 +208,7 @@ class CarAgent(Agent):
                         cars = data.get("cars", [])
                         if len(goal) == 2:
                             self.agent.temp_goal = goal
-                            self.agent.add_behaviour(self.agent.CompetitivePathEvaluator(goal, msg.sender,cars))
+                            self.agent.add_behaviour(self.agent.CompetitivePathEvaluator(goal, None, msg.sender,cars))
                     elif cmd == "stop":
                         print(f"STOP command received.")
                         self.agent._stop_requested = True
@@ -220,7 +220,6 @@ class CarAgent(Agent):
                         else:
                             print(f"[{self.agent.car_id}] ❌ No person detected, ignoring STOP.")
                             # Stop the car immediately
-
                     elif cmd == "quarantine":
                         print(f"Quarantine command received.")
                         self.agent.quarantine = True
@@ -234,13 +233,22 @@ class CarAgent(Agent):
                         position = data.get("position", {})
                         if car_id and "lat" in position and "lon" in position:
                             self.agent.other_cars_positions[car_id] = (position["lat"], position["lon"])
+                    elif cmd == "ride_request"
+                        start = data.get("start")
+                        end = data.get("end")
+                        cars = data.get("cars", [])
+                        if len(start) == 2:
+                            self.agent.temp_goal = start
+                            self.agent.add_behaviour(self.agent.CompetitivePathEvaluator(start, end, msg.sender,cars))
+
                 except Exception as e:
                     print(f"[{self.agent.car_id}] Erro ao processar controle: {e}")
 
     class CompetitivePathEvaluator(CyclicBehaviour):
-        def __init__(self, goal, sender, cars):
+        def __init__(self, goal, end=None, mission_id=None sender, cars):
             super().__init__()
             self.goal = goal
+            self.end = end
             self.zone_manager_jid = str(sender)
             self.known_cars = cars
 
@@ -317,6 +325,7 @@ class CarAgent(Agent):
                 print(f"[{self.agent.car_id}] I am the closest to the goal. Taking the task.")
                 self.agent.goal = self.goal
                 self.agent.mission_type = "mission"
+
                 msg = Message(to=self.zone_manager_jid)
                 msg.body = json.dumps({
                     "command": "handling_goal",
@@ -325,8 +334,9 @@ class CarAgent(Agent):
                 })
                 msg.set_metadata("performative", "inform")
                 await self.send(msg)
+
                 print(f"[{self.agent.car_id}] Starting a mission...")
-                self.agent.add_behaviour(self.agent.RepeatedPathPlanner(self.goal, mission="mission"))
+                    self.agent.add_behaviour(self.agent.MissionCoordinator(self.goal, self.end))
                 
             # Clean the distances and the ready cars
             self.agent.ready_cars = set()
@@ -358,11 +368,12 @@ class CarAgent(Agent):
                 await asyncio.sleep(1)
 
     class RepeatedPathPlanner(CyclicBehaviour):
-        def __init__(self, goal, tolerance=0.1, mission=None):
+        def __init__(self, goal, tolerance=0.1, mission=None, isEnd = False):
             super().__init__()
             self.goal = goal
             self.tolerance = tolerance
             self.mission = mission
+            self.isEnd = isEnd
 
         async def run(self):
             print(f"[{self.agent.car_id}] I'm executing ", self.agent.mission_type)
@@ -384,9 +395,10 @@ class CarAgent(Agent):
                 self.agent.goal = None
                 
                 if self.agent.mission_type == "mission":
-                    print(f"[{self.agent.car_id}] Missão finalizada. Retomando patrulha.")
-                    self.agent.mission_type = "patrol"
-                    self.agent.add_behaviour(self.agent.PatrolBehaviour())
+                    if self.isEnd:
+                        print(f"[{self.agent.car_id}] Missão finalizada. Retomando patrulha.")
+                        self.agent.mission_type = "patrol"
+                        self.agent.add_behaviour(self.agent.PatrolBehaviour())
 
                 self.kill()
 
@@ -411,6 +423,23 @@ class CarAgent(Agent):
             self.agent.patrol_index = (self.agent.patrol_index + 1) % len(self.agent.patrol_points)
 
             await asyncio.sleep(5)
+
+    class MissionCoordinator(OneShotBehaviour):
+        def __init__(self, start, end=None):
+            super().__init__()
+            self.start = start
+            self.end = end
+
+        async def run(self):
+            print(f"[{self.agent.car_id}] Starting MissionCoordinator with goal: {self.start}, end: {self.end}")
+            planner1 = self.agent.RepeatedPathPlanner(self.start, mission="mission", isEnd=(self.end is None))
+            self.agent.add_behaviour(planner1)
+            await planner1.join()  # Wait for first destination
+
+            if self.end:
+                planner2 = self.agent.RepeatedPathPlanner(self.end, mission="mission", isEnd=True)
+                self.agent.add_behaviour(planner2)
+                await planner2.join()  # Wait for second destination
 
     async def setup(self):
         print(f"[{self.car_id}] Agent started")
