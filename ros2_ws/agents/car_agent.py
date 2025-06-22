@@ -167,8 +167,8 @@ class CarAgent(Agent):
         self.mission_type = "patrol"
         self.ready_cars = set()
         self.distances = []
+        self.passenger_present = False
 
-    # Sends message
     class SendDataBehaviour(CyclicBehaviour):
         async def run(self):
             if self.agent._stop_requested:
@@ -196,7 +196,6 @@ class CarAgent(Agent):
 
                 await asyncio.sleep(60 if self.agent.quarantine else 30)
 
-    # basically a queue
     class ControlBehaviour(CyclicBehaviour):
         async def run(self):
             msg = await self.receive(timeout=5)
@@ -213,6 +212,15 @@ class CarAgent(Agent):
                     elif cmd == "stop":
                         print(f"STOP command received.")
                         self.agent._stop_requested = True
+
+                        if self.agent.passenger_present:
+                            print(f"[{self.agent.car_id}] 🧍 Person detected inside. Proceeding to STOP safely.")
+                            # Stop the car safely
+                            # Send another vehicle to pick up the passenger
+                        else:
+                            print(f"[{self.agent.car_id}] ❌ No person detected, ignoring STOP.")
+                            # Stop the car immediately
+
                     elif cmd == "quarantine":
                         print(f"Quarantine command received.")
                         self.agent.quarantine = True
@@ -322,12 +330,11 @@ class CarAgent(Agent):
                 
             # Clean the distances and the ready cars
             self.agent.ready_cars = set()
-            self.agent.distances = []
-
-                
+            self.agent.distances = []  
   
     class SharePositionBehaviour(CyclicBehaviour):
         async def run(self):
+            self.agent.passenger_present = self.agent.ros_node.weight_data > 0.0
             if self.agent._stop_requested:
                 print(f"[{self.agent.car_id}] STOP requested, halting position sharing.")
                 await asyncio.sleep(50)
@@ -383,7 +390,6 @@ class CarAgent(Agent):
 
                 self.kill()
 
-
     class PatrolBehaviour(CyclicBehaviour):
         async def run(self):
             if self.agent._stop_requested or self.agent.mission_type != "patrol":
@@ -415,7 +421,6 @@ class CarAgent(Agent):
         self.add_behaviour(self.ControlBehaviour())
         self.add_behaviour(self.SharePositionBehaviour())
         self.add_behaviour(self.PatrolBehaviour())
-
 
 
 if __name__ == "__main__":
