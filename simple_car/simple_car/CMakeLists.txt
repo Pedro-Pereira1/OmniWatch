@@ -10,6 +10,7 @@ find_package(ament_cmake REQUIRED)
 find_package(rclpy REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
+find_package(gazebo REQUIRED)
 find_package(gazebo_ros REQUIRED)
 find_package(gazebo_dev REQUIRED)
 
@@ -34,7 +35,7 @@ ament_target_dependencies(color_changer_plugin
 )
 
 target_link_libraries(color_changer_plugin
-  ${GAZEBO_LIBRARIES}
+    ${GAZEBO_LIBRARIES}
 )
 
 # 📦 Instalação do plugin
@@ -68,9 +69,5 @@ install(
   DIRECTORY models
   DESTINATION share/${PROJECT_NAME}
 )
-
-
-include_directories(${GAZEBO_INCLUDE_DIRS})
-link_directories(${GAZEBO_LIBRARY_DIRS})
 
 ament_package()

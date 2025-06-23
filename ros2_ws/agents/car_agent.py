@@ -77,6 +77,7 @@ class ROSCarListener(Node):
         self.log_data = "No logs yet"
         self.weight_data = 0.0
         self.position_data = (0.0, 0.0)
+        self.color_publisher = self.create_publisher(StringMsg, prefix + 'set_color', 10)
         
         self.create_subscription(StringMsg, prefix + 'logs', self.log_callback, 10)
         self.create_subscription(Float32, prefix + 'weight', self.weight_callback, 10)
@@ -326,6 +327,9 @@ class CarAgent(Agent):
                 print(f"[{self.agent.car_id}] I am the closest to the goal. Taking the task.")
                 self.agent.goal = self.goal
                 self.agent.mission_type = "mission"
+                color = StringMsg()
+                color.data = "blue"
+                self.agent.ros_node.color_publisher.publish(color)
 
                 msg = Message(to=self.zone_manager_jid)
                 msg.body = json.dumps({
@@ -419,6 +423,9 @@ class CarAgent(Agent):
             print(f"[{self.agent.car_id}] Iniciando patrulha para o ponto {next_point}")
             self.agent.goal = next_point
             self.agent.mission_type = "patrol"
+            color = StringMsg()
+            color.data = "red"
+            self.agent.ros_node.color_publisher.publish(color)
             self.agent.add_behaviour(self.agent.RepeatedPathPlanner(next_point, mission="patrol"))
 
             # Avança para o próximo ponto na próxima iteração
