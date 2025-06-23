@@ -5,7 +5,7 @@ from geometry_msgs.msg import Twist
 from nav_msgs.msg import Odometry
 from threading import Thread
 from spade.agent import Agent
-from spade.behaviour import CyclicBehaviour
+from spade.behaviour import CyclicBehaviour, OneShotBehaviour
 from spade.message import Message
 import asyncio
 import json
@@ -233,19 +233,20 @@ class CarAgent(Agent):
                         position = data.get("position", {})
                         if car_id and "lat" in position and "lon" in position:
                             self.agent.other_cars_positions[car_id] = (position["lat"], position["lon"])
-                    elif cmd == "ride_request"
+                    elif cmd == "ride_request":
+                        print("RIDE REQUEST ###################")
                         start = data.get("start")
                         end = data.get("end")
                         cars = data.get("cars", [])
                         if len(start) == 2:
                             self.agent.temp_goal = start
-                            self.agent.add_behaviour(self.agent.CompetitivePathEvaluator(start, end, msg.sender,cars))
+                            self.agent.add_behaviour(self.agent.CompetitivePathEvaluator(start, end, "mission", msg.sender,cars))
 
                 except Exception as e:
                     print(f"[{self.agent.car_id}] Erro ao processar controle: {e}")
 
     class CompetitivePathEvaluator(CyclicBehaviour):
-        def __init__(self, goal, end=None, mission_id=None sender, cars):
+        def __init__(self, goal, end=None, mission_id=None, sender=None, cars=[]):
             super().__init__()
             self.goal = goal
             self.end = end
@@ -265,7 +266,7 @@ class CarAgent(Agent):
                 msg.set_metadata("performative", "inform")
                 await self.send(msg)
 
-            self.agent.ready_cars.add(self.agent.jid)  # I'm ready
+            self.agent.ready_cars.add(self.agent.jid)
 
             # Step 2: Wait for other ready messages
             timeout = 5  # seconds max to wait
@@ -309,7 +310,7 @@ class CarAgent(Agent):
             best_car = self.agent.car_id
             best_distance = my_distance
 
-            while len(self.agent.distances) != len(self.agent.known_cars) - 1:
+            while len(self.agent.distances) < len(self.agent.known_cars) - 1:
                 print(f"[{self.agent.car_id}] It's missing some distances. {len(self.agent.distances)}/{len(self.agent.known_cars)}")
                 await asyncio.sleep(1)
                 continue
@@ -336,7 +337,8 @@ class CarAgent(Agent):
                 await self.send(msg)
 
                 print(f"[{self.agent.car_id}] Starting a mission...")
-                    self.agent.add_behaviour(self.agent.MissionCoordinator(self.goal, self.end))
+                print(f"{self.goal}/{self.end}")
+                self.agent.add_behaviour(self.agent.MissionCoordinator(self.goal, self.end))
                 
             # Clean the distances and the ready cars
             self.agent.ready_cars = set()
@@ -427,12 +429,12 @@ class CarAgent(Agent):
     class MissionCoordinator(OneShotBehaviour):
         def __init__(self, start, end=None):
             super().__init__()
-            self.start = start
+            self.st = start
             self.end = end
 
         async def run(self):
-            print(f"[{self.agent.car_id}] Starting MissionCoordinator with goal: {self.start}, end: {self.end}")
-            planner1 = self.agent.RepeatedPathPlanner(self.start, mission="mission", isEnd=(self.end is None))
+            print(f"[{self.agent.car_id}] Starting MissionCoordinator with goal: {self.st}, end: {self.end}")
+            planner1 = self.agent.RepeatedPathPlanner(self.st, mission="mission", isEnd=(self.end is None))
             self.agent.add_behaviour(planner1)
             await planner1.join()  # Wait for first destination
 

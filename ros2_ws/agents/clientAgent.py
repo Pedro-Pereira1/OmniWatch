@@ -18,9 +18,9 @@ class ClientAgent(Agent):
                 #}
 
                 data = {
-                    "command": "request_ride",
+                    "command": "ride_request",
                     "start": [10.0, 15.0],
-                    "end": [50.0, 60.0]
+                    "end": [18.0, 18.0]
                 }
 
                 
@@ -29,7 +29,7 @@ class ClientAgent(Agent):
                 msg.set_metadata("performative", "request")
 
                 await self.send(msg)
-                print(f"📤 Sent goal {data['goal']} to {zone_jid}")
+                print(f"📤 Sent goal {data['start']} to {zone_jid}")
             except Exception as e:
                 print(f"⚠️ Error collecting or sending input: {e}")
 

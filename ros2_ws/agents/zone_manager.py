@@ -35,7 +35,7 @@ class ZoneManagerAgent(Agent):
                         await self.handle_cars_response(data.get("car_id"))
                     elif command == "position_update":
                         await self.handle_position_update(data)
-                    elif command == "request_ride":
+                    elif command == "ride_request":
                         start = data["start"]
                         end = data["end"]
                         await self.handle_ride_request(start, end)
@@ -116,7 +116,7 @@ class ZoneManagerAgent(Agent):
                 "end": end,
                 "cars": cars
             })
-
+            print(cars)
             for car in cars:
                 msg = Message(to=car)
                 msg.body = msg_body
