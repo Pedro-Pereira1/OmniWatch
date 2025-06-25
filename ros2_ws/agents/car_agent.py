@@ -211,16 +211,34 @@ class CarAgent(Agent):
                             self.agent.temp_goal = goal
                             self.agent.add_behaviour(self.agent.CompetitivePathEvaluator(goal, None, msg.sender,cars))
                     elif cmd == "stop":
-                        print(f"STOP command received.")
+                        print(f"[{self.agent.car_id}] 🛑 STOP command received.")
                         self.agent._stop_requested = True
+                        self.agent.is_infected = True
+                        current_x, current_y = self.agent.ros_node.position_data
+                        ride_end = self.agent.goal if self.agent.goal else [current_x, current_y]
+                        zone_manager_jid = "zone_1@localhost"  # Default zone manager, can be changed as needed
 
-                        if self.agent.passenger_present:
-                            print(f"[{self.agent.car_id}] 🧍 Person detected inside. Proceeding to STOP safely.")
-                            # Stop the car safely
-                            # Send another vehicle to pick up the passenger
+                        # Publish stop velocity
+                        twist = Twist()
+                        twist.linear.x = 0.0
+                        twist.angular.z = 0.0
+                        self.agent.ros_node.stop_publisher.publish(twist)
+
+                        # Check passenger status and mission state
+                        if self.agent.passenger_present or self.agent.mission_type == "mission":
+                            reason = "🧍 Passenger onboard" if self.agent.passenger_present else "📦 Aborting mission (no passenger)"
+                            print(f"[{self.agent.car_id}] {reason}. Requesting ride continuation...")
+
+                            ride_request_msg = Message(to=zone_manager_jid)
+                            ride_request_msg.body = json.dumps({
+                                "command": "ride_request",
+                                "start": [current_x, current_y],
+                                "end": [ride_end[0], ride_end[1]]
+                            })
+                            ride_request_msg.set_metadata("performative", "inform")
+                            await self.send(ride_request_msg)
                         else:
-                            print(f"[{self.agent.car_id}] ❌ No person detected, ignoring STOP.")
-                            # Stop the car immediately
+                            print(f"[{self.agent.car_id}] ✅ Stopped. No further action needed.")                          
                     elif cmd == "quarantine":
                         print(f"Quarantine command received.")
                         self.agent.quarantine = True
@@ -242,7 +260,6 @@ class CarAgent(Agent):
                         if len(start) == 2:
                             self.agent.temp_goal = start
                             self.agent.add_behaviour(self.agent.CompetitivePathEvaluator(start, end, "mission", msg.sender,cars))
-
                 except Exception as e:
                     print(f"[{self.agent.car_id}] Erro ao processar controle: {e}")
 
@@ -459,7 +476,6 @@ class CarAgent(Agent):
         self.add_behaviour(self.ControlBehaviour())
         self.add_behaviour(self.SharePositionBehaviour())
         self.add_behaviour(self.PatrolBehaviour())
-
 
 if __name__ == "__main__":
     async def main():

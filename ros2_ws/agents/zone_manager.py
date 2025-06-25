@@ -39,6 +39,10 @@ class ZoneManagerAgent(Agent):
                         start = data["start"]
                         end = data["end"]
                         await self.handle_ride_request(start, end)
+                    elif command == "request_car_assistance":
+                        await self.handle_assistance_request(data.get("requesting_zone"))
+                    elif command == "offer_car":
+                        await self.handle_offer_car(data)
                 except Exception as e:
                     print(f"[{self.agent.zone_id}] Error processing message: {e}")
             else:
@@ -122,11 +126,62 @@ class ZoneManagerAgent(Agent):
                 msg.body = msg_body
                 msg.set_metadata("performative", "request")
                 await self.send(msg)
-            
+
+        async def handle_assistance_request(self, requesting_zone_id):
+            print(f"[{self.agent.zone_id}] 🤝 Received assistance request from {requesting_zone_id}")
+
+            # Find cars in this zone
+            local_cars = [
+                car_jid for car_jid, pos in self.agent.known_cars_positions.items()
+                if self.agent.is_in_zone(pos)
+            ]
+
+            if len(local_cars) > 1:
+                car_to_send = local_cars[0]
+                target_jid = self.agent.known_zones.get(requesting_zone_id)
+                if target_jid:
+                    msg = Message(to=target_jid)
+                    msg.body = json.dumps({
+                        "command": "offer_car",
+                        "car_id": car_to_send
+                    })
+                    msg.set_metadata("performative", "inform")
+                    await self.send(msg)
+                    print(f"[{self.agent.zone_id}] 🚗 Offering {car_to_send} to {requesting_zone_id}")
+            else:
+                print(f"[{self.agent.zone_id}] ❌ Not enough cars to assist.")
+
+        async def handle_offer_car(self, data):
+            car_id = data["car_id"]
+            print(f"[{self.agent.zone_id}] ✅ Received car offer: {car_id}")
+            #             
+            print(f"[{self.agent.zone_id}] 🚦 Redirecting {car_id} to this zone.")
+
+    class EnsureAvailabilityBehaviour(PeriodicBehaviour):
+        async def run(self):
+            cars_in_zone = [
+                car_jid for car_jid, pos in self.agent.known_cars_positions.items()
+                if self.agent.is_in_zone(pos)
+            ]
+
+            if not cars_in_zone:
+                print(f"[{self.agent.zone_id}] ⚠️ No cars in zone, requesting help from other zones.")
+
+                for zone_id, zone_jid in self.agent.known_zones.items():
+                    msg = Message(to=zone_jid)
+                    msg.body = json.dumps({
+                        "command": "request_car_assistance",
+                        "requesting_zone": self.agent.zone_id
+                    })
+                    msg.set_metadata("performative", "request")
+                    await self.send(msg)
+            else:
+                print(f"[{self.agent.zone_id}] ✅ {len(cars_in_zone)} car(s) in zone.")
+
     async def setup(self):
         print(f"[{self.zone_id}] 🛡️ Zone Manager Agent started.")
         self.add_behaviour(self.ReceiveControlBehaviour())
-
+        self.add_behaviour(self.EnsureAvailabilityBehaviour(period=10))
 
 # Entry point
 if __name__ == "__main__":
@@ -150,15 +205,29 @@ if __name__ == "__main__":
             "y_max": y_max,
         }
 
-        jid = f"{zone_id}@localhost"
-        password = "pass"
+        all_zones = [
+            "zone_1@localhost",
+            "zone_2@localhost",
+            "zone_3@localhost",
+            "zone_4@localhost"
+        ]
 
-        agent = ZoneManagerAgent(jid, password, zone_id, zone_bounds)
+        # Current agent's full JID
+        current_jid = f"{zone_id}@localhost"
+
+        # Generate known_zones dictionary (zone_id -> jid) excluding self
+        known_zones = {
+            jid.split("@")[0]: jid for jid in all_zones if jid != current_jid
+        }
+
+        agent = ZoneManagerAgent(current_jid, "pass", zone_id, zone_bounds, known_zones)
         await agent.start(auto_register=True)
 
         print(f"[{zone_id}] Managing bounds: {zone_bounds}")
+        print(f"[{zone_id}] Known zones: {list(known_zones.keys())}")
 
         while agent.is_alive():
             await asyncio.sleep(1)
 
     asyncio.run(main())
+
