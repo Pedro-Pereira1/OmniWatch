@@ -42,10 +42,14 @@ namespace gazebo
         {
             std::string color = msg->data;
             float r = 0.0, g = 0.0, b = 0.0;
-
-            if (color == "red") r = 1.0;
-            else if (color == "green") g = 1.0;
-            else if (color == "blue") b = 1.0;
+            
+            if (color == "Normal")                  { r = 1.0; g = 1.0; b = 1.0; } // White
+            else if (color == "Patrulha")           { r = 0.0; g = 0.0; b = 1.0; } // Blue
+            else if (color == "Infetado")           { r = 1.0; g = 0.0; b = 0.0; } // Red
+            else if (color == "Quarentena")         { r = 1.0; g = 0.5; b = 0.0; } // Orange
+            else if (color == "Passageiro")         { r = 0.0; g = 1.0; b = 0.0; } // Green
+            else if (color == "Passageiro/Quarentena") { r = 0.0; g = 1.0; b = 1.0; } // Cyan
+            else if (color == "Patrulha/Quarentena")  { r = 1.0; g = 0.0; b = 1.0; } // Magenta
             else
             {
                 std::cerr << "[Plugin] Cor desconhecida: " << color << std::endl;
