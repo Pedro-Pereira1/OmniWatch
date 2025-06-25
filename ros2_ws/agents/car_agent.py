@@ -344,9 +344,9 @@ class CarAgent(Agent):
                 print(f"[{self.agent.car_id}] I am the closest to the goal. Taking the task.")
                 self.agent.goal = self.goal
                 self.agent.mission_type = "mission"
-                color = StringMsg()
-                color.data = "blue"
-                self.agent.ros_node.color_publisher.publish(color)
+                #color = StringMsg()
+                #color.data = "blue"
+                #self.agent.ros_node.color_publisher.publish(color)
 
                 msg = Message(to=self.zone_manager_jid)
                 msg.body = json.dumps({
@@ -440,9 +440,9 @@ class CarAgent(Agent):
             print(f"[{self.agent.car_id}] Iniciando patrulha para o ponto {next_point}")
             self.agent.goal = next_point
             self.agent.mission_type = "patrol"
-            color = StringMsg()
-            color.data = "red"
-            self.agent.ros_node.color_publisher.publish(color)
+            #color = StringMsg()
+            #color.data = "red"
+            #self.agent.ros_node.color_publisher.publish(color)
             self.agent.add_behaviour(self.agent.RepeatedPathPlanner(next_point, mission="patrol"))
 
             # Avança para o próximo ponto na próxima iteração
@@ -467,6 +467,33 @@ class CarAgent(Agent):
                 self.agent.add_behaviour(planner2)
                 await planner2.join()  # Wait for second destination
 
+    class ColorStatePublisher(CyclicBehaviour):
+        async def run(self):
+            a = self.agent
+            # Determine composite state
+            if a.is_infected:
+                state = "Infetado"
+            elif a.passenger_present and a.quarantine:
+                state = "Passageiro/Quarentena"
+            elif a.passenger_present:
+                state = "Passageiro"
+            elif a.mission_type == "patrol" and a.quarantine:
+                state = "Patrulha/Quarentena"
+            elif a.mission_type == "patrol":
+                state = "Patrulha"
+            elif a.quarantine:
+                state = "Quarentena"
+            else:
+                state = "Normal"
+
+            # Publish only if state changed
+            if state != getattr(a, "_last_color_state", None):
+                msg = StringMsg()
+                msg.data = state
+                a.ros_node.color_publisher.publish(msg)
+                a._last_color_state = state
+            await asyncio.sleep(1)  # Adjust interval as needed
+
     async def setup(self):
         print(f"[{self.car_id}] Agent started")
         thread = Thread(target=start_ros_node, args=(self, self.car_id), daemon=True)
@@ -476,6 +503,8 @@ class CarAgent(Agent):
         self.add_behaviour(self.ControlBehaviour())
         self.add_behaviour(self.SharePositionBehaviour())
         self.add_behaviour(self.PatrolBehaviour())
+        self.add_behaviour(self.ColorStatePublisher())
+
 
 if __name__ == "__main__":
     async def main():
