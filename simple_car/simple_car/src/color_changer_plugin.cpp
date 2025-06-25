@@ -50,6 +50,7 @@ namespace gazebo
             else if (color == "Passageiro")         { r = 0.0; g = 1.0; b = 0.0; } // Green
             else if (color == "Passageiro/Quarentena") { r = 0.0; g = 1.0; b = 1.0; } // Cyan
             else if (color == "Patrulha/Quarentena")  { r = 1.0; g = 0.0; b = 1.0; } // Magenta
+            else if (color == "Changing")  { r = 0.0; g = 0.0; b = 0.0; } // Blacky
             else
             {
                 std::cerr << "[Plugin] Cor desconhecida: " << color << std::endl;

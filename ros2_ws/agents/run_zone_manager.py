@@ -4,10 +4,10 @@ import sys
 
 # Define the four zones
 zone_configs = {
-    "zone_1": [0, 9, 0, 9],
-    "zone_2": [10, 19, 0, 9],
-    "zone_3": [0, 9, 10, 19],
-    "zone_4": [10, 19, 10, 19],
+    "zone_1": [0, 9, 0, 9], # Amarelo
+    "zone_2": [10, 19, 0, 9], # Azul
+    "zone_3": [0, 9, 10, 19], # Vermelho
+    "zone_4": [10, 19, 10, 19], # Preto
 }
 
 zone_processes = []
@@ -17,7 +17,7 @@ try:
         print(f"🚀 Starting Zone Manager for {zone_id} with bounds {bounds}")
         p = subprocess.Popen(["python3", "zone_manager.py", zone_id] + list(map(str, bounds)))
         zone_processes.append(p)
-        time.sleep(0.5)
+        time.sleep(5)
 
     for p in zone_processes:
         p.wait()

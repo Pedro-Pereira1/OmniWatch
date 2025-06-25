@@ -25,7 +25,7 @@ def generate_launch_description():
         'car_1': ('1', '1'),
         'car_2': ('18', '18'),
         'car_3': ('1', '18'),
-        'car_4': ('18', '1'),
+        'car_4': ('1', '17'),
     }
 
     for car_name, (x, y) in car_positions.items():

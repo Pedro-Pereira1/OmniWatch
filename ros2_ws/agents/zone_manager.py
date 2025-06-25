@@ -1,16 +1,19 @@
 from spade.agent import Agent
-from spade.behaviour import CyclicBehaviour
+from spade.behaviour import CyclicBehaviour,PeriodicBehaviour 
 from spade.message import Message
 import json
 import asyncio
 
 
 class ZoneManagerAgent(Agent):
-    def __init__(self, jid, password, zone_id, zone_bounds):
+    def __init__(self, jid, password, zone_id, zone_bounds, known_zones):
         super().__init__(jid, password)
         self.zone_id = zone_id
         self.zone_bounds = zone_bounds
         self.known_cars_positions = {}  # car_jid: (x, y)
+        self.known_zones = known_zones
+        self.waiting_car = False
+        self.known_cars_states = {}
 
     def is_in_zone(self, position):
         x, y = position
@@ -26,7 +29,6 @@ class ZoneManagerAgent(Agent):
                 try:
                     data = json.loads(msg.body)
                     command = data.get("command")
-                    print(command)
                     if command == "threat":
                         await self.handle_threat(data.get("car_id"))
                     elif command == "plan_path":
@@ -106,7 +108,9 @@ class ZoneManagerAgent(Agent):
             pos = data.get("position", {})
             if "lat" in pos and "lon" in pos:
                 self.agent.known_cars_positions[f"{car_id}@localhost"] = (pos["lat"], pos["lon"])
-                print(f"[{self.agent.zone_id}] 📍 Updated {car_id} to ({pos['lat']}, {pos['lon']})")
+            state = data.get("mission", {})
+            self.agent.known_cars_states[f"{car_id}@localhost"] = state
+            #print(f"[{self.agent.zone_id}] 📍 Updated {car_id} to ({pos['lat']}, {pos['lon']})")
 
         async def handle_ride_request(self, start, end):
             print(f"[{self.agent.zone_id}] 🚕 Ride request from {start} to {end}")
@@ -120,7 +124,6 @@ class ZoneManagerAgent(Agent):
                 "end": end,
                 "cars": cars
             })
-            print(cars)
             for car in cars:
                 msg = Message(to=car)
                 msg.body = msg_body
@@ -133,9 +136,8 @@ class ZoneManagerAgent(Agent):
             # Find cars in this zone
             local_cars = [
                 car_jid for car_jid, pos in self.agent.known_cars_positions.items()
-                if self.agent.is_in_zone(pos)
-            ]
-
+                if self.agent.is_in_zone(pos) and self.agent.known_cars_states.get(car_jid) == "patrol"
+            ]   
             if len(local_cars) > 1:
                 car_to_send = local_cars[0]
                 target_jid = self.agent.known_zones.get(requesting_zone_id)
@@ -152,9 +154,24 @@ class ZoneManagerAgent(Agent):
                 print(f"[{self.agent.zone_id}] ❌ Not enough cars to assist.")
 
         async def handle_offer_car(self, data):
+            if self.agent.waiting_car:
+                return
+            self.agent.waiting_car = True
             car_id = data["car_id"]
+            msg = Message(to=car_id)
+            msg.body = json.dumps({
+                "command":"change_patrol_points",
+                "car_id":car_id,
+                "patrol_points":[
+                    (self.agent.zone_bounds.get("x_min"), self.agent.zone_bounds.get("y_min")),
+                    (self.agent.zone_bounds.get("x_min"), self.agent.zone_bounds.get("y_max")),
+                    (self.agent.zone_bounds.get("x_max"), self.agent.zone_bounds.get("y_max")),
+                    (self.agent.zone_bounds.get("x_max"), self.agent.zone_bounds.get("y_min")),
+                ]
+            })
+            msg.set_metadata("performative", "request")
+            await self.send(msg)
             print(f"[{self.agent.zone_id}] ✅ Received car offer: {car_id}")
-            #             
             print(f"[{self.agent.zone_id}] 🚦 Redirecting {car_id} to this zone.")
 
     class EnsureAvailabilityBehaviour(PeriodicBehaviour):
@@ -164,7 +181,7 @@ class ZoneManagerAgent(Agent):
                 if self.agent.is_in_zone(pos)
             ]
 
-            if not cars_in_zone:
+            if not cars_in_zone and not self.agent.waiting_car:
                 print(f"[{self.agent.zone_id}] ⚠️ No cars in zone, requesting help from other zones.")
 
                 for zone_id, zone_jid in self.agent.known_zones.items():
@@ -177,11 +194,14 @@ class ZoneManagerAgent(Agent):
                     await self.send(msg)
             else:
                 print(f"[{self.agent.zone_id}] ✅ {len(cars_in_zone)} car(s) in zone.")
+                if self.agent.waiting_car:
+                    self.agent.waiting_car = False
 
     async def setup(self):
         print(f"[{self.zone_id}] 🛡️ Zone Manager Agent started.")
         self.add_behaviour(self.ReceiveControlBehaviour())
-        self.add_behaviour(self.EnsureAvailabilityBehaviour(period=10))
+        await asyncio.sleep(25)
+        self.add_behaviour(self.EnsureAvailabilityBehaviour(period=6))
 
 # Entry point
 if __name__ == "__main__":

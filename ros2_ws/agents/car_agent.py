@@ -163,7 +163,7 @@ class CarAgent(Agent):
         self.other_cars_positions = {}
         self.known_cars = ["car_1@localhost", "car_2@localhost", "car_3@localhost", "car_4@localhost"]#, "car_5@localhost", "car_6@localhost"]
         self.known_zone_managers = ["zone_1@localhost", "zone_2@localhost", "zone_3@localhost", "zone_4@localhost"]
-        self.patrol_points = patrol_points if patrol_points else [(1.0, 1.0), (1.0, 9.0), (9.0, 9.0), (9.0, 1.0)]
+        self.patrol_points = patrol_points if patrol_points else [(5.0, 1.0), (1.0, 9.0), (9.0, 9.0), (9.0, 1.0)]
         self.patrol_index = 0
         self.mission_type = "patrol"
         self.ready_cars = set()
@@ -253,13 +253,21 @@ class CarAgent(Agent):
                         if car_id and "lat" in position and "lon" in position:
                             self.agent.other_cars_positions[car_id] = (position["lat"], position["lon"])
                     elif cmd == "ride_request":
-                        print("RIDE REQUEST ###################")
                         start = data.get("start")
                         end = data.get("end")
                         cars = data.get("cars", [])
                         if len(start) == 2:
                             self.agent.temp_goal = start
                             self.agent.add_behaviour(self.agent.CompetitivePathEvaluator(start, end, "mission", msg.sender,cars))
+                    elif cmd == "change_patrol_points":
+                        if self.agent.mission_type == "patrol":
+                            points = data.get("patrol_points")
+                            self.agent.mission_type = "changing"
+                            print(points[0])
+                            self.agent.add_behaviour(self.agent.RepeatedPathPlanner(points[0], mission="changing", isEnd=True)) 
+                            self.agent.patrol_points = points
+                            print(f"[{self.agent.car_id}] I'm a changed man.")
+                        
                 except Exception as e:
                     print(f"[{self.agent.car_id}] Erro ao processar controle: {e}")
 
@@ -367,7 +375,7 @@ class CarAgent(Agent):
   
     class SharePositionBehaviour(CyclicBehaviour):
         async def run(self):
-            self.agent.passenger_present = self.agent.ros_node.weight_data > 0.0
+            #self.agent.passenger_present = self.agent.ros_node.weight_data > 0.0
             if self.agent._stop_requested:
                 print(f"[{self.agent.car_id}] STOP requested, halting position sharing.")
                 await asyncio.sleep(50)
@@ -383,7 +391,8 @@ class CarAgent(Agent):
                         "position": {
                             "lat": self.agent.ros_node.position_data[0],
                             "lon": self.agent.ros_node.position_data[1]
-                        }
+                        },
+                        "mission":self.agent.mission_type
                     })
                     msg.set_metadata("performative", "inform")
                     await self.send(msg)
@@ -417,7 +426,7 @@ class CarAgent(Agent):
                 print(f"[{self.agent.car_id}] Objetivo alcançado! Parando o planejamento.")
                 self.agent.goal = None
                 
-                if self.agent.mission_type == "mission":
+                if self.agent.mission_type != "patrol":
                     if self.isEnd:
                         print(f"[{self.agent.car_id}] Missão finalizada. Retomando patrulha.")
                         self.agent.mission_type = "patrol"
@@ -427,7 +436,7 @@ class CarAgent(Agent):
 
     class PatrolBehaviour(CyclicBehaviour):
         async def run(self):
-            if self.agent._stop_requested or self.agent.mission_type != "patrol":
+            if self.agent._stop_requested or (self.agent.mission_type != "patrol" and self.agent.mission_type != "changing"):
                 self.kill()
                 return
 
@@ -440,6 +449,7 @@ class CarAgent(Agent):
             print(f"[{self.agent.car_id}] Iniciando patrulha para o ponto {next_point}")
             self.agent.goal = next_point
             self.agent.mission_type = "patrol"
+            print(f"[{self.agent.car_id}] Faço patrulha para os pontos {self.agent.patrol_points}")
             #color = StringMsg()
             #color.data = "red"
             #self.agent.ros_node.color_publisher.publish(color)
@@ -483,6 +493,8 @@ class CarAgent(Agent):
                 state = "Patrulha"
             elif a.quarantine:
                 state = "Quarentena"
+            elif a.mission_type == "changing":
+                state = "Changing"
             else:
                 state = "Normal"
 
