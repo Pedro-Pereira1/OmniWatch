@@ -22,7 +22,6 @@ class ClientAgent(Agent):
                     "start": [10.0, 15.0],
                     "end": [18.0, 18.0]
                 }
-
                 
                 msg = Message(to=zone_jid)
                 msg.body = json.dumps(data)

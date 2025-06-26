@@ -16,6 +16,7 @@ import json
 import rclpy
 from std_msgs.msg import String as StringMsg
 from geometry_msgs.msg import Twist
+import time
 
 
 class AStarPlanner:
@@ -375,7 +376,7 @@ class CarAgent(Agent):
   
     class SharePositionBehaviour(CyclicBehaviour):
         async def run(self):
-            #self.agent.passenger_present = self.agent.ros_node.weight_data > 0.0
+            self.agent.passenger_present = self.agent.ros_node.weight_data > 0.0
             if self.agent._stop_requested:
                 print(f"[{self.agent.car_id}] STOP requested, halting position sharing.")
                 await asyncio.sleep(50)
@@ -471,11 +472,14 @@ class CarAgent(Agent):
             planner1 = self.agent.RepeatedPathPlanner(self.st, mission="mission", isEnd=(self.end is None))
             self.agent.add_behaviour(planner1)
             await planner1.join()  # Wait for first destination
-
+            
             if self.end:
+                while not self.agent.ros_node.weight_data > 0.0:
+                    print(f"[{self.agent.car_id}] Waiting for client: {self.agent.ros_node.weight_data}")
+                    time.sleep(1)
                 planner2 = self.agent.RepeatedPathPlanner(self.end, mission="mission", isEnd=True)
                 self.agent.add_behaviour(planner2)
-                await planner2.join()  # Wait for second destination
+                await planner2.join()
 
     class ColorStatePublisher(CyclicBehaviour):
         async def run(self):

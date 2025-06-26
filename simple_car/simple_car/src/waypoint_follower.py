@@ -116,10 +116,10 @@ class WaypointFollower(Node):
         self.publisher.publish(msg)
 
         # Simular peso
-        random_value = np.random.uniform(15, 300)
-        weight_msg = Float32()
-        weight_msg.data = random_value
-        self.publisher_weight.publish(weight_msg)
+        #random_value = np.random.uniform(15, 300)
+        #weight_msg = Float32()
+        #weight_msg.data = random_value
+        #self.publisher_weight.publish(weight_msg)
 
     def set_color_callback(self, msg):
         color = msg.data.lower()
