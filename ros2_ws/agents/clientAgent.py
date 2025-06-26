@@ -19,7 +19,7 @@ class ClientAgent(Agent):
 
                 data = {
                     "command": "ride_request",
-                    "start": [10.0, 15.0],
+                    "start": [1.0, 1.0],
                     "end": [18.0, 18.0]
                 }
                 

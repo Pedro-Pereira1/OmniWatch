@@ -53,8 +53,9 @@ class ZoneManagerAgent(Agent):
         
         async def handle_threat(self, malicious_car):
             print(f"[{self.agent.zone_id}] ⚠️ Threat received for {malicious_car}")
-
+            
             pos = self.agent.known_cars_positions.get(malicious_car)
+            
             if not pos:
                 print(f"[{self.agent.zone_id}] No position known for {malicious_car}, ignoring threat.")
                 return

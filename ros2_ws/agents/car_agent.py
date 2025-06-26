@@ -213,17 +213,12 @@ class CarAgent(Agent):
                             self.agent.add_behaviour(self.agent.CompetitivePathEvaluator(goal, None, msg.sender,cars))
                     elif cmd == "stop":
                         print(f"[{self.agent.car_id}] 🛑 STOP command received.")
+                        current_x, current_y = self.agent.ros_node.position_data
+                        print(f"[{self.agent.car_id}] The client wanted to go to the point {self.agent.goal}")
+                        ride_end = self.agent.goal if self.agent.goal else [current_x, current_y]
+                        zone_manager_jid = "zone_1@localhost"
                         self.agent._stop_requested = True
                         self.agent.is_infected = True
-                        current_x, current_y = self.agent.ros_node.position_data
-                        ride_end = self.agent.goal if self.agent.goal else [current_x, current_y]
-                        zone_manager_jid = "zone_1@localhost"  # Default zone manager, can be changed as needed
-
-                        # Publish stop velocity
-                        twist = Twist()
-                        twist.linear.x = 0.0
-                        twist.angular.z = 0.0
-                        self.agent.ros_node.stop_publisher.publish(twist)
 
                         # Check passenger status and mission state
                         if self.agent.passenger_present or self.agent.mission_type == "mission":
@@ -233,7 +228,7 @@ class CarAgent(Agent):
                             ride_request_msg = Message(to=zone_manager_jid)
                             ride_request_msg.body = json.dumps({
                                 "command": "ride_request",
-                                "start": [current_x, current_y],
+                                "start": [current_x - 1, current_y],
                                 "end": [ride_end[0], ride_end[1]]
                             })
                             ride_request_msg.set_metadata("performative", "inform")
@@ -417,6 +412,10 @@ class CarAgent(Agent):
             if self.mission != self.agent.mission_type:
                 self.kill()
                 return
+            if self.agent.passenger_present and self.agent.is_infected:
+                self.kill()
+                return
+            
             if distance > self.tolerance:
                 try:
                     calculate_and_publish_path(self.agent, self.goal[0], self.goal[1])
@@ -469,6 +468,7 @@ class CarAgent(Agent):
 
         async def run(self):
             print(f"[{self.agent.car_id}] Starting MissionCoordinator with goal: {self.st}, end: {self.end}")
+            self.agent.goal = self.st
             planner1 = self.agent.RepeatedPathPlanner(self.st, mission="mission", isEnd=(self.end is None))
             self.agent.add_behaviour(planner1)
             await planner1.join()  # Wait for first destination
@@ -477,6 +477,7 @@ class CarAgent(Agent):
                 while not self.agent.ros_node.weight_data > 0.0:
                     print(f"[{self.agent.car_id}] Waiting for client: {self.agent.ros_node.weight_data}")
                     time.sleep(1)
+                self.agent.goal = self.end
                 planner2 = self.agent.RepeatedPathPlanner(self.end, mission="mission", isEnd=True)
                 self.agent.add_behaviour(planner2)
                 await planner2.join()
