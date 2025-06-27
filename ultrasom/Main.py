@@ -4,6 +4,7 @@ import rclpy
 from rclpy.node import Node
 from std_msgs.msg import Float32
 import paho.mqtt.client as mqtt
+import sys
 
 # MQTT Settings
 MQTT_BROKER = "broker.hivemq.com"
@@ -11,11 +12,14 @@ MQTT_PORT = 1883
 MQTT_TOPIC = "esp32/ultrasonic/distance"
 
 class MqttUltrasonicNode(Node):
-    def __init__(self):
+    def __init__(self, car_name):
         super().__init__('mqtt_ultrasonic_node')
 
+        topic_name = f'{car_name}/ultrasonic_distance'
+        self.get_logger().info(f'Publishing to ROS 2 topic: {topic_name}')
+
         # Create a ROS 2 publisher
-        self.publisher_ = self.create_publisher(Float32, '/ultrasonic_distance', 10)
+        self.publisher_ = self.create_publisher(Float32, topic_name, 10)
 
         # Setup MQTT client
         self.mqtt_client = mqtt.Client()
@@ -54,9 +58,17 @@ class MqttUltrasonicNode(Node):
 
 def main(args=None):
     rclpy.init()
-    node = MqttUltrasonicNode()
+
+    # Get car_name from command line argument
+    if len(sys.argv) < 2:
+        print("Usage: python3 Main.py <car_name>")
+        return
+
+    car_name = sys.argv[1]
+    node = MqttUltrasonicNode(car_name)
+
     try:
-        rclpy.spin(node)  # Keep node running
+        rclpy.spin(node)
     except KeyboardInterrupt:
         pass
     finally:

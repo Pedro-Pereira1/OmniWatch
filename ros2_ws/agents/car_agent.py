@@ -18,6 +18,28 @@ from std_msgs.msg import String as StringMsg
 from geometry_msgs.msg import Twist
 import time
 
+_grid = [
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0],
+                [0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0],
+                [0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0],
+                [0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0],
+                [0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0],
+                [0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0],
+                [0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0],
+                [0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0],
+                [0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+            ]
 
 class AStarPlanner:
     def __init__(self, grid, resolution=1.0):
@@ -50,7 +72,6 @@ class AStarPlanner:
                         f_score = tentative_g + self.heuristic(neighbor, goal)
                         heapq.heappush(open_set, (f_score, neighbor))
 
-        print("A*: Caminho não encontrado.")
         return []
 
     def reconstruct_path(self, came_from, current):
@@ -68,7 +89,7 @@ class AStarPlanner:
         publisher = node.create_publisher(StringMsg, topic, 10)
         
         publisher.publish(path_msg)
-        print(f"A*: Caminho publicado em '{topic}': {path_msg.data}")
+        #print(f"A*: Caminho publicado em '{topic}': {path_msg.data}")
 
 class ROSCarListener(Node):
     def __init__(self, car_id):
@@ -81,7 +102,7 @@ class ROSCarListener(Node):
         self.color_publisher = self.create_publisher(StringMsg, prefix + 'set_color', 10)
         
         self.create_subscription(StringMsg, prefix + 'logs', self.log_callback, 10)
-        self.create_subscription(Float32, prefix + 'weight', self.weight_callback, 10)
+        self.create_subscription(Float32, prefix + 'ultrasonic_distance', self.weight_callback, 10)
         self.create_subscription(Odometry, prefix + 'odom', self.position_callback, 10)
 
     def log_callback(self, msg):
@@ -109,28 +130,7 @@ def start_ros_node(agent, car_id):
             print(f"[{car_id}] Shutdown warning: {e}")
 
 def calculate_and_publish_path(agent, goal_x, goal_y):
-            original_grid = [
-                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0],
-                [0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0],
-                [0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0],
-                [0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0],
-                [0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0],
-                [0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0],
-                [0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0],
-                [0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0],
-                [0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0],
-                [0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0],
-                [0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-            ]
+            original_grid = _grid
             grid = [row[:] for row in original_grid]
 
             for car_id, (x, y) in agent.other_cars_positions.items():
@@ -146,11 +146,13 @@ def calculate_and_publish_path(agent, goal_x, goal_y):
 
             path = planner.plan(start_cell, goal_cell)
             if path:
-                if len(path) == 1:
-                    print(f"[{agent.car_id}] Objetivo alcançado! Parando o planejamento.")
+                #if len(path) == 1:
+                    #print(f"[{agent.car_id}] Objetivo alcançado! Parando o planejamento.")
                 planner.publish_path(agent.ros_node, f'{agent.car_id}/new_waypoint', path[1])
             else:
-                print(f"[{agent.car_id}] A*: Nenhum caminho possível. Objectivo: {goal_cell}")
+                print(f"🗺️ Caminho não encontrado para o ponto: {goal_cell}")
+
+                #print(f"[{agent.car_id}] A*: Nenhum caminho possível. Objectivo: {goal_cell}")
 
 class CarAgent(Agent):
     def __init__(self, jid, password, car_id, patrol_points):
@@ -214,7 +216,7 @@ class CarAgent(Agent):
                     elif cmd == "stop":
                         print(f"[{self.agent.car_id}] 🛑 STOP command received.")
                         current_x, current_y = self.agent.ros_node.position_data
-                        print(f"[{self.agent.car_id}] The client wanted to go to the point {self.agent.goal}")
+                        #print(f"[{self.agent.car_id}] The client wanted to go to the point {self.agent.goal}")
                         ride_end = self.agent.goal if self.agent.goal else [current_x, current_y]
                         zone_manager_jid = "zone_1@localhost"
                         self.agent._stop_requested = True
@@ -225,10 +227,18 @@ class CarAgent(Agent):
                             reason = "🧍 Passenger onboard" if self.agent.passenger_present else "📦 Aborting mission (no passenger)"
                             print(f"[{self.agent.car_id}] {reason}. Requesting ride continuation...")
 
+                            directions = [(-1,0), (1,0), (0,-1), (0,1)]
+                            for dx, dy in directions:
+                                nx, ny = current_x + dx, current_y + dy
+                                nx, ny = round(nx), round(ny)
+                                if 0 <= nx < len(_grid) and 0 <= ny < len(_grid[0]):
+                                    if _grid[nx][ny] == 0:
+                                        starting_x = nx
+                                        starting_y = ny
                             ride_request_msg = Message(to=zone_manager_jid)
                             ride_request_msg.body = json.dumps({
                                 "command": "ride_request",
-                                "start": [current_x - 1, current_y],
+                                "start": [starting_x, starting_y],
                                 "end": [ride_end[0], ride_end[1]]
                             })
                             ride_request_msg.set_metadata("performative", "inform")
@@ -236,12 +246,12 @@ class CarAgent(Agent):
                         else:
                             print(f"[{self.agent.car_id}] ✅ Stopped. No further action needed.")                          
                     elif cmd == "quarantine":
-                        print(f"Quarantine command received.")
+                        #print(f"Quarantine command received.")
                         self.agent.quarantine = True
                     elif cmd == "ready_for_election":
                         self.agent.ready_cars.add(data["car_id"] + "@localhost")
                     elif cmd == "distance_update":
-                        print("I received an update on the distance.")
+                        #print("I received an update on the distance.")
                         self.agent.distances.append((data["car_id"], data["distance"]))
                     elif cmd == "position_update":
                         car_id = data.get("car_id")
@@ -259,10 +269,9 @@ class CarAgent(Agent):
                         if self.agent.mission_type == "patrol":
                             points = data.get("patrol_points")
                             self.agent.mission_type = "changing"
-                            print(points[0])
                             self.agent.add_behaviour(self.agent.RepeatedPathPlanner(points[0], mission="changing", isEnd=True)) 
                             self.agent.patrol_points = points
-                            print(f"[{self.agent.car_id}] I'm a changed man.")
+                            print(f"[{self.agent.car_id}] 🔁 I'm changing zones.")
                         
                 except Exception as e:
                     print(f"[{self.agent.car_id}] Erro ao processar controle: {e}")
@@ -293,16 +302,16 @@ class CarAgent(Agent):
             # Step 2: Wait for other ready messages
             timeout = 5  # seconds max to wait
             start_time = self.agent.loop.time()
-            print(self.agent.ready_cars)
+            #print(self.agent.ready_cars)
             while len(self.agent.ready_cars) < len(self.known_cars):
-                print(f"[{self.agent.car_id}] {len(self.agent.ready_cars)}/{len(self.known_cars)}")
-                print(f"[{self.agent.car_id}] I'm missing some cars.")
+                #print(f"[{self.agent.car_id}] {len(self.agent.ready_cars)}/{len(self.known_cars)}")
+                #print(f"[{self.agent.car_id}] I'm missing some cars.")
                 await asyncio.sleep(1)
                 if self.agent.loop.time() - start_time > timeout:
-                    print(f"[{self.agent.car_id}] Timeout waiting for ready signals.")
+                    #print(f"[{self.agent.car_id}] Timeout waiting for ready signals.")
                     break
 
-            print(f"[{self.agent.car_id}] All ready: {self.agent.ready_cars}")
+            #print(f"[{self.agent.car_id}] All ready: {self.agent.ready_cars}")
 
             # Phase 2: Perform the actual election
             await self.perform_distance_election()
@@ -333,7 +342,7 @@ class CarAgent(Agent):
             best_distance = my_distance
 
             while len(self.agent.distances) < len(self.agent.known_cars) - 1:
-                print(f"[{self.agent.car_id}] It's missing some distances. {len(self.agent.distances)}/{len(self.agent.known_cars)}")
+                #print(f"[{self.agent.car_id}] It's missing some distances. {len(self.agent.distances)}/{len(self.agent.known_cars)}")
                 await asyncio.sleep(1)
                 continue
 
@@ -342,10 +351,10 @@ class CarAgent(Agent):
                     best_car = car_distance[0]
                     best_distance = car_distance[1]
 
-            print(f"Im car {self.agent.car_id} and my distance is: {my_distance}. The best car is {best_car}")
+            print(f"[{self.agent.car_id}] 📏 My distance to the goal is {my_distance}")
 
             if best_car == self.agent.car_id:
-                print(f"[{self.agent.car_id}] I am the closest to the goal. Taking the task.")
+                print(f"[{self.agent.car_id}] ⚠️ I am the closest to the goal. Taking the task.")
                 self.agent.goal = self.goal
                 self.agent.mission_type = "mission"
                 #color = StringMsg()
@@ -362,7 +371,7 @@ class CarAgent(Agent):
                 await self.send(msg)
 
                 print(f"[{self.agent.car_id}] Starting a mission...")
-                print(f"{self.goal}/{self.end}")
+                #print(f"{self.goal}/{self.end}")
                 self.agent.add_behaviour(self.agent.MissionCoordinator(self.goal, self.end))
                 
             # Clean the distances and the ready cars
@@ -371,9 +380,9 @@ class CarAgent(Agent):
   
     class SharePositionBehaviour(CyclicBehaviour):
         async def run(self):
-            self.agent.passenger_present = self.agent.ros_node.weight_data > 0.0
+            self.agent.passenger_present = self.agent.ros_node.weight_data < 50 and self.agent.ros_node.weight_data > 0.0
             if self.agent._stop_requested:
-                print(f"[{self.agent.car_id}] STOP requested, halting position sharing.")
+                print(f"[{self.agent.car_id}] 🛑 STOP requested, halting position sharing.")
                 await asyncio.sleep(50)
             else:
                 all_targets = self.agent.known_cars + self.agent.known_zone_managers
@@ -404,11 +413,10 @@ class CarAgent(Agent):
             self.isEnd = isEnd
 
         async def run(self):
-            print(f"[{self.agent.car_id}] I'm executing ", self.agent.mission_type)
             current_x, current_y = self.agent.ros_node.position_data
             distance = math.hypot(self.goal[0] - current_x, self.goal[1] - current_y)
-            print(f"[{self.agent.car_id}] Distância ao objetivo: {distance:.2f} m")
-            print(f"[{self.agent.car_id}] My mission: {self.mission}/{self.agent.mission_type}")
+            print(f"[{self.agent.car_id}] ▶️ | {self.agent.mission_type} |╰┈➤ {distance} | 🎯 {self.goal} |")
+
             if self.mission != self.agent.mission_type:
                 self.kill()
                 return
@@ -423,15 +431,16 @@ class CarAgent(Agent):
                     pass
                 await asyncio.sleep(3)
             else:
-                print(f"[{self.agent.car_id}] Objetivo alcançado! Parando o planejamento.")
+                print(f"[{self.agent.car_id}]📍 Objetivo alcançado! A parar...")
                 self.agent.goal = None
-                
+                #print(f"[{self.agent.car_id}] {self.agent.mission_type}")
+
                 if self.agent.mission_type != "patrol":
                     if self.isEnd:
-                        print(f"[{self.agent.car_id}] Missão finalizada. Retomando patrulha.")
+                        print(f"[{self.agent.car_id}] 🏁 Missão finalizada. Retomar patrulha.")
                         self.agent.mission_type = "patrol"
                         self.agent.add_behaviour(self.agent.PatrolBehaviour())
-
+                #print(f"[{self.agent.car_id}] A desligar...")
                 self.kill()
 
     class PatrolBehaviour(CyclicBehaviour):
@@ -446,10 +455,10 @@ class CarAgent(Agent):
 
             # Definir o próximo ponto da patrulha
             next_point = self.agent.patrol_points[self.agent.patrol_index]
-            print(f"[{self.agent.car_id}] Iniciando patrulha para o ponto {next_point}")
             self.agent.goal = next_point
             self.agent.mission_type = "patrol"
-            print(f"[{self.agent.car_id}] Faço patrulha para os pontos {self.agent.patrol_points}")
+            print(f"[{self.agent.car_id}] 🚔 A iniciar patrulha para o ponto {next_point}. Faço patrulha para os pontos {self.agent.patrol_points}.")
+
             #color = StringMsg()
             #color.data = "red"
             #self.agent.ros_node.color_publisher.publish(color)
@@ -467,20 +476,23 @@ class CarAgent(Agent):
             self.end = end
 
         async def run(self):
-            print(f"[{self.agent.car_id}] Starting MissionCoordinator with goal: {self.st}, end: {self.end}")
+            print(f"[{self.agent.car_id}] 🏁 A começar missão de {self.st} para {self.end}")
             self.agent.goal = self.st
             planner1 = self.agent.RepeatedPathPlanner(self.st, mission="mission", isEnd=(self.end is None))
             self.agent.add_behaviour(planner1)
             await planner1.join()  # Wait for first destination
             
             if self.end:
-                while not self.agent.ros_node.weight_data > 0.0:
-                    print(f"[{self.agent.car_id}] Waiting for client: {self.agent.ros_node.weight_data}")
+                while not self.agent.ros_node.weight_data < 50 and self.agent.ros_node.weight_data > 0.0:
+                    print(f"[{self.agent.car_id}] ⏱️ À espera de cliente: {self.agent.ros_node.weight_data}")
                     time.sleep(1)
                 self.agent.goal = self.end
                 planner2 = self.agent.RepeatedPathPlanner(self.end, mission="mission", isEnd=True)
                 self.agent.add_behaviour(planner2)
                 await planner2.join()
+                while self.agent.ros_node.weight_data < 50 and self.agent.ros_node.weight_data > 0.0:
+                    print(f"[{self.agent.car_id}] ⏱️ À espera da saída de cliente: {self.agent.ros_node.weight_data}")
+                    time.sleep(1)
 
     class ColorStatePublisher(CyclicBehaviour):
         async def run(self):

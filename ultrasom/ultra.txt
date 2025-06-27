@@ -1,0 +1,363 @@
+Script started on 2025-06-27 21:43:18+01:00 [TERM="xterm-256color" TTY="/dev/pts/7" COLUMNS="173" LINES="37"]
+[1m[7m%[27m[1m[0m                                                                                                                                                                             ]2;rafaelbranco@fedora:~/Documentos/ISEP/OmniWatch/ultrasom]1;..atch/ultrasom]7;file://fedora/home/rafaelbranco/Documentos/ISEP/OmniWatch/ultrasom\[0m[27m[24m[J[39m[0m[49m[40m[39m rafaelbranco@fedora [44m[30m[30m ~/Documentos/ISEP/OmniWatch/ultrasom [43m[34m[30m  main ± [49m[33m[39m [K[?1h=[?2004h[1m[31mp[0m[39m[1m[31mp[0m[39m[90mython3 clientAgent.py[39m[21D[1m[31mp[1m[31my[0m[39m[1m[31mp[1m[31my[1m[31mt[0m[39m[1m[31mt[1m[31mh[0m[39m[1m[31mh[1m[31mo[0m[39m[1m[31mo[1m[31mn[0m[39m[0m[32mp[0m[32my[0m[32mt[0m[32mh[0m[32mo[0m[32mn[32m3[39m[39m [39mr[39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [13D[90mun_zone_manager.py[39m[18D[39mu[39mn [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [17D[90mn_zone_manager.py[39m[17D [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [18D[90mun_zone_manager.py[39m[18D [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [19D[90mclientAgent.py[39m[14D[39m[4mM[24m[39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [13D[90main.py car_1[39m[12D[4mM[39m[4ma[24m[4ma[39m[4mi[39m[4mn[39m[4m.[39m[4mp[39m[4my[24m[39m [39mc[39ma[39mr[39m_[39m1[?1l>[?2004l
+]2;python3 Main.py car_1]1;python3[0m[INFO] [1751057174.039721358] [mqtt_ultrasonic_node]: Publishing to ROS 2 topic: car_1/ultrasonic_distance[0m
+/home/rafaelbranco/Documentos/ISEP/OmniWatch/ultrasom/Main.py:25: DeprecationWarning: Callback API version 1 is deprecated, update to latest version
+  self.mqtt_client = mqtt.Client()
+[0m[INFO] [1751057174.245426985] [mqtt_ultrasonic_node]: Connected to MQTT broker at broker.hivemq.com[0m
+[0m[INFO] [1751057174.294591400] [mqtt_ultrasonic_node]: MQTT connected successfully[0m
+[0m[INFO] [1751057174.438138249] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057175.508832893] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057176.587610996] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057177.656064114] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057178.736022349] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057179.803934977] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057180.877077501] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057181.954497428] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057183.029874346] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057184.046988651] [mqtt_ultrasonic_node]: Received distance: 67.0 cm[0m
+[0m[INFO] [1751057185.110975282] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057186.188656064] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057187.256077741] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057188.330199969] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057189.401392746] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057190.483873910] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057191.569701053] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057192.627232100] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057193.701035872] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057194.778688848] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057195.845927997] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057196.927206224] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057198.004789307] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057199.068128732] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057200.144841468] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057201.289294642] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057202.300497990] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057203.365592551] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057204.450336552] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057205.515998031] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057206.589078043] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057207.664138862] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057208.738151647] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057209.821249313] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057210.885554115] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057211.958319925] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057213.032059283] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057214.105698417] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057215.195848882] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057216.263993491] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057217.333094446] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057218.408888185] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057219.479316825] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057220.552836353] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057221.629269451] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057222.699328103] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057223.771182805] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057224.858449731] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057225.919923476] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057226.994994084] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057228.074811304] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057229.147652491] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057230.223160181] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057231.294466717] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057232.363676457] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057233.440429910] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057234.516432719] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057235.587587233] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057236.661556957] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057237.734516971] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057238.813391978] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057239.887711947] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057240.959361808] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057242.031440372] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057243.106919412] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057244.180491044] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057245.285332640] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057246.340119284] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057247.417507789] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057248.476376011] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057249.553427040] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057250.630554555] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057251.702635648] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057252.771513598] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057253.848059247] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057254.920555740] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057255.992381984] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057257.073310617] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057258.142134149] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057259.215275252] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057260.340457072] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057261.365001792] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057262.438557048] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057263.514833832] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057264.584387561] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057265.661306549] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057266.743664473] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057267.810972196] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057268.887095389] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057269.957940862] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057271.034510533] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057272.107155479] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057273.178491646] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057274.255864716] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057275.329361987] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057276.406697298] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057277.479322796] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057278.549090272] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057279.621668236] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057280.699610668] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057281.771433062] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057282.845006824] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057283.920471482] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057284.994513643] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057286.070965683] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057287.141807942] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057288.214635008] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057289.290995320] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057290.367733599] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057291.438884980] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057292.515397262] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057293.594701589] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057294.662617703] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057295.734564109] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057296.808532824] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057297.879114043] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057298.961123983] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057300.030936553] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057301.104859718] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057302.110063092] [mqtt_ultrasonic_node]: Received distance: 33.0 cm[0m
+[0m[INFO] [1751057303.122890649] [mqtt_ultrasonic_node]: Received distance: 10.0 cm[0m
+[0m[INFO] [1751057304.118885305] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057305.122139448] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057306.133426730] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057307.127803276] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057308.136429113] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057309.143284477] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057310.141774148] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057311.148093620] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057312.165365828] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057313.155183232] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057314.159412073] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057315.210517756] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057316.172427974] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057317.175059548] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057318.177080797] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057319.179494364] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057320.186066696] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057321.190782664] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057322.188489035] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057323.192937346] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057324.198297204] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057325.202175150] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057326.208677768] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057327.214612076] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057328.211861994] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057329.220919680] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057330.219475271] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057331.271073227] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057332.232096992] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057333.237287686] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057334.236412040] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057335.242611813] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057336.244856589] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057337.250719105] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057338.257937879] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057339.261076568] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057340.263125933] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057341.270920602] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057342.271634745] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057343.274266181] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057344.277426992] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057345.286131399] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057346.287644191] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057347.336229646] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057348.292145817] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057349.301224603] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057350.307047488] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057351.307385396] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057352.317263858] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057353.311556067] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057354.317589946] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057355.319331795] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057356.328130761] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057357.330207319] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057358.336215726] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057359.338724412] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057360.341695640] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057361.346578332] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057362.350948432] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057363.398133780] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057364.354964465] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057365.364614943] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057366.366004236] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057367.368966995] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057368.374587265] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057369.375021963] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057370.379178519] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057371.382682188] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057372.390538710] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057373.394800580] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057374.394656540] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057375.407360396] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057376.405267535] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057377.410044782] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057378.417782453] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057379.468482750] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057380.419190452] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057381.433985327] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057382.431862283] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057383.435458718] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057384.442432915] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057385.444328811] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057386.451177612] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057387.447217075] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057388.457879484] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057389.456298215] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057390.461617642] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057391.475644853] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057392.469380697] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057393.471851961] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057394.484936541] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057395.531093098] [mqtt_ultrasonic_node]: Received distance: 10.0 cm[0m
+[0m[INFO] [1751057396.559791321] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057397.632240625] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057398.702090982] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057399.775551833] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057400.850087365] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057401.921523553] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057403.001423679] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057404.076019731] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057405.147811210] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057406.222352689] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057407.294841371] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057408.373205643] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057409.441584403] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057410.516089916] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057411.591314168] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057412.670554398] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057413.741570267] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057414.956203500] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057415.977609689] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057416.998174837] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057418.038660337] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057419.112335664] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057420.182124906] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057421.192439947] [mqtt_ultrasonic_node]: Received distance: 75.0 cm[0m
+[0m[INFO] [1751057422.199628247] [mqtt_ultrasonic_node]: Received distance: 76.0 cm[0m
+^CTraceback (most recent call last):
+  File "/home/rafaelbranco/Documentos/ISEP/OmniWatch/ultrasom/Main.py", line 80, in <module>
+    main()
+  File "/home/rafaelbranco/Documentos/ISEP/OmniWatch/ultrasom/Main.py", line 77, in main
+    rclpy.shutdown()
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 130, in shutdown
+    _shutdown(context=context)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/utilities.py", line 58, in shutdown
+    return context.shutdown()
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/context.py", line 102, in shutdown
+    self.__context.shutdown()
+rclpy._rclpy_pybind11.RCLError: failed to shutdown: rcl_shutdown already called on the given context, at ./src/rcl/init.c:241
+[1m[7m%[27m[1m[0m                                                                                                                                                                             ]2;rafaelbranco@fedora:~/Documentos/ISEP/OmniWatch/ultrasom]1;..atch/ultrasom]7;file://fedora/home/rafaelbranco/Documentos/ISEP/OmniWatch/ultrasom\[0m[27m[24m[J[39m[0m[49m[40m[39m [31m✘[40m[39m rafaelbranco@fedora [44m[30m[30m ~/Documentos/ISEP/OmniWatch/ultrasom [43m[34m[30m  main ± [49m[33m[39m [K[?1h=[?2004h[?2004l
+
+Script done on 2025-06-27 21:58:19+01:00 [COMMAND_EXIT_CODE="1"]
+236412040] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057335.242611813] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057336.244856589] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057337.250719105] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057338.257937879] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057339.261076568] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057340.263125933] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057341.270920602] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057342.271634745] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057343.274266181] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057344.277426992] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057345.286131399] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057346.287644191] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057347.336229646] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057348.292145817] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057349.301224603] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057350.307047488] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057351.307385396] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057352.317263858] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057353.311556067] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057354.317589946] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057355.319331795] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057356.328130761] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057357.330207319] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057358.336215726] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057359.338724412] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057360.341695640] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057361.346578332] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057362.350948432] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057363.398133780] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057364.354964465] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057365.364614943] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057366.366004236] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057367.368966995] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057368.374587265] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057369.375021963] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057370.379178519] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057371.382682188] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057372.390538710] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057373.394800580] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057374.394656540] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057375.407360396] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057376.405267535] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057377.410044782] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057378.417782453] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057379.468482750] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057380.419190452] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057381.433985327] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057382.431862283] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057383.435458718] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057384.442432915] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057385.444328811] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057386.451177612] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057387.447217075] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057388.457879484] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057389.456298215] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057390.461617642] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057391.475644853] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057392.469380697] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057393.471851961] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057394.484936541] [mqtt_ultrasonic_node]: Received distance: 7.0 cm[0m
+[0m[INFO] [1751057395.531093098] [mqtt_ultrasonic_node]: Received distance: 10.0 cm[0m
+[0m[INFO] [1751057396.559791321] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057397.632240625] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057398.702090982] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057399.775551833] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057400.850087365] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057401.921523553] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057403.001423679] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057404.076019731] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057405.147811210] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057406.222352689] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057407.294841371] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057408.373205643] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057409.441584403] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057410.516089916] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057411.591314168] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057412.670554398] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057413.741570267] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057414.956203500] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057415.977609689] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057416.998174837] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057418.038660337] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057419.112335664] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057420.182124906] [mqtt_ultrasonic_node]: Received distance: 1214.0 cm[0m
+[0m[INFO] [1751057421.192439947] [mqtt_ultrasonic_node]: Received distance: 75.0 cm[0m
+[0m[INFO] [1751057422.199628247] [mqtt_ultrasonic_node]: Received distance: 76.0 cm[0m
+^CTraceback (most recent call last):
+  File "/home/rafaelbranco/Documentos/ISEP/OmniWatch/ultrasom/Main.py", line 80, in <module>
+    main()
+  File "/home/rafaelbranco/Documentos/ISEP/OmniWatch/ultrasom/Main.py", line 77, in main
+    rclpy.shutdown()
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 130, in shutdown
+    _shutdown(context=context)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/utilities.py", line 58, in shutdown
+    return context.shutdown()
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/context.py", line 102, in shutdown
+    self.__context.shutdown()
+rclpy._rclpy_pybind11.RCLError: failed to shutdown: rcl_shutdown already called on the given context, at ./src/rcl/init.c:241
+[1m[7m%[27m[1m[0m                                                                                                                                                                             ]2;rafaelbranco@fedora:~/Documentos/ISEP/OmniWatch/ultrasom]1;..atch/ultrasom]7;file://fedora/home/rafaelbranco/Documentos/ISEP/OmniWatch/ultrasom\[0m[27m[24m[J[39m[0m[49m[40m[39m [31m✘[40m[39m rafaelbranco@fedora [44m[30m[30m ~/Documentos/ISEP/OmniWatch/ultrasom [43m[34m[30m  main ± [49m[33m[39m [K[?1h=[?2004h[?2004l
+Script done.
+[1m[7m%[27m[1m[0m                                                                                                                                                                             ]2;rafaelbranco@fedora:~/Documentos/ISEP/OmniWatch/ultrasom]1;..atch/ultrasom]7;file://fedora/home/rafaelbranco/Documentos/ISEP/OmniWatch/ultrasom\[0m[27m[24m[J[39m[0m[49m[40m[39m rafaelbranco@fedora [44m[30m[30m ~/Documentos/ISEP/OmniWatch/ultrasom [43m[34m[30m  main ± [49m[33m[39m [K[?1h=[?2004h
+Script done on 2025-06-27 21:58:23+01:00 [COMMAND_EXIT_CODE="0"]

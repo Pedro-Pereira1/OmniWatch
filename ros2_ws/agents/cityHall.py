@@ -19,16 +19,18 @@ class CityHallAgent(Agent):
         ]
 
         async def run(self):
+            """
             for zone_jid in self.zone_managers:
                             threat_msg = Message(to=zone_jid)
                             threat_msg.body = json.dumps({
                                 "command": "threat",
-                                "car_id": "car_3@localhost"
+                                "car_id": "car_1@localhost"
                             })
                             threat_msg.set_metadata("performative", "request")
                             await self.send(threat_msg)
+            """
             
-            """msg = await self.receive(timeout=5)
+            msg = await self.receive(timeout=5)
             if msg:
                 try:
                     data = json.loads(msg.body)
@@ -65,7 +67,7 @@ class CityHallAgent(Agent):
                 except Exception as e:
                     print("[CityHall] ❌ Failed to process message:", e)
             else:
-                print("[CityHall] ⏳ Waiting for car data...")"""
+                print("[CityHall] ⏳ Waiting for car data...")
 
     async def setup(self):
         print("[CityHall] 🏛️ Loading model...")

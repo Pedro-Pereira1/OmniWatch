@@ -19,7 +19,7 @@ try:
         
         # Launch agent with patrol points as arguments
         p = subprocess.Popen(["python3", "car_agent.py", car_id] + patrol_points_args)
-        print(p.args)
+        #print(p.args)
         agent_processes.append(p)
         time.sleep(0.5)
 
