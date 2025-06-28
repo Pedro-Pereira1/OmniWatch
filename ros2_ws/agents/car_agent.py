@@ -164,7 +164,7 @@ class CarAgent(Agent):
         self.goal = None
         self.is_moving = False
         self.other_cars_positions = {}
-        self.known_cars = ["car_1@localhost", "car_2@localhost", "car_3@localhost", "car_4@localhost"]#, "car_5@localhost", "car_6@localhost"]
+        self.known_cars = ["car_1@localhost", "car_2@localhost", "car_3@localhost", "car_4@localhost", "car_5@localhost"]# "car_6@localhost"]
         self.known_zone_managers = ["zone_1@localhost", "zone_2@localhost", "zone_3@localhost", "zone_4@localhost"]
         self.patrol_points = patrol_points if patrol_points else [(5.0, 1.0), (1.0, 9.0), (9.0, 9.0), (9.0, 1.0)]
         self.patrol_index = 0
@@ -176,7 +176,7 @@ class CarAgent(Agent):
     class SendDataBehaviour(CyclicBehaviour):
         async def run(self):
             if self.agent._stop_requested:
-                print(f"[{self.agent.car_id}] STOP requested, halting data transmission.")
+                print(f"[{self.agent.car_id}] 🛑 Pedido de STOP!")
                 await asyncio.sleep(50)
             else:
                 data = {
@@ -197,8 +197,11 @@ class CarAgent(Agent):
                 )
                 #print(f"[{self.agent.car_id}] Sending: {msg.body}")
                 await self.send(msg)
-
-                await asyncio.sleep(60 if self.agent.quarantine else 30)
+                if self.agent.quarantine:
+                    print(f"[{self.agent.car_id}] 🟡 Estou em quarentena!")
+                    await asyncio.sleep(15)
+                else:
+                    await asyncio.sleep(30)
 
     class ControlBehaviour(CyclicBehaviour):
         async def run(self):
@@ -214,27 +217,33 @@ class CarAgent(Agent):
                             self.agent.temp_goal = goal
                             self.agent.add_behaviour(self.agent.CompetitivePathEvaluator(goal, None, msg.sender,cars))
                     elif cmd == "stop":
-                        print(f"[{self.agent.car_id}] 🛑 STOP command received.")
-                        current_x, current_y = self.agent.ros_node.position_data
+                        print(f"[{self.agent.car_id}] 🛑 Comando de STOP recebido.")
                         #print(f"[{self.agent.car_id}] The client wanted to go to the point {self.agent.goal}")
-                        ride_end = self.agent.goal if self.agent.goal else [current_x, current_y]
                         zone_manager_jid = "zone_1@localhost"
                         self.agent._stop_requested = True
                         self.agent.is_infected = True
 
                         # Check passenger status and mission state
                         if self.agent.passenger_present or self.agent.mission_type == "mission":
-                            reason = "🧍 Passenger onboard" if self.agent.passenger_present else "📦 Aborting mission (no passenger)"
-                            print(f"[{self.agent.car_id}] {reason}. Requesting ride continuation...")
+                            print(f"[{self.agent.car_id}] 🛡️ A parar de forma segura")
+                            current_x, current_y = self.agent.ros_node.position_data
+                            ride_end = self.agent.goal if self.agent.goal else [current_x, current_y]
+
+                            reason = "🧍 Passageiro a bordo" if self.agent.passenger_present else "📦 Abortar missão (sem passageiro)"
+                            print(f"[{self.agent.car_id}] {reason}. A pedir continuação. ")
 
                             directions = [(-1,0), (1,0), (0,-1), (0,1)]
                             for dx, dy in directions:
                                 nx, ny = current_x + dx, current_y + dy
                                 nx, ny = round(nx), round(ny)
+                                if (nx, ny) == (current_x, current_y):
+                                    continue
                                 if 0 <= nx < len(_grid) and 0 <= ny < len(_grid[0]):
                                     if _grid[nx][ny] == 0:
                                         starting_x = nx
                                         starting_y = ny
+                                        break
+                            
                             ride_request_msg = Message(to=zone_manager_jid)
                             ride_request_msg.body = json.dumps({
                                 "command": "ride_request",
@@ -244,7 +253,7 @@ class CarAgent(Agent):
                             ride_request_msg.set_metadata("performative", "inform")
                             await self.send(ride_request_msg)
                         else:
-                            print(f"[{self.agent.car_id}] ✅ Stopped. No further action needed.")                          
+                            print(f"[{self.agent.car_id}] ✅ Parei. Não é preciso mais nenhuma ação.")                          
                     elif cmd == "quarantine":
                         #print(f"Quarantine command received.")
                         self.agent.quarantine = True
@@ -271,7 +280,7 @@ class CarAgent(Agent):
                             self.agent.mission_type = "changing"
                             self.agent.add_behaviour(self.agent.RepeatedPathPlanner(points[0], mission="changing", isEnd=True)) 
                             self.agent.patrol_points = points
-                            print(f"[{self.agent.car_id}] 🔁 I'm changing zones.")
+                            print(f"[{self.agent.car_id}] 🔁 Estou a mudar de zona.")
                         
                 except Exception as e:
                     print(f"[{self.agent.car_id}] Erro ao processar controle: {e}")
@@ -351,10 +360,10 @@ class CarAgent(Agent):
                     best_car = car_distance[0]
                     best_distance = car_distance[1]
 
-            print(f"[{self.agent.car_id}] 📏 My distance to the goal is {my_distance}")
+            print(f"[{self.agent.car_id}] 📏 A minha distância ao objectivo é de {my_distance} m.")
 
             if best_car == self.agent.car_id:
-                print(f"[{self.agent.car_id}] ⚠️ I am the closest to the goal. Taking the task.")
+                print(f"[{self.agent.car_id}] ⚠️ Sou o mais próximo do objectivo. Vou realizar a tarefa.")
                 self.agent.goal = self.goal
                 self.agent.mission_type = "mission"
                 #color = StringMsg()
@@ -370,7 +379,7 @@ class CarAgent(Agent):
                 msg.set_metadata("performative", "inform")
                 await self.send(msg)
 
-                print(f"[{self.agent.car_id}] Starting a mission...")
+                #print(f"[{self.agent.car_id}] Starting a mission...")
                 #print(f"{self.goal}/{self.end}")
                 self.agent.add_behaviour(self.agent.MissionCoordinator(self.goal, self.end))
                 
@@ -382,7 +391,7 @@ class CarAgent(Agent):
         async def run(self):
             self.agent.passenger_present = self.agent.ros_node.weight_data < 50 and self.agent.ros_node.weight_data > 0.0
             if self.agent._stop_requested:
-                print(f"[{self.agent.car_id}] 🛑 STOP requested, halting position sharing.")
+                print(f"[{self.agent.car_id}] 🛑 Pedido de paragem (STOP)")
                 await asyncio.sleep(50)
             else:
                 all_targets = self.agent.known_cars + self.agent.known_zone_managers
@@ -483,7 +492,7 @@ class CarAgent(Agent):
             await planner1.join()  # Wait for first destination
             
             if self.end:
-                while not self.agent.ros_node.weight_data < 50 and self.agent.ros_node.weight_data > 0.0:
+                while not (self.agent.ros_node.weight_data < 50 and self.agent.ros_node.weight_data > 0.0):
                     print(f"[{self.agent.car_id}] ⏱️ À espera de cliente: {self.agent.ros_node.weight_data}")
                     time.sleep(1)
                 self.agent.goal = self.end
@@ -493,6 +502,7 @@ class CarAgent(Agent):
                 while self.agent.ros_node.weight_data < 50 and self.agent.ros_node.weight_data > 0.0:
                     print(f"[{self.agent.car_id}] ⏱️ À espera da saída de cliente: {self.agent.ros_node.weight_data}")
                     time.sleep(1)
+                print(f"🏃🚪 [{self.agent.car_id}] O cliente saiu.")
 
     class ColorStatePublisher(CyclicBehaviour):
         async def run(self):

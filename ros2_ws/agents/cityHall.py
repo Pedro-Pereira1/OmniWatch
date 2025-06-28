@@ -7,6 +7,7 @@ import pandas as pd
 import joblib
 from sklearn.preprocessing import LabelEncoder
 from io import StringIO
+from datetime import datetime
 
 
 class CityHallAgent(Agent):
@@ -20,17 +21,17 @@ class CityHallAgent(Agent):
 
         async def run(self):
             """
+            print("A infetar o carro 1...")
             for zone_jid in self.zone_managers:
-                            threat_msg = Message(to=zone_jid)
-                            threat_msg.body = json.dumps({
-                                "command": "threat",
-                                "car_id": "car_1@localhost"
-                            })
-                            threat_msg.set_metadata("performative", "request")
-                            await self.send(threat_msg)
+                threat_msg = Message(to=zone_jid)
+                threat_msg.body = json.dumps({
+                    "command": "threat",
+                    "car_id": "car_1@localhost"
+                    })
+                threat_msg.set_metadata("performative", "request")
+                await self.send(threat_msg)
             """
-            
-            msg = await self.receive(timeout=5)
+            msg = await self.receive()
             if msg:
                 try:
                     data = json.loads(msg.body)
@@ -47,7 +48,7 @@ class CityHallAgent(Agent):
                     probs = self.agent.model.predict_proba(sample_df)[0]
                     pred_index = probs.argmax()
                     pred_class = self.agent.le.inverse_transform([pred_index])[0]
-                    print(f"[CityHall] 🔍 Prediction for {car_jid}: {pred_class}")
+                    print(f"[{datetime.now().isoformat()}][CityHall] 🔍 Prediction for {car_jid}: {pred_class}")
                     
                     # If threat detected, notify all zone managers
                     if "benign" not in pred_class.lower():
@@ -56,7 +57,7 @@ class CityHallAgent(Agent):
                             threat_msg = Message(to=zone_jid)
                             threat_msg.body = json.dumps({
                                 "command": "threat",
-                                "car_id": car_jid
+                                "car_id": f"{car_jid}@localhost"
                             })
                             threat_msg.set_metadata("performative", "request")
                             await self.send(threat_msg)
@@ -68,7 +69,7 @@ class CityHallAgent(Agent):
                     print("[CityHall] ❌ Failed to process message:", e)
             else:
                 print("[CityHall] ⏳ Waiting for car data...")
-
+            
     async def setup(self):
         print("[CityHall] 🏛️ Loading model...")
         df = pd.read_parquet("models/cic-collection_reduzido.parquet")
@@ -78,7 +79,7 @@ class CityHallAgent(Agent):
         self.le.fit(self.y_label)
         self.model = joblib.load("models/xgb_model.joblib")
 
-        self.add_behaviour(self.MonitorCarsBehaviour(period=10))
+        self.add_behaviour(self.MonitorCarsBehaviour(period=1))
         print("[CityHall] 🟢 City Hall Agent is up and running.")
 
 

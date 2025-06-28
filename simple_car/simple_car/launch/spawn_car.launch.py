@@ -23,9 +23,10 @@ def generate_launch_description():
     # Spawn cars and run waypoint_follower for each
     car_positions = {
         'car_1': ('1', '1'),
-        'car_2': ('18', '18'),
-        'car_3': ('1', '18'),
-        'car_4': ('1', '17'),
+        'car_2': ('17', '17'),
+        'car_3': ('1', '17'),
+        'car_4': ('17', '1'),
+        'car_5': ('5', '1')
     }
 
     for car_name, (x, y) in car_positions.items():

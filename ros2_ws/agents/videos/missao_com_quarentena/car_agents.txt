@@ -1,0 +1,539 @@
+Script started on 2025-06-28 12:20:28+01:00 [TERM="xterm-256color" TTY="/dev/pts/1" COLUMNS="173" LINES="36"]
+[1m[7m%[27m[1m[0m                                                                                                                                                                             ]2;rafaelbranco@fedora:~/Documentos/ISEP/OmniWatch/ros2_ws/agents]1;..os2_ws/agents]7;file://fedora/home/rafaelbranco/Documentos/ISEP/OmniWatch/ros2_ws/agents\[0m[27m[24m[J[39m[0m[49m[40m[39m rafaelbranco@fedora [44m[30m[30m ~/Documentos/ISEP/OmniWatch/ros2_ws/agents [43m[34m[30m  main ± [49m[33m[39m [K[?1h=[?2004h[1m[31mp[0m[39m[1m[31mp[0m[39m[90mython3 cityHall.py[39m[18D[1m[31mp[1m[31my[0m[39m[1m[31mp[1m[31my[1m[31mt[0m[39m[1m[31mt[1m[31mh[0m[39m[1m[31mh[1m[31mo[0m[39m[1m[31mo[1m[31mo[0m[39m[39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [13D[1m[31mo[0m[39m[0m[39m [90mn3 cityHall.py[39m[14D[1m[31mo[1m[31mn[0m[39m[0m[32mp[0m[32my[0m[32mt[0m[32mh[0m[32mo[0m[32mn[32m3[39m[39m [39m[4mr[24m[39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [10D[90mun_zone_manager.py[39m[18D[4mr[39m[4mu[24m[4mu[39m[4mn[24m[4mn[39m[4m_[24m[4m_[39m[4mc[24m[39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [14D[90marAgents.py[39m[11D[24mr[24mu[24mn[24m_[24mc[39ma[39mr[39mA[39mg[39me[39mn[39mt[39ms[39m.[39mp[39my[1m [0m[17D[4mr[4mu[4mn[4m_[4mc[4ma[4mr[4mA[4mg[4me[4mn[4mt[4ms[4m.[4mp[4my[24m[0m [?1l>[?2004l
+]2;python3 run_carAgents.py]1;python3[car_1] Agent started
+[car_2] Agent started
+[car_3] Agent started
+[car_4] Agent started
+[car_1] 🚔 A iniciar patrulha para o ponto (1.0, 1.0). Faço patrulha para os pontos [(1.0, 1.0), (1.0, 8.0), (8.0, 8.0), (8.0, 1.0)].
+[car_1] ▶️ | patrol |╰┈➤ 0.0007368687354546717 | 🎯 (1.0, 1.0) |
+[car_1]📍 Objetivo alcançado! A parar...
+No behaviour matched for message: <message to="car_3@localhost" from="car_1@localhost/zlBxDjDYVFP2" thread="None" metadata={'performative': 'inform'}>
+{"command": "position_update", "car_id": "car_1", "position": {"lat": 1.0007349542158317, "lon": 0.9999511528745204}, "mission": "patrol"}
+</message>
+No behaviour matched for message: <message to="car_4@localhost" from="car_1@localhost/zlBxDjDYVFP2" thread="None" metadata={'performative': 'inform'}>
+{"command": "position_update", "car_id": "car_1", "position": {"lat": 1.0007349542158317, "lon": 0.9999511528745204}, "mission": "patrol"}
+</message>
+No behaviour matched for message: <message to="car_2@localhost" from="car_1@localhost/zlBxDjDYVFP2" thread="None" metadata={'performative': 'inform'}>
+{"command": "position_update", "car_id": "car_1", "position": {"lat": 1.0007349542158317, "lon": 0.9999511528745204}, "mission": "patrol"}
+</message>
+[car_2] 🚔 A iniciar patrulha para o ponto (18.0, 18.0). Faço patrulha para os pontos [(18.0, 18.0), (18.0, 10.0), (10.0, 10.0), (10.0, 18.0)].
+[car_2] ▶️ | patrol |╰┈➤ 0.0007403787900119362 | 🎯 (18.0, 18.0) |
+[car_2]📍 Objetivo alcançado! A parar...
+No behaviour matched for message: <message to="car_3@localhost" from="car_2@localhost/L0MFbAGppvGa" thread="None" metadata={'performative': 'inform'}>
+{"command": "position_update", "car_id": "car_2", "position": {"lat": 18.00073874129765, "lon": 17.99995078569469}, "mission": "patrol"}
+</message>
+No behaviour matched for message: <message to="car_4@localhost" from="car_2@localhost/L0MFbAGppvGa" thread="None" metadata={'performative': 'inform'}>
+{"command": "position_update", "car_id": "car_2", "position": {"lat": 18.00073874129765, "lon": 17.99995078569469}, "mission": "patrol"}
+</message>
+No behaviour matched for message: <message to="car_4@localhost" from="car_1@localhost/zlBxDjDYVFP2" thread="None" metadata={'performative': 'inform'}>
+{"command": "position_update", "car_id": "car_1", "position": {"lat": 1.0007591000238643, "lon": 0.9999494375551481}, "mission": "patrol"}
+</message>
+No behaviour matched for message: <message to="car_3@localhost" from="car_1@localhost/zlBxDjDYVFP2" thread="None" metadata={'performative': 'inform'}>
+{"command": "position_update", "car_id": "car_1", "position": {"lat": 1.0007591000238643, "lon": 0.9999494375551481}, "mission": "patrol"}
+</message>
+[car_3] 🚔 A iniciar patrulha para o ponto (1.0, 18.0). Faço patrulha para os pontos [(1.0, 18.0), (8.0, 18.0), (8.0, 9.0), (1.0, 8.0)].
+[car_3] ▶️ | patrol |╰┈➤ 0.0007473988544340342 | 🎯 (1.0, 18.0) |
+[car_3]📍 Objetivo alcançado! A parar...
+No behaviour matched for message: <message to="car_4@localhost" from="car_3@localhost/OWncaEEOpSGx" thread="None" metadata={'performative': 'inform'}>
+{"command": "position_update", "car_id": "car_3", "position": {"lat": 1.0007457429672897, "lon": 17.99995027601839}, "mission": "patrol"}
+</message>
+[car_4] 🚔 A iniciar patrulha para o ponto (1.0, 18.0). Faço patrulha para os pontos [(1.0, 18.0), (8.0, 18.0), (8.0, 9.0), (1.0, 8.0)].
+[car_4] ▶️ | patrol |╰┈➤ 3.0000512978055935 | 🎯 (1.0, 18.0) |
+[car_4] ▶️ | patrol |╰┈➤ 2.7683405885834076 | 🎯 (1.0, 18.0) |
+🗺️ Caminho não encontrado para o ponto: (1, 18)
+[car_1] 🚔 A iniciar patrulha para o ponto (1.0, 8.0). Faço patrulha para os pontos [(1.0, 1.0), (1.0, 8.0), (8.0, 8.0), (8.0, 1.0)].
+[car_1] ▶️ | patrol |╰┈➤ 7.000057675900682 | 🎯 (1.0, 8.0) |
+[car_2] 🚔 A iniciar patrulha para o ponto (18.0, 10.0). Faço patrulha para os pontos [(18.0, 18.0), (18.0, 10.0), (10.0, 10.0), (10.0, 18.0)].
+[car_2] ▶️ | patrol |╰┈➤ 7.999942167382636 | 🎯 (18.0, 10.0) |
+[car_3] 🚔 A iniciar patrulha para o ponto (8.0, 18.0). Faço patrulha para os pontos [(1.0, 18.0), (8.0, 18.0), (8.0, 9.0), (1.0, 8.0)].
+[car_3] ▶️ | patrol |╰┈➤ 6.999135228604129 | 🎯 (8.0, 18.0) |
+[car_4] ▶️ | patrol |╰┈➤ 2.2140135680957824 | 🎯 (1.0, 18.0) |
+🗺️ Caminho não encontrado para o ponto: (1, 18)
+[car_1] ▶️ | patrol |╰┈➤ 6.765226806153477 | 🎯 (1.0, 8.0) |
+[car_2] ▶️ | patrol |╰┈➤ 7.768824968606368 | 🎯 (18.0, 10.0) |
+[car_3] ▶️ | patrol |╰┈➤ 6.1657056158583865 | 🎯 (8.0, 18.0) |
+[car_4] ▶️ | patrol |╰┈➤ 2.0161945943340487 | 🎯 (1.0, 18.0) |
+[car_1] ▶️ | patrol |╰┈➤ 6.206742340119335 | 🎯 (1.0, 8.0) |
+[car_2] ▶️ | patrol |╰┈➤ 7.219777744452656 | 🎯 (18.0, 10.0) |
+[car_3] ▶️ | patrol |╰┈➤ 4.891688156136322 | 🎯 (8.0, 18.0) |
+[car_4] ▶️ | patrol |╰┈➤ 1.4060589045148606 | 🎯 (1.0, 18.0) |
+[car_1] ▶️ | patrol |╰┈➤ 5.0152962610188405 | 🎯 (1.0, 8.0) |
+[car_2] ▶️ | patrol |╰┈➤ 6.076514576056236 | 🎯 (18.0, 10.0) |
+[car_3] ▶️ | patrol |╰┈➤ 4.405903991392574 | 🎯 (8.0, 18.0) |
+[car_4] ▶️ | patrol |╰┈➤ 1.0108415015870102 | 🎯 (1.0, 18.0) |
+[car_1] ▶️ | patrol |╰┈➤ 4.09651060710964 | 🎯 (1.0, 8.0) |
+[car_2] ▶️ | patrol |╰┈➤ 4.884542973501921 | 🎯 (18.0, 10.0) |
+[car_3] ▶️ | patrol |╰┈➤ 4.020908945452404 | 🎯 (8.0, 18.0) |
+[car_4] ▶️ | patrol |╰┈➤ 0.3077381343364751 | 🎯 (1.0, 18.0) |
+[car_1] ▶️ | patrol |╰┈➤ 3.1633469578301256 | 🎯 (1.0, 8.0) |
+[car_2] ▶️ | patrol |╰┈➤ 4.191402156574841 | 🎯 (18.0, 10.0) |
+[car_3] ▶️ | patrol |╰┈➤ 3.4509886888756505 | 🎯 (8.0, 18.0) |
+[car_4] ▶️ | patrol |╰┈➤ 0.10488032237294177 | 🎯 (1.0, 18.0) |
+[car_1] ▶️ | patrol |╰┈➤ 2.8882720612079793 | 🎯 (1.0, 8.0) |
+[car_2] ▶️ | patrol |╰┈➤ 3.4737712669741048 | 🎯 (18.0, 10.0) |
+[car_3] ▶️ | patrol |╰┈➤ 3.1946877532787785 | 🎯 (8.0, 18.0) |
+[car_4] ▶️ | patrol |╰┈➤ 0.06410887830011883 | 🎯 (1.0, 18.0) |
+[car_4]📍 Objetivo alcançado! A parar...
+[car_1] ▶️ | patrol |╰┈➤ 2.1313727419911785 | 🎯 (1.0, 8.0) |
+[car_4] 🚔 A iniciar patrulha para o ponto (8.0, 18.0). Faço patrulha para os pontos [(1.0, 18.0), (8.0, 18.0), (8.0, 9.0), (1.0, 8.0)].
+[car_4] ▶️ | patrol |╰┈➤ 7.003903644530484 | 🎯 (8.0, 18.0) |
+[car_2] ▶️ | patrol |╰┈➤ 3.2824781235726244 | 🎯 (18.0, 10.0) |
+[car_3] ▶️ | patrol |╰┈➤ 2.3741782222107135 | 🎯 (8.0, 18.0) |
+[car_1] ▶️ | patrol |╰┈➤ 1.9075111569850576 | 🎯 (1.0, 8.0) |
+[car_4] ▶️ | patrol |╰┈➤ 6.76890533525737 | 🎯 (8.0, 18.0) |
+[car_2] ▶️ | patrol |╰┈➤ 2.417342344492906 | 🎯 (18.0, 10.0) |
+[car_3] ▶️ | patrol |╰┈➤ 2.188783060816815 | 🎯 (8.0, 18.0) |
+[car_1] ▶️ | patrol |╰┈➤ 1.186309302455863 | 🎯 (1.0, 8.0) |
+[car_4] ▶️ | patrol |╰┈➤ 6.218904698482734 | 🎯 (8.0, 18.0) |
+[car_2] ▶️ | patrol |╰┈➤ 2.2625220904395285 | 🎯 (18.0, 10.0) |
+[car_3] ▶️ | patrol |╰┈➤ 1.3366069162842815 | 🎯 (8.0, 18.0) |
+[car_1] ▶️ | patrol |╰┈➤ 1.0266278811921141 | 🎯 (1.0, 8.0) |
+[car_4] ▶️ | patrol |╰┈➤ 5.80487497476355 | 🎯 (8.0, 18.0) |
+[car_2] ▶️ | patrol |╰┈➤ 1.3659455448890405 | 🎯 (18.0, 10.0) |
+[car_3] ▶️ | patrol |╰┈➤ 1.0788951868076373 | 🎯 (8.0, 18.0) |
+[car_1] ▶️ | patrol |╰┈➤ 0.3213504537123346 | 🎯 (1.0, 8.0) |
+[car_4] ▶️ | patrol |╰┈➤ 5.229537764655124 | 🎯 (8.0, 18.0) |
+[car_2] ▶️ | patrol |╰┈➤ 1.1939599048438125 | 🎯 (18.0, 10.0) |
+🗺️ Caminho não encontrado para o ponto: (8, 18)
+[car_3] ▶️ | patrol |╰┈➤ 0.3330043808478975 | 🎯 (8.0, 18.0) |
+[car_4] 🔁 Estou a mudar de zona.
+[car_4] ▶️ | changing |╰┈➤ 19.34701159802276 | 🎯 [10, 0] |
+[car_1] ▶️ | patrol |╰┈➤ 0.07543760167107269 | 🎯 (1.0, 8.0) |
+[car_1]📍 Objetivo alcançado! A parar...
+[car_4] ▶️ | changing |╰┈➤ 5.141964620427747 | 🎯 (8.0, 18.0) |
+[car_2] ▶️ | patrol |╰┈➤ 0.35197242385804417 | 🎯 (18.0, 10.0) |
+[car_1] 🚔 A iniciar patrulha para o ponto (8.0, 8.0). Faço patrulha para os pontos [(1.0, 1.0), (1.0, 8.0), (8.0, 8.0), (8.0, 1.0)].
+[car_1] ▶️ | patrol |╰┈➤ 7.006387240123529 | 🎯 (8.0, 8.0) |
+[car_3] ▶️ | patrol |╰┈➤ 0.08690064605528881 | 🎯 (8.0, 18.0) |
+[car_3]📍 Objetivo alcançado! A parar...
+[car_4] ▶️ | changing |╰┈➤ 19.168033184304768 | 🎯 [10, 0] |
+[car_3] 🚔 A iniciar patrulha para o ponto (8.0, 9.0). Faço patrulha para os pontos [(1.0, 18.0), (8.0, 18.0), (8.0, 9.0), (1.0, 8.0)].
+[car_3] ▶️ | patrol |╰┈➤ 9.00496832391829 | 🎯 (8.0, 9.0) |
+[car_2] ▶️ | patrol |╰┈➤ 0.1504438456033338 | 🎯 (18.0, 10.0) |
+[car_1] ▶️ | patrol |╰┈➤ 6.827320241302824 | 🎯 (8.0, 8.0) |
+[car_4] 📏 A minha distância ao objectivo é de 16.805884275695167 m.
+[car_2] 📏 A minha distância ao objectivo é de 19.36305848054444 m.
+[car_1] 📏 A minha distância ao objectivo é de 6.805746838739879 m.
+[car_1] ⚠️ Sou o mais próximo do objectivo. Vou realizar a tarefa.
+[car_3] 📏 A minha distância ao objectivo é de 18.256952448426023 m.
+[car_1] 🏁 A começar missão de [1.0, 1.0] para [8.0, 1.0]
+[car_1] ▶️ | mission |╰┈➤ 6.772402543883332 | 🎯 [1.0, 1.0] |
+[car_4] ▶️ | changing |╰┈➤ 19.007783947874252 | 🎯 [10, 0] |
+[car_3] ▶️ | patrol |╰┈➤ 8.760003472678777 | 🎯 (8.0, 9.0) |
+[car_2] ▶️ | patrol |╰┈➤ 0.08614182245931941 | 🎯 (18.0, 10.0) |
+[car_2]📍 Objetivo alcançado! A parar...
+[car_1] ▶️ | mission |╰┈➤ 7.002711549536279 | 🎯 (8.0, 8.0) |
+[car_1] ▶️ | mission |╰┈➤ 6.439099683306707 | 🎯 [1.0, 1.0] |
+[car_2] 🚔 A iniciar patrulha para o ponto (10.0, 10.0). Faço patrulha para os pontos [(18.0, 18.0), (18.0, 10.0), (10.0, 10.0), (10.0, 18.0)].
+[car_2] ▶️ | patrol |╰┈➤ 7.9996550677633085 | 🎯 (10.0, 10.0) |
+[car_4] ▶️ | changing |╰┈➤ 18.427725405154682 | 🎯 [10, 0] |
+[car_3] ▶️ | patrol |╰┈➤ 8.219457224597383 | 🎯 (8.0, 9.0) |
+[car_1] ▶️ | mission |╰┈➤ 6.140025444762595 | 🎯 [1.0, 1.0] |
+[car_2] ▶️ | patrol |╰┈➤ 7.797870719995811 | 🎯 (10.0, 10.0) |
+[car_4] ▶️ | changing |╰┈➤ 18.515532314346178 | 🎯 [10, 0] |
+[car_3] ▶️ | patrol |╰┈➤ 7.813666983804823 | 🎯 (8.0, 9.0) |
+[car_1] ▶️ | mission |╰┈➤ 5.435901278909908 | 🎯 [1.0, 1.0] |
+[car_2] ▶️ | patrol |╰┈➤ 7.206082048599275 | 🎯 (10.0, 10.0) |
+[car_4] ▶️ | changing |╰┈➤ 18.51993056068811 | 🎯 [10, 0] |
+[car_3] ▶️ | patrol |╰┈➤ 7.153136234913006 | 🎯 (8.0, 9.0) |
+[car_1] ▶️ | mission |╰┈➤ 5.278395388101686 | 🎯 [1.0, 1.0] |
+[car_2] ▶️ | patrol |╰┈➤ 6.768782977680776 | 🎯 (10.0, 10.0) |
+[car_4] ▶️ | changing |╰┈➤ 18.424967720768205 | 🎯 [10, 0] |
+[car_3] ▶️ | patrol |╰┈➤ 6.754750791855848 | 🎯 (8.0, 9.0) |
+[car_1] ▶️ | mission |╰┈➤ 4.546419261772677 | 🎯 [1.0, 1.0] |
+[car_2] ▶️ | patrol |╰┈➤ 6.155801837952706 | 🎯 (10.0, 10.0) |
+[car_4] ▶️ | changing |╰┈➤ 18.514178669207034 | 🎯 [10, 0] |
+[car_3] ▶️ | patrol |╰┈➤ 6.229624426052326 | 🎯 (8.0, 9.0) |
+[car_1] ▶️ | mission |╰┈➤ 4.357013355237805 | 🎯 [1.0, 1.0] |
+[car_2] ▶️ | patrol |╰┈➤ 5.638096049215036 | 🎯 (10.0, 10.0) |
+[car_4] ▶️ | changing |╰┈➤ 18.168019363298367 | 🎯 [10, 0] |
+[car_3] ▶️ | patrol |╰┈➤ 5.7861637757062 | 🎯 (8.0, 9.0) |
+[car_1] ▶️ | mission |╰┈➤ 4.046257969862902 | 🎯 [1.0, 1.0] |
+[car_2] ▶️ | patrol |╰┈➤ 5.2515297227032995 | 🎯 (10.0, 10.0) |
+[car_4] ▶️ | changing |╰┈➤ 17.903871078490692 | 🎯 [10, 0] |
+[car_3] ▶️ | patrol |╰┈➤ 5.315185286861912 | 🎯 (8.0, 9.0) |
+[car_1] ▶️ | mission |╰┈➤ 3.3740173899157746 | 🎯 [1.0, 1.0] |
+[car_2] ▶️ | patrol |╰┈➤ 4.521352983764584 | 🎯 (10.0, 10.0) |
+[car_4] ▶️ | changing |╰┈➤ 17.773090521611977 | 🎯 [10, 0] |
+[car_3] ▶️ | patrol |╰┈➤ 5.003748689393062 | 🎯 (8.0, 9.0) |
+[car_1] ▶️ | mission |╰┈➤ 3.251423507723342 | 🎯 [1.0, 1.0] |
+[car_2] ▶️ | patrol |╰┈➤ 4.236930849043823 | 🎯 (10.0, 10.0) |
+[car_4] ▶️ | changing |╰┈➤ 17.4606510384119 | 🎯 [10, 0] |
+[car_3] ▶️ | patrol |╰┈➤ 4.375856481281745 | 🎯 (8.0, 9.0) |
+[car_1] ▶️ | mission |╰┈➤ 2.3822246673952976 | 🎯 [1.0, 1.0] |
+[car_2] ▶️ | patrol |╰┈➤ 3.7408850145595895 | 🎯 (10.0, 10.0) |
+[car_4] ▶️ | changing |╰┈➤ 17.41035509384766 | 🎯 [10, 0] |
+[car_3] ▶️ | patrol |╰┈➤ 4.250919366005231 | 🎯 (8.0, 9.0) |
+[car_1] ▶️ | mission |╰┈➤ 2.1836107202921538 | 🎯 [1.0, 1.0] |
+[car_2] ▶️ | patrol |╰┈➤ 3.2260563320590494 | 🎯 (10.0, 10.0) |
+[car_4] ▶️ | changing |╰┈➤ 17.3564401856115 | 🎯 [10, 0] |
+[car_3] ▶️ | patrol |╰┈➤ 3.39165650872046 | 🎯 (8.0, 9.0) |
+[car_1] ▶️ | mission |╰┈➤ 1.3273878928376748 | 🎯 [1.0, 1.0] |
+[car_2] ▶️ | patrol |╰┈➤ 2.68957406707485 | 🎯 (10.0, 10.0) |
+[car_4] ▶️ | changing |╰┈➤ 17.284411459630437 | 🎯 [10, 0] |
+[car_3] ▶️ | patrol |╰┈➤ 3.173874958854097 | 🎯 (8.0, 9.0) |
+[car_1] ▶️ | mission |╰┈➤ 1.1339601407424738 | 🎯 [1.0, 1.0] |
+[car_2] ▶️ | patrol |╰┈➤ 2.2290634638069244 | 🎯 (10.0, 10.0) |
+[car_4] ▶️ | changing |╰┈➤ 17.223922488670595 | 🎯 [10, 0] |
+[car_3] ▶️ | patrol |╰┈➤ 2.339226384919024 | 🎯 (8.0, 9.0) |
+[car_1] ▶️ | mission |╰┈➤ 0.33575570398114163 | 🎯 [1.0, 1.0] |
+[car_2] ▶️ | patrol |╰┈➤ 1.5606379068441305 | 🎯 (10.0, 10.0) |
+[car_4] ▶️ | changing |╰┈➤ 17.025898506242193 | 🎯 [10, 0] |
+[car_3] ▶️ | patrol |╰┈➤ 2.081040158236488 | 🎯 (8.0, 9.0) |
+[car_1] ▶️ | mission |╰┈➤ 0.10020288861886843 | 🎯 [1.0, 1.0] |
+[car_2] ▶️ | patrol |╰┈➤ 1.3177467643432352 | 🎯 (10.0, 10.0) |
+[car_4] ▶️ | changing |╰┈➤ 16.75650750386338 | 🎯 [10, 0] |
+[car_3] ▶️ | patrol |╰┈➤ 1.3315851493046937 | 🎯 (8.0, 9.0) |
+[car_1] ▶️ | mission |╰┈➤ 0.08883802740366697 | 🎯 [1.0, 1.0] |
+[car_1]📍 Objetivo alcançado! A parar...
+[car_1] ⏱️ À espera de cliente: 0.0
+[car_2] ▶️ | patrol |╰┈➤ 0.8870542675885833 | 🎯 (10.0, 10.0) |
+[car_4] ▶️ | changing |╰┈➤ 16.193173942167647 | 🎯 [10, 0] |
+[car_3] ▶️ | patrol |╰┈➤ 0.7185989435433734 | 🎯 (8.0, 9.0) |
+[car_1] ⏱️ À espera de cliente: 0.0
+[car_1] ⏱️ À espera de cliente: 0.0
+[car_1] ⏱️ À espera de cliente: 0.0
+[car_2] ▶️ | patrol |╰┈➤ 0.2962303314931641 | 🎯 (10.0, 10.0) |
+[car_4] ▶️ | changing |╰┈➤ 16.084567204084642 | 🎯 [10, 0] |
+[car_3] ▶️ | patrol |╰┈➤ 0.3399083274801587 | 🎯 (8.0, 9.0) |
+[car_1] ⏱️ À espera de cliente: 0.0
+[car_1] ⏱️ À espera de cliente: 0.0
+[car_1] ⏱️ À espera de cliente: 0.0
+[car_2] ▶️ | patrol |╰┈➤ 0.07807443575073263 | 🎯 (10.0, 10.0) |
+[car_2]📍 Objetivo alcançado! A parar...
+[car_4] ▶️ | changing |╰┈➤ 15.27607238862369 | 🎯 [10, 0] |
+[car_3] ▶️ | patrol |╰┈➤ 0.0819497934904972 | 🎯 (8.0, 9.0) |
+[car_3]📍 Objetivo alcançado! A parar...
+[car_1] ⏱️ À espera de cliente: 0.0
+[car_1] ⏱️ À espera de cliente: 0.0
+[car_2] 🚔 A iniciar patrulha para o ponto (10.0, 18.0). Faço patrulha para os pontos [(18.0, 18.0), (18.0, 10.0), (10.0, 10.0), (10.0, 18.0)].
+[car_2] ▶️ | patrol |╰┈➤ 7.996784860828033 | 🎯 (10.0, 18.0) |
+[car_3] 🚔 A iniciar patrulha para o ponto (1.0, 8.0). Faço patrulha para os pontos [(1.0, 18.0), (8.0, 18.0), (8.0, 9.0), (1.0, 8.0)].
+[car_3] ▶️ | patrol |╰┈➤ 7.081414360584612 | 🎯 (1.0, 8.0) |
+[car_1] ⏱️ À espera de cliente: 0.0
+[car_4] ▶️ | changing |╰┈➤ 15.041492046928125 | 🎯 [10, 0] |
+[car_1] ⏱️ À espera de cliente: 0.0
+[car_1] ⏱️ À espera de cliente: 0.0
+[car_2] ▶️ | patrol |╰┈➤ 7.73364552531647 | 🎯 (10.0, 18.0) |
+[car_3] ▶️ | patrol |╰┈➤ 6.904553469823841 | 🎯 (1.0, 8.0) |
+[car_1] ▶️ | mission |╰┈➤ 6.995903279238473 | 🎯 [8.0, 1.0] |
+[car_4] ▶️ | changing |╰┈➤ 14.444121109838182 | 🎯 [10, 0] |
+[car_2] ▶️ | patrol |╰┈➤ 7.241445219326623 | 🎯 (10.0, 18.0) |
+[car_3] ▶️ | patrol |╰┈➤ 6.3050129157422745 | 🎯 (1.0, 8.0) |
+[car_1] ▶️ | mission |╰┈➤ 6.795996925221604 | 🎯 [8.0, 1.0] |
+[car_4] ▶️ | changing |╰┈➤ 14.180194141268876 | 🎯 [10, 0] |
+[car_2] ▶️ | patrol |╰┈➤ 6.881478481568701 | 🎯 (10.0, 18.0) |
+[car_3] ▶️ | patrol |╰┈➤ 5.798556284198404 | 🎯 (1.0, 8.0) |
+[car_1] ▶️ | mission |╰┈➤ 6.211503406540155 | 🎯 [8.0, 1.0] |
+[car_4] ▶️ | changing |╰┈➤ 13.379315754989895 | 🎯 [10, 0] |
+[car_2] ▶️ | patrol |╰┈➤ 6.111971989559753 | 🎯 (10.0, 18.0) |
+[car_3] ▶️ | patrol |╰┈➤ 5.300719752606279 | 🎯 (1.0, 8.0) |
+[car_1] ▶️ | mission |╰┈➤ 5.54539774616774 | 🎯 [8.0, 1.0] |
+[car_4] ▶️ | changing |╰┈➤ 13.18673072540761 | 🎯 [10, 0] |
+[car_1] 🛑 Comando de STOP recebido.
+[car_1] 🛡️ A parar de forma segura
+[car_1] 🧍 Passageiro a bordo. A pedir continuação. 
+[car_1] 🛑 Pedido de paragem (STOP)
+[car_2] ▶️ | patrol |╰┈➤ 5.999699671949675 | 🎯 (10.0, 18.0) |
+[car_3] ▶️ | patrol |╰┈➤ 4.798585928344345 | 🎯 (1.0, 8.0) |
+[car_1] ▶️ | mission |╰┈➤ 4.875038344828843 | 🎯 [8.0, 1.0] |
+[car_1] ⏱️ À espera da saída de cliente: 40.0
+[car_4] 📏 A minha distância ao objectivo é de 12.922548064951574 m.
+[car_2] 📏 A minha distância ao objectivo é de 13.626312762435607 m.
+[car_3] 📏 A minha distância ao objectivo é de 8.948700711795265 m.
+[car_3] ⚠️ Sou o mais próximo do objectivo. Vou realizar a tarefa.
+[car_3] 🏁 A começar missão de [2, 1] para [8.0, 1.0]
+[car_3] ▶️ | mission |╰┈➤ 8.79417804838311 | 🎯 [2, 1] |
+[car_4] ▶️ | changing |╰┈➤ 12.460566214197284 | 🎯 [10, 0] |
+[car_1] ⏱️ À espera da saída de cliente: 40.0
+[car_1] ⏱️ À espera da saída de cliente: 40.0
+[car_2] ▶️ | patrol |╰┈➤ 5.241032934240435 | 🎯 (10.0, 18.0) |
+[car_3] ▶️ | mission |╰┈➤ 4.322295090358696 | 🎯 (1.0, 8.0) |
+[car_1] ⏱️ À espera da saída de cliente: 40.0
+[car_3] ▶️ | mission |╰┈➤ 8.537214191944958 | 🎯 [2, 1] |
+[car_4] ▶️ | changing |╰┈➤ 11.912767250493623 | 🎯 [10, 0] |
+[car_1] ⏱️ À espera da saída de cliente: 40.0
+[car_1] ⏱️ À espera da saída de cliente: 40.0
+[car_2] ▶️ | patrol |╰┈➤ 4.9709614395321715 | 🎯 (10.0, 18.0) |
+[car_1] ⏱️ À espera da saída de cliente: 40.0
+[car_3] ▶️ | mission |╰┈➤ 8.326599883795987 | 🎯 [2, 1] |
+[car_4] ▶️ | changing |╰┈➤ 11.465020105888406 | 🎯 [10, 0] |
+[car_1] ⏱️ À espera da saída de cliente: 40.0
+[car_1] ⏱️ À espera da saída de cliente: 40.0
+[car_2] ▶️ | patrol |╰┈➤ 4.230159258391271 | 🎯 (10.0, 18.0) |
+[car_1] ⏱️ À espera da saída de cliente: 40.0
+[car_3] ▶️ | mission |╰┈➤ 7.704088783959355 | 🎯 [2, 1] |
+[car_4] ▶️ | changing |╰┈➤ 11.29748351144314 | 🎯 [10, 0] |
+[car_1] ⏱️ À espera da saída de cliente: 40.0
+🏃🚪 [car_1] O cliente saiu.
+[car_1] 📏 A minha distância ao objectivo é de inf m.
+[car_1] 🛑 Pedido de STOP!
+[car_2] ▶️ | patrol |╰┈➤ 3.7050312596931487 | 🎯 (10.0, 18.0) |
+[car_3] ▶️ | mission |╰┈➤ 7.7940278827899006 | 🎯 [2, 1] |
+[car_4] ▶️ | changing |╰┈➤ 10.54338386230958 | 🎯 [10, 0] |
+[car_2] ▶️ | patrol |╰┈➤ 3.264450943967909 | 🎯 (10.0, 18.0) |
+[car_3] ▶️ | mission |╰┈➤ 7.445534462493882 | 🎯 [2, 1] |
+[car_4] ▶️ | changing |╰┈➤ 10.355832015931945 | 🎯 [10, 0] |
+[car_2] ▶️ | patrol |╰┈➤ 3.1010396252282626 | 🎯 (10.0, 18.0) |
+[car_3] ▶️ | mission |╰┈➤ 7.206302980480849 | 🎯 [2, 1] |
+[car_4] ▶️ | changing |╰┈➤ 9.613291157208382 | 🎯 [10, 0] |
+[car_2] ▶️ | patrol |╰┈➤ 2.2880694687242253 | 🎯 (10.0, 18.0) |
+[car_3] ▶️ | mission |╰┈➤ 7.134475624938012 | 🎯 [2, 1] |
+[car_4] ▶️ | changing |╰┈➤ 9.302131426958951 | 🎯 [10, 0] |
+[car_2] ▶️ | patrol |╰┈➤ 2.0844134005850035 | 🎯 (10.0, 18.0) |
+[car_3] ▶️ | mission |╰┈➤ 6.923021686743902 | 🎯 [2, 1] |
+[car_4] ▶️ | changing |╰┈➤ 8.608902216996526 | 🎯 [10, 0] |
+[car_2] ▶️ | patrol |╰┈➤ 1.2883362241061522 | 🎯 (10.0, 18.0) |
+[car_3] ▶️ | mission |╰┈➤ 6.997243642612458 | 🎯 [2, 1] |
+[car_4] ▶️ | changing |╰┈➤ 8.026817597792146 | 🎯 [10, 0] |
+[car_2] ▶️ | patrol |╰┈➤ 0.981426505249277 | 🎯 (10.0, 18.0) |
+[car_3] ▶️ | mission |╰┈➤ 7.073274371668676 | 🎯 [2, 1] |
+[car_4] ▶️ | changing |╰┈➤ 7.689418044242626 | 🎯 [10, 0] |
+[car_2] ▶️ | patrol |╰┈➤ 0.2963719814758088 | 🎯 (10.0, 18.0) |
+[car_3] ▶️ | mission |╰┈➤ 6.846063137209902 | 🎯 [2, 1] |
+[car_4] ▶️ | changing |╰┈➤ 7.312403907403218 | 🎯 [10, 0] |
+[car_2] ▶️ | patrol |╰┈➤ 0.07731266406512911 | 🎯 (10.0, 18.0) |
+[car_2]📍 Objetivo alcançado! A parar...
+[car_3] ▶️ | mission |╰┈➤ 6.264281012168167 | 🎯 [2, 1] |
+[car_4] ▶️ | changing |╰┈➤ 6.815890399663131 | 🎯 [10, 0] |
+[car_2] 🚔 A iniciar patrulha para o ponto (18.0, 18.0). Faço patrulha para os pontos [(18.0, 18.0), (18.0, 10.0), (10.0, 10.0), (10.0, 18.0)].
+[car_2] ▶️ | patrol |╰┈➤ 8.003035932520616 | 🎯 (18.0, 18.0) |
+[car_3] ▶️ | mission |╰┈➤ 6.041238983286006 | 🎯 [2, 1] |
+[car_4] ▶️ | changing |╰┈➤ 6.472164776989195 | 🎯 [10, 0] |
+[car_2] ▶️ | patrol |╰┈➤ 7.7563485022792324 | 🎯 (18.0, 18.0) |
+[car_3] ▶️ | mission |╰┈➤ 5.252671124901602 | 🎯 [2, 1] |
+[car_4] ▶️ | changing |╰┈➤ 5.96307726573816 | 🎯 [10, 0] |
+[car_2] ▶️ | patrol |╰┈➤ 7.231904727739021 | 🎯 (18.0, 18.0) |
+[car_3] ▶️ | mission |╰┈➤ 5.006848002569221 | 🎯 [2, 1] |
+[car_4] ▶️ | changing |╰┈➤ 5.629063370774478 | 🎯 [10, 0] |
+[car_2] ▶️ | patrol |╰┈➤ 6.792693718749472 | 🎯 (18.0, 18.0) |
+[car_3] ▶️ | mission |╰┈➤ 4.426214771867811 | 🎯 [2, 1] |
+[car_4] ▶️ | changing |╰┈➤ 5.219119047550082 | 🎯 [10, 0] |
+[car_1] 🛑 Pedido de paragem (STOP)
+[car_2] ▶️ | patrol |╰┈➤ 6.235254417974223 | 🎯 (18.0, 18.0) |
+[car_3] ▶️ | mission |╰┈➤ 4.06831198838218 | 🎯 [2, 1] |
+[car_4] ▶️ | changing |╰┈➤ 4.7049384680021324 | 🎯 [10, 0] |
+[car_2] ▶️ | patrol |╰┈➤ 5.692316676893 | 🎯 (18.0, 18.0) |
+[car_3] ▶️ | mission |╰┈➤ 3.4173390122556406 | 🎯 [2, 1] |
+[car_4] ▶️ | changing |╰┈➤ 4.4976495185277185 | 🎯 [10, 0] |
+[car_2] ▶️ | patrol |╰┈➤ 5.3290689057556975 | 🎯 (18.0, 18.0) |
+[car_3] ▶️ | mission |╰┈➤ 3.2669766931984934 | 🎯 [2, 1] |
+[car_4] ▶️ | changing |╰┈➤ 3.8542562669932585 | 🎯 [10, 0] |
+[car_2] ▶️ | patrol |╰┈➤ 4.8993137950084025 | 🎯 (18.0, 18.0) |
+[car_3] ▶️ | mission |╰┈➤ 2.412574711335678 | 🎯 [2, 1] |
+[car_4] ▶️ | changing |╰┈➤ 3.4174896921833833 | 🎯 [10, 0] |
+[car_1] 🛑 Pedido de STOP!
+[car_2] ▶️ | patrol |╰┈➤ 4.326855990947462 | 🎯 (18.0, 18.0) |
+[car_3] ▶️ | mission |╰┈➤ 2.240504501206445 | 🎯 [2, 1] |
+[car_4] ▶️ | changing |╰┈➤ 3.2248134206910986 | 🎯 [10, 0] |
+[car_2] ▶️ | patrol |╰┈➤ 4.169238007751351 | 🎯 (18.0, 18.0) |
+[car_3] ▶️ | mission |╰┈➤ 1.6924388538720094 | 🎯 [2, 1] |
+[car_4] ▶️ | changing |╰┈➤ 2.8883178207852214 | 🎯 [10, 0] |
+[car_2] ▶️ | patrol |╰┈➤ 3.318404960099102 | 🎯 (18.0, 18.0) |
+[car_3] ▶️ | mission |╰┈➤ 1.2344410432394655 | 🎯 [2, 1] |
+[car_4] ▶️ | changing |╰┈➤ 2.3494110662822205 | 🎯 [10, 0] |
+[car_2] ▶️ | patrol |╰┈➤ 2.9299706128920873 | 🎯 (18.0, 18.0) |
+[car_3] ▶️ | mission |╰┈➤ 1.0118466284808099 | 🎯 [2, 1] |
+[car_4] ▶️ | changing |╰┈➤ 2.0500547636727324 | 🎯 [10, 0] |
+[car_2] ▶️ | patrol |╰┈➤ 2.3193324695389497 | 🎯 (18.0, 18.0) |
+[car_3] ▶️ | mission |╰┈➤ 0.8635147600395374 | 🎯 [2, 1] |
+[car_4] ▶️ | changing |╰┈➤ 2.0126035551429236 | 🎯 [10, 0] |
+[car_2] ▶️ | patrol |╰┈➤ 1.589982451853738 | 🎯 (18.0, 18.0) |
+[car_3] ▶️ | mission |╰┈➤ 0.2517484943958748 | 🎯 [2, 1] |
+[car_4] ▶️ | changing |╰┈➤ 1.5171320167406042 | 🎯 [10, 0] |
+[car_2] ▶️ | patrol |╰┈➤ 1.3456506862990922 | 🎯 (18.0, 18.0) |
+[car_3] ▶️ | mission |╰┈➤ 0.0383453091881209 | 🎯 [2, 1] |
+[car_3]📍 Objetivo alcançado! A parar...
+[car_3] ⏱️ À espera de cliente: 0.0
+[car_4] ▶️ | changing |╰┈➤ 1.3886821775590557 | 🎯 [10, 0] |
+[car_2] ▶️ | patrol |╰┈➤ 1.127850126146964 | 🎯 (18.0, 18.0) |
+[car_3] ⏱️ À espera de cliente: 0.0
+[car_3] ⏱️ À espera de cliente: 0.0
+[car_3] ⏱️ À espera de cliente: 0.0
+[car_4] ▶️ | changing |╰┈➤ 1.1972809457711187 | 🎯 [10, 0] |
+[car_2] ▶️ | patrol |╰┈➤ 0.3051053066214498 | 🎯 (18.0, 18.0) |
+[car_3] ⏱️ À espera de cliente: 0.0
+[car_3] ⏱️ À espera de cliente: 0.0
+[car_3] ⏱️ À espera de cliente: 0.0
+[car_4] ▶️ | changing |╰┈➤ 0.9026590718609766 | 🎯 [10, 0] |
+[car_2] ▶️ | patrol |╰┈➤ 0.10402206219904221 | 🎯 (18.0, 18.0) |
+[car_3] ⏱️ À espera de cliente: 0.0
+[car_3] ⏱️ À espera de cliente: 0.0
+[car_3] ⏱️ À espera de cliente: 0.0
+[car_4] ▶️ | changing |╰┈➤ 0.7643448578488024 | 🎯 [10, 0] |
+[car_2] ▶️ | patrol |╰┈➤ 0.0645175892259914 | 🎯 (18.0, 18.0) |
+[car_2]📍 Objetivo alcançado! A parar...
+[car_3] ▶️ | mission |╰┈➤ 5.992093574551877 | 🎯 [8.0, 1.0] |
+[car_2] 🚔 A iniciar patrulha para o ponto (18.0, 10.0). Faço patrulha para os pontos [(18.0, 18.0), (18.0, 10.0), (10.0, 10.0), (10.0, 18.0)].
+[car_2] ▶️ | patrol |╰┈➤ 7.998229332069733 | 🎯 (18.0, 10.0) |
+[car_4] ▶️ | changing |╰┈➤ 0.07933564472817414 | 🎯 [10, 0] |
+[car_4]📍 Objetivo alcançado! A parar...
+[car_4] 🏁 Missão finalizada. Retomar patrulha.
+[car_4] 🚔 A iniciar patrulha para o ponto [19, 9]. Faço patrulha para os pontos [[10, 0], [10, 9], [19, 9], [19, 0]].
+[car_4] ▶️ | patrol |╰┈➤ 12.719109730852313 | 🎯 [19, 9] |
+[car_3] ▶️ | mission |╰┈➤ 6.146423416646453 | 🎯 [8.0, 1.0] |
+[car_2] ▶️ | patrol |╰┈➤ 7.741118359861506 | 🎯 (18.0, 10.0) |
+[car_4] ▶️ | patrol |╰┈➤ 12.598315207746618 | 🎯 [19, 9] |
+[car_3] ▶️ | mission |╰┈➤ 6.150392319621965 | 🎯 [8.0, 1.0] |
+[car_2] ▶️ | patrol |╰┈➤ 7.217644934193418 | 🎯 (18.0, 10.0) |
+[car_1] 🛑 Pedido de paragem (STOP)
+[car_4] ▶️ | patrol |╰┈➤ 12.287012103191003 | 🎯 [19, 9] |
+[car_3] ▶️ | mission |╰┈➤ 5.921767427459618 | 🎯 [8.0, 1.0] |
+[car_2] ▶️ | patrol |╰┈➤ 6.841141613449147 | 🎯 (18.0, 10.0) |
+[car_4] ▶️ | patrol |╰┈➤ 12.088199399364697 | 🎯 [19, 9] |
+[car_3] ▶️ | mission |╰┈➤ 5.512068369530795 | 🎯 [8.0, 1.0] |
+[car_2] ▶️ | patrol |╰┈➤ 6.099897944247818 | 🎯 (18.0, 10.0) |
+[car_4] ▶️ | patrol |╰┈➤ 12.045439046445436 | 🎯 [19, 9] |
+[car_3] ▶️ | mission |╰┈➤ 4.364041143010044 | 🎯 [8.0, 1.0] |
+[car_2] ▶️ | patrol |╰┈➤ 5.914047314812242 | 🎯 (18.0, 10.0) |
+[car_4] ▶️ | patrol |╰┈➤ 11.419306661674083 | 🎯 [19, 9] |
+[car_3] ▶️ | mission |╰┈➤ 3.5876015615758416 | 🎯 [8.0, 1.0] |
+[car_2] ▶️ | patrol |╰┈➤ 5.148486413921333 | 🎯 (18.0, 10.0) |
+[car_1] 🛑 Pedido de STOP!
+[car_4] ▶️ | patrol |╰┈➤ 11.378056000133029 | 🎯 [19, 9] |
+[car_3] ▶️ | mission |╰┈➤ 3.0248871327167843 | 🎯 [8.0, 1.0] |
+[car_2] ▶️ | patrol |╰┈➤ 4.9860544056388925 | 🎯 (18.0, 10.0) |
+[car_4] ▶️ | patrol |╰┈➤ 10.870822799271696 | 🎯 [19, 9] |
+[car_3] ▶️ | mission |╰┈➤ 2.764746210875549 | 🎯 [8.0, 1.0] |
+[car_2] ▶️ | patrol |╰┈➤ 4.315755697976753 | 🎯 (18.0, 10.0) |
+[car_4] ▶️ | patrol |╰┈➤ 10.761371445723803 | 🎯 [19, 9] |
+[car_3] ▶️ | mission |╰┈➤ 2.2948462242740875 | 🎯 [8.0, 1.0] |
+[car_2] ▶️ | patrol |╰┈➤ 4.113486335557768 | 🎯 (18.0, 10.0) |
+[car_4] ▶️ | patrol |╰┈➤ 10.620872603781308 | 🎯 [19, 9] |
+[car_3] ▶️ | mission |╰┈➤ 1.5665148527931476 | 🎯 [8.0, 1.0] |
+[car_2] ▶️ | patrol |╰┈➤ 3.3233788388174297 | 🎯 (18.0, 10.0) |
+[car_4] ▶️ | patrol |╰┈➤ 10.053127762635613 | 🎯 [19, 9] |
+[car_3] ▶️ | mission |╰┈➤ 1.241627787047118 | 🎯 [8.0, 1.0] |
+[car_2] ▶️ | patrol |╰┈➤ 3.0636286378781503 | 🎯 (18.0, 10.0) |
+[car_4] ▶️ | patrol |╰┈➤ 9.982132009662099 | 🎯 [19, 9] |
+[car_3] ▶️ | mission |╰┈➤ 1.2335346627521242 | 🎯 [8.0, 1.0] |
+[car_2] ▶️ | patrol |╰┈➤ 2.3274608252037203 | 🎯 (18.0, 10.0) |
+[car_4] ▶️ | patrol |╰┈➤ 9.451248602733488 | 🎯 [19, 9] |
+[car_3] ▶️ | mission |╰┈➤ 1.0506403916550655 | 🎯 [8.0, 1.0] |
+[car_2] ▶️ | patrol |╰┈➤ 1.6752825069004165 | 🎯 (18.0, 10.0) |
+[car_4] ▶️ | patrol |╰┈➤ 9.29846165242511 | 🎯 [19, 9] |
+[car_3] ▶️ | mission |╰┈➤ 0.8508088057186846 | 🎯 [8.0, 1.0] |
+[car_2] ▶️ | patrol |╰┈➤ 1.3368090200270304 | 🎯 (18.0, 10.0) |
+[car_4] ▶️ | patrol |╰┈➤ 8.855069889735066 | 🎯 [19, 9] |
+[car_3] ▶️ | mission |╰┈➤ 0.28216758642886436 | 🎯 [8.0, 1.0] |
+[car_2] ▶️ | patrol |╰┈➤ 1.1140462007072611 | 🎯 (18.0, 10.0) |
+[car_4] ▶️ | patrol |╰┈➤ 8.691466042934014 | 🎯 [19, 9] |
+[car_3] ▶️ | mission |╰┈➤ 0.062101430974130484 | 🎯 [8.0, 1.0] |
+[car_3]📍 Objetivo alcançado! A parar...
+[car_3] 🏁 Missão finalizada. Retomar patrulha.
+[car_3] 🚔 A iniciar patrulha para o ponto (1.0, 18.0). Faço patrulha para os pontos [(1.0, 18.0), (8.0, 18.0), (8.0, 9.0), (1.0, 8.0)].
+[car_3] ▶️ | patrol |╰┈➤ 18.433956729317178 | 🎯 (1.0, 18.0) |
+[car_3] ⏱️ À espera da saída de cliente: 40.0
+[car_2] ▶️ | patrol |╰┈➤ 0.3438946795527066 | 🎯 (18.0, 10.0) |
+[car_3] ⏱️ À espera da saída de cliente: 40.0
+[car_3] ⏱️ À espera da saída de cliente: 40.0
+[car_4] ▶️ | patrol |╰┈➤ 8.152506500736767 | 🎯 [19, 9] |
+[car_3] ⏱️ À espera da saída de cliente: 40.0
+[car_2] ▶️ | patrol |╰┈➤ 0.1552540528966401 | 🎯 (18.0, 10.0) |
+🏃🚪 [car_3] O cliente saiu.
+[car_3] ▶️ | patrol |╰┈➤ 18.16476404862012 | 🎯 (1.0, 18.0) |
+[car_4] ▶️ | patrol |╰┈➤ 8.064518032003821 | 🎯 [19, 9] |
+[car_2] ▶️ | patrol |╰┈➤ 0.06548600617972998 | 🎯 (18.0, 10.0) |
+[car_2]📍 Objetivo alcançado! A parar...
+[car_3] ▶️ | patrol |╰┈➤ 17.50020783985053 | 🎯 (1.0, 18.0) |
+[car_2] 🚔 A iniciar patrulha para o ponto (10.0, 10.0). Faço patrulha para os pontos [(18.0, 18.0), (18.0, 10.0), (10.0, 10.0), (10.0, 18.0)].
+[car_2] ▶️ | patrol |╰┈➤ 8.003852375180658 | 🎯 (10.0, 10.0) |
+[car_4] ▶️ | patrol |╰┈➤ 7.811992274276513 | 🎯 [19, 9] |
+[car_1] 🛑 Pedido de paragem (STOP)
+[car_3] ▶️ | patrol |╰┈➤ 17.361265973255158 | 🎯 (1.0, 18.0) |
+[car_2] ▶️ | patrol |╰┈➤ 7.8128154068440505 | 🎯 (10.0, 10.0) |
+[car_4] ▶️ | patrol |╰┈➤ 7.447647895012534 | 🎯 [19, 9] |
+[car_3] ▶️ | patrol |╰┈➤ 16.660611159840286 | 🎯 (1.0, 18.0) |
+[car_2] ▶️ | patrol |╰┈➤ 7.217934594419069 | 🎯 (10.0, 10.0) |
+[car_4] ▶️ | patrol |╰┈➤ 7.380546002957979 | 🎯 [19, 9] |
+[car_3] ▶️ | patrol |╰┈➤ 16.23967288787174 | 🎯 (1.0, 18.0) |
+[car_2] ▶️ | patrol |╰┈➤ 6.640778134145219 | 🎯 (10.0, 10.0) |
+^C[car_1] 🛑 Pedido de STOP!
+[car_3] ▶️ | patrol |╰┈➤ 16.002748017233152 | 🎯 (1.0, 18.0) |
+[car_1] 🛑 Pedido de paragem (STOP)
+[car_2] ▶️ | patrol |╰┈➤ 6.622993581668358 | 🎯 (10.0, 10.0) |
+[car_4] ▶️ | patrol |╰┈➤ 7.195001423653956 | 🎯 [19, 9] |
+[car_1] Shutdown warning: failed to shutdown: rcl_shutdown already called on the given context, at ./src/rcl/init.c:241
+Exception in thread Thread-1 (start_ros_node):
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/threading.py", line 1016, in _bootstrap_inner
+    self.run()
+  File "/usr/lib/python3.10/threading.py", line 953, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/rafaelbranco/Documentos/ISEP/OmniWatch/ros2_ws/agents/car_agent.py", line 122, in start_ros_node
+    rclpy.spin(agent.ros_node)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 226, in spin
+    executor.spin_once()
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 751, in spin_once
+    self._spin_once_impl(timeout_sec)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 740, in _spin_once_impl
+    handler, entity, node = self.wait_for_ready_callbacks(timeout_sec=timeout_sec)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 723, in wait_for_ready_callbacks
+    return next(self._cb_iter)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 624, in _wait_for_ready_callbacks
+    raise ExternalShutdownException()
+rclpy.executors.ExternalShutdownException
+[car_2] Shutdown warning: failed to shutdown: rcl_shutdown already called on the given context, at ./src/rcl/init.c:241
+Exception in thread Thread-1 (start_ros_node):
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/threading.py", line 1016, in _bootstrap_inner
+    self.run()
+  File "/usr/lib/python3.10/threading.py", line 953, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/rafaelbranco/Documentos/ISEP/OmniWatch/ros2_ws/agents/car_agent.py", line 122, in start_ros_node
+[car_3] Shutdown warning: failed to shutdown: rcl_shutdown already called on the given context, at ./src/rcl/init.c:241
+Exception in thread Thread-1 (start_ros_node):
+Traceback (most recent call last):
+    rclpy.spin(agent.ros_node)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 226, in spin
+  File "/usr/lib/python3.10/threading.py", line 1016, in _bootstrap_inner
+    executor.spin_once()
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 751, in spin_once
+    self._spin_once_impl(timeout_sec)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 740, in _spin_once_impl
+    self.run()
+  File "/usr/lib/python3.10/threading.py", line 953, in run
+    handler, entity, node = self.wait_for_ready_callbacks(timeout_sec=timeout_sec)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 723, in wait_for_ready_callbacks
+    return next(self._cb_iter)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 596, in _wait_for_ready_callbacks
+    self._target(*self._args, **self._kwargs)
+  File "/home/rafaelbranco/Documentos/ISEP/OmniWatch/ros2_ws/agents/car_agent.py", line 122, in start_ros_node
+    rclpy.spin(agent.ros_node)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 226, in spin
+    wait_set = _rclpy.WaitSet(
+rclpy._rclpy_pybind11.RCLError: failed to initialize wait set: the given context is not valid, either rcl_init() was not called or rcl_shutdown() was called., at ./src/rcl/wait.c:130
+    executor.spin_once()
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 751, in spin_once
+[car_4] Shutdown warning: failed to shutdown: rcl_shutdown already called on the given context, at ./src/rcl/init.c:241
+Exception in thread Thread-1 (start_ros_node):
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/threading.py", line 1016, in _bootstrap_inner
+    self._spin_once_impl(timeout_sec)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 740, in _spin_once_impl
+    handler, entity, node = self.wait_for_ready_callbacks(timeout_sec=timeout_sec)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 723, in wait_for_ready_callbacks
+    self.run()
+    return next(self._cb_iter)
+  File "/usr/lib/python3.10/threading.py", line 953, in run
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 624, in _wait_for_ready_callbacks
+    raise ExternalShutdownException()
+rclpy.executors.ExternalShutdownException
+    self._target(*self._args, **self._kwargs)
+  File "/home/rafaelbranco/Documentos/ISEP/OmniWatch/ros2_ws/agents/car_agent.py", line 122, in start_ros_node
+    rclpy.spin(agent.ros_node)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 226, in spin
+    executor.spin_once()
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 751, in spin_once
+    self._spin_once_impl(timeout_sec)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 740, in _spin_once_impl
+    handler, entity, node = self.wait_for_ready_callbacks(timeout_sec=timeout_sec)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 723, in wait_for_ready_callbacks
+    return next(self._cb_iter)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 596, in _wait_for_ready_callbacks
+    wait_set = _rclpy.WaitSet(
+rclpy._rclpy_pybind11.RCLError: failed to initialize wait set: the given context is not valid, either rcl_init() was not called or rcl_shutdown() was called., at ./src/rcl/wait.c:130
+Caught CTRL+C, terminating subprocesses...
+[1m[7m%[27m[1m[0m                                                                                                                                                                             ]2;rafaelbranco@fedora:~/Documentos/ISEP/OmniWatch/ros2_ws/agents]1;..os2_ws/agents]7;file://fedora/home/rafaelbranco/Documentos/ISEP/OmniWatch/ros2_ws/agents\[0m[27m[24m[J[39m[0m[49m[40m[39m rafaelbranco@fedora [44m[30m[30m ~/Documentos/ISEP/OmniWatch/ros2_ws/agents [43m[34m[30m  main ± [49m[33m[39m [K[?1h=[?2004h[1m[31me[0m[39m[1m[31me[0m[39m[90mxit[39m[1m[31me[1m[31mx[0m[39m[1m[31me[1m[31mx[1m[31mi[0m[39m[0m[32me[0m[32mx[0m[32mi[32mt[39m[?1l>[?2004l
+]2;exit]1;exit
+Script done on 2025-06-28 12:26:03+01:00 [COMMAND_EXIT_CODE="0"]

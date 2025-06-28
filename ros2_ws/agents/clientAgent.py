@@ -20,7 +20,7 @@ class ClientAgent(Agent):
                 data = {
                     "command": "ride_request",
                     "start": [1.0, 1.0],
-                    "end": [1.0, 8.0]
+                    "end": [8.0, 1.0]
                 }
                 
                 msg = Message(to=zone_jid)

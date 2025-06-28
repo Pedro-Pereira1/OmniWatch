@@ -1,0 +1,56 @@
+Script started on 2025-06-28 12:20:35+01:00 [TERM="xterm-256color" TTY="/dev/pts/7" COLUMNS="173" LINES="36"]
+[1m[7m%[27m[1m[0m                                                                                                                                                                             ]2;rafaelbranco@fedora:~/Documentos/ISEP/OmniWatch/ros2_ws/agents]1;..os2_ws/agents]7;file://fedora/home/rafaelbranco/Documentos/ISEP/OmniWatch/ros2_ws/agents\[0m[27m[24m[J[39m[0m[49m[40m[39m rafaelbranco@fedora [44m[30m[30m ~/Documentos/ISEP/OmniWatch/ros2_ws/agents [43m[34m[30m  main ± [49m[33m[39m [K[?1h=[?2004h[1m[31mp[0m[39m[1m[31mp[0m[39m[90mython3 cityHall.py[39m[18D[1m[31mp[1m[31mt[0m[39m[39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [17D[1m[31mp[0m[39m[0m[39m [1m[31mp[0m[39m[90mython3 cityHall.py[39m[18D[1m[31mp[1m[31my[0m[39m[1m[31mp[1m[31my[1m[31mt[0m[39m[1m[31mt[1m[31mh[0m[39m[1m[31mh[1m[31mo[0m[39m[1m[31mo[1m[31mn[0m[39m[0m[32mp[0m[32my[0m[32mt[0m[32mh[0m[32mo[0m[32mn[32m3[39m[39m [39m[4mr[24m[39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [10D[90mun_zone_manager.py[39m[18D[4mr[39m[4mu[24m[4mu[39m[4mn[24m[4mn[39m[4m_[24m[4m_[39m[4mc[24m[39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [14D[90marAgents.py[39m[11D[24mr[24mu[24mn[24m_[24mc[39ml[39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [10Di [4mr[4mu[4mn[4m_[4mc[24m [90marAgents.py[39m[11D[4m_[24m[24m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [12D[90mzone_manager.py[39m[15D[4mn[24m[24m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [16D[90m_zone_manager.py[39m[16D[4mu[24m[24m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [17D[90mn_zone_manager.py[39m[17D[4mr[24m[24m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [18D[90mun_zone_manager.py[39m[18D[24m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [19D[90mcityHall.py[39m[11D[39m[4mc[24m[4mc[39m[4ml[24m[39m [39m [39m [39m [39m [39m [39m [39m [39m [9D[90mientAgent.py[39m[12D[4ml[39m[4mi[39m[4me[39m[4mn[39m[4mt[39m[4mA[39m[4mg[39m[4me[39m[4mn[39m[4mt[39m[4m.[39m[4mp[39m[4my[24m[?1l>[?2004l
+]2;python3 clientAgent.py]1;python3🟢 ClientAgent started.
+=== Client Agent ===
+📤 Sent start [1.0, 1.0] and end [8.0, 1.0] to zone_1@localhost
+[1m[7m%[27m[1m[0m                                                                                                                                                                             ]2;rafaelbranco@fedora:~/Documentos/ISEP/OmniWatch/ros2_ws/agents]1;..os2_ws/agents]7;file://fedora/home/rafaelbranco/Documentos/ISEP/OmniWatch/ros2_ws/agents\[0m[27m[24m[J[39m[0m[49m[40m[39m rafaelbranco@fedora [44m[30m[30m ~/Documentos/ISEP/OmniWatch/ros2_ws/agents [43m[34m[30m  main ± [49m[33m[39m [K[?1h=[?2004h[32mpython3[39m [4mclientAgent.py[24m[14D[4mr[4mu[4mn[4m_[4mz[4mo[4mn[4me[4m_[4mm[4ma[4mn[4ma[4mg[4mer.py[24m[19D[4mc[4ml[4mi[4me[4mn[4mt[4mA[4mg[4me[4mn[4mt[4m.[4mp[4my[24m[24m [24m [24m [24m [24m [4mp[24m[24m [90my[39m[4m.[24m[24m [39m [90mpy[39m[4mt[24m[24m [39m [39m [90m.py[39m[4mn[24m[24m [39m [39m [39m [90mt.py[39m[4me[24m[24m [39m [39m [39m [39m [90mnt.py[39m[4mg[24m[24m [39m [39m [39m [39m [39m [90ment.py[39m[4mA[24m[24m [39m [39m [39m [39m [39m [39m [90mgent.py[39m[4mt[24m[24m [39m [39m [39m [39m [39m [39m [39m [8D[90mAgent.py[39m[8D[4mn[24m[24m [39m [39m [39m [39m [39m [39m [39m [39m [9D[90mtAgent.py[39m[9D[4me[24m[24m [39m [39m [39m [39m [39m [39m [39m [39m [39m [10D[90mntAgent.py[39m[10D[4mi[24m[24m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [11D[90mentAgent.py[39m[11D[4ml[24m[24m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [12D[90mientAgent.py[39m[12D[4mc[24m[24m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [13D[90mlientAgent.py[39m[13D[4mc[39m[4mi[24m[39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [12D[90mtyHall.py[39m[9D[4mi[39m[4mt[24m[4mt[39m[4my[24m[4my[39m[4mH[39m[4ma[39m[4ml[39m[4ml[39m[4m.[39m[4mp[39m[4my[24m[?1l>[?2004l
+]2;python3 cityHall.py]1;python3[CityHall] 🏛️ Loading model...
+/usr/lib/python3.10/pickle.py:1718: UserWarning: [12:23:06] WARNING: /workspace/src/collective/../data/../common/error_msg.h:82: If you are loading a serialized model (like pickle in Python, RDS in R) or
+configuration generated by an older version of XGBoost, please export the model by calling
+`Booster.save_model` from that version first, then load it back in current version. See:
+
+    https://xgboost.readthedocs.io/en/stable/tutorials/saving_model.html
+
+for more details about differences between saving model and serializing.
+
+  setstate(state)
+[CityHall] 🟢 City Hall Agent is up and running.
+A infetar o carro 1...
+^C^CTraceback (most recent call last):
+  File "/usr/lib/python3.10/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 636, in run_until_complete
+    self.run_forever()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 603, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 1871, in _run_once
+    event_list = self._selector.select(timeout)
+  File "/usr/lib/python3.10/selectors.py", line 469, in select
+    fd_event_list = self._selector.poll(timeout, max_ev)
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/rafaelbranco/Documentos/ISEP/OmniWatch/ros2_ws/agents/cityHall.py", line 92, in <module>
+    asyncio.run(main())
+  File "/usr/lib/python3.10/asyncio/runners.py", line 47, in run
+    _cancel_all_tasks(loop)
+  File "/usr/lib/python3.10/asyncio/runners.py", line 63, in _cancel_all_tasks
+    loop.run_until_complete(tasks.gather(*to_cancel, return_exceptions=True))
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 636, in run_until_complete
+    self.run_forever()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 603, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 1871, in _run_once
+    event_list = self._selector.select(timeout)
+  File "/usr/lib/python3.10/selectors.py", line 469, in select
+    fd_event_list = self._selector.poll(timeout, max_ev)
+KeyboardInterrupt
+Task was destroyed but it is pending!
+task: <Task pending name='Task-11' coro=<CyclicBehaviour._start() running at /home/rafaelbranco/.local/lib/python3.10/site-packages/spade/behaviour.py:140> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[gather.<locals>._done_callback() at /usr/lib/python3.10/asyncio/tasks.py:720]>
+
+[1m[7m%[27m[1m[0m                                                                                                                                                                             ]2;rafaelbranco@fedora:~/Documentos/ISEP/OmniWatch/ros2_ws/agents]1;..os2_ws/agents]7;file://fedora/home/rafaelbranco/Documentos/ISEP/OmniWatch/ros2_ws/agents\[0m[27m[24m[J[39m[0m[49m[40m[39m [31m✘[40m[39m rafaelbranco@fedora [44m[30m[30m ~/Documentos/ISEP/OmniWatch/ros2_ws/agents [43m[34m[30m  main ± [49m[33m[39m [K[?1h=[?2004h[1m[31mc[0m[39m[1m[31mc[0m[39m[90mlear[39m[1m[31mc[1m[31ml[0m[39m[1m[31mc[1m[31ml[1m[31me[0m[39m[1m[31me[1m[31ma[0m[39m[0m[32mc[0m[32ml[0m[32me[0m[32ma[32mr[39m[?1l>[?2004l
+]2;clear]1;clear[H[2J[3J[1m[7m%[27m[1m[0m                                                                                                                                                                             ]2;rafaelbranco@fedora:~/Documentos/ISEP/OmniWatch/ros2_ws/agents]1;..os2_ws/agents]7;file://fedora/home/rafaelbranco/Documentos/ISEP/OmniWatch/ros2_ws/agents\[0m[27m[24m[J[39m[0m[49m[40m[39m rafaelbranco@fedora [44m[30m[30m ~/Documentos/ISEP/OmniWatch/ros2_ws/agents [43m[34m[30m  main ± [49m[33m[39m [K[?1h=[?2004h[1m[31me[0m[39m[1m[31me[0m[39m[90mxit[39m[1m[31me[1m[31mx[0m[39m[1m[31me[1m[31mx[1m[31mi[0m[39m[0m[32me[0m[32mx[0m[32mi[32mt[39m[?1l>[?2004l
+]2;exit]1;exit
+Script done on 2025-06-28 12:26:06+01:00 [COMMAND_EXIT_CODE="0"]
