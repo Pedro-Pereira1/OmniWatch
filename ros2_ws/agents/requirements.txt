@@ -1,2 +1,5 @@
 joblib
 scikit-learn
+xgboost
+pyarrow
+fastparquet
