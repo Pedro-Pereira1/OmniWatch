@@ -24,7 +24,7 @@ class ZoneManagerAgent(Agent):
 
     class ReceiveControlBehaviour(CyclicBehaviour):
         async def run(self):
-            msg = await self.receive(timeout=5)
+            msg = await self.receive()
             if msg:
                 try:
                     data = json.loads(msg.body)
@@ -201,8 +201,12 @@ class ZoneManagerAgent(Agent):
     async def setup(self):
         print(f"[{self.zone_id}] 🛡️ Zone Manager Agent started.")
         self.add_behaviour(self.ReceiveControlBehaviour())
-        await asyncio.sleep(25)
-        self.add_behaviour(self.EnsureAvailabilityBehaviour(period=6))
+        
+        async def add_periodic_later():
+            await asyncio.sleep(25)
+            self.add_behaviour(self.EnsureAvailabilityBehaviour(period=6))
+        
+        asyncio.create_task(add_periodic_later())
 
 # Entry point
 if __name__ == "__main__":

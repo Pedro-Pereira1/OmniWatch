@@ -1,0 +1,572 @@
+Script started on 2025-06-28 17:29:57+01:00 [TERM="xterm-256color" TTY="/dev/pts/2" COLUMNS="173" LINES="36"]
+[1m[7m%[27m[1m[0m                                                                                                                                                                             ]2;rafaelbranco@fedora:~/Documentos/ISEP/OmniWatch/ros2_ws/agents]1;..os2_ws/agents]7;file://fedora/home/rafaelbranco/Documentos/ISEP/OmniWatch/ros2_ws/agents\[0m[27m[24m[J[39m[0m[49m[40m[39m rafaelbranco@fedora [44m[30m[30m ~/Documentos/ISEP/OmniWatch/ros2_ws/agents [43m[34m[30m  main ± [49m[33m[39m [K[?1h=[?2004h[1m[31mp[0m[39m[1m[31mp[0m[39m[90mython3 run_zone_manager.py[39m[26D[1m[31mp[1m[31my[0m[39m[1m[31mp[1m[31my[1m[31mt[0m[39m[1m[31mt[1m[31mh[0m[39m[1m[31mh[1m[31mo[0m[39m[1m[31mo[1m[31mn[0m[39m[0m[32mp[0m[32my[0m[32mt[0m[32mh[0m[32mo[0m[32mn[32m3[39m[39m [39m[4mr[24m[4mr[39m[4mu[24m[4mu[39m[4mn[24m[4mn[39m[4m_[39m[4mz[39m[4mo[39m[4mn[39m[4me[39m[4m_[39m[4mm[39m[4ma[39m[4mn[39m[4ma[39m[4mg[39m[4me[39m[4mr[39m[4m.[39m[4mp[39m[4my[24m[?1l>[?2004l
+]2;python3 run_zone_manager.py]1;python3🚀 Starting Zone Manager for zone_1 with bounds [0, 9, 0, 9]
+[zone_1] 🛡️ Zone Manager Agent started.
+[zone_1] Managing bounds: {'x_min': 0, 'x_max': 9, 'y_min': 0, 'y_max': 9}
+[zone_1] Known zones: ['zone_2', 'zone_3', 'zone_4']
+🚀 Starting Zone Manager for zone_2 with bounds [10, 19, 0, 9]
+[zone_2] 🛡️ Zone Manager Agent started.
+[zone_2] Managing bounds: {'x_min': 10, 'x_max': 19, 'y_min': 0, 'y_max': 9}
+[zone_2] Known zones: ['zone_1', 'zone_3', 'zone_4']
+🚀 Starting Zone Manager for zone_3 with bounds [0, 9, 10, 19]
+[zone_3] 🛡️ Zone Manager Agent started.
+[zone_3] Managing bounds: {'x_min': 0, 'x_max': 9, 'y_min': 10, 'y_max': 19}
+[zone_3] Known zones: ['zone_1', 'zone_2', 'zone_4']
+[zone_1] 🚕 Ride request from [1.0, 1.0] to [1.0, 8.0]
+🚀 Starting Zone Manager for zone_4 with bounds [10, 19, 10, 19]
+[zone_4] 🛡️ Zone Manager Agent started.
+[zone_4] Managing bounds: {'x_min': 10, 'x_max': 19, 'y_min': 10, 'y_max': 19}
+[zone_4] Known zones: ['zone_1', 'zone_2', 'zone_3']
+[zone_1] ✅ Car car_5 is handling the goal.
+[zone_1] ✅ 2 car(s) in zone.
+[zone_2] ✅ 1 car(s) in zone.
+[zone_1] ✅ 2 car(s) in zone.
+[zone_3] ✅ 1 car(s) in zone.
+[zone_2] ✅ 1 car(s) in zone.
+[zone_1] ✅ 2 car(s) in zone.
+[zone_4] ✅ 1 car(s) in zone.
+[zone_3] ✅ 1 car(s) in zone.
+[zone_2] ✅ 1 car(s) in zone.
+[zone_1] ✅ 2 car(s) in zone.
+[zone_4] ✅ 1 car(s) in zone.
+[zone_3] ✅ 1 car(s) in zone.
+[zone_2] ✅ 1 car(s) in zone.
+[zone_1] ✅ 2 car(s) in zone.
+[zone_4] ✅ 1 car(s) in zone.
+[zone_3] ✅ 1 car(s) in zone.
+[zone_2] ✅ 1 car(s) in zone.
+[zone_1] ✅ 2 car(s) in zone.
+[zone_4] ✅ 1 car(s) in zone.
+[zone_3] ✅ 1 car(s) in zone.
+[zone_2] ✅ 1 car(s) in zone.
+[zone_1] ✅ 2 car(s) in zone.
+[zone_4] ⚠️ No cars in zone, requesting help from other zones.
+[zone_3] 🤝 Received assistance request from zone_4
+[zone_3] ❌ Not enough cars to assist.
+[zone_3] ✅ 1 car(s) in zone.
+[zone_1] 🤝 Received assistance request from zone_4
+[zone_1] ❌ Not enough cars to assist.
+[zone_2] 🤝 Received assistance request from zone_4
+[zone_2] ❌ Not enough cars to assist.
+[zone_2] ✅ 1 car(s) in zone.
+[zone_1] ✅ 2 car(s) in zone.
+[zone_4] ✅ 1 car(s) in zone.
+[zone_3] ✅ 1 car(s) in zone.
+[zone_2] ⚠️ No cars in zone, requesting help from other zones.
+[zone_1] 🤝 Received assistance request from zone_2
+[zone_1] ❌ Not enough cars to assist.
+[zone_3] 🤝 Received assistance request from zone_2
+[zone_3] ❌ Not enough cars to assist.
+[zone_4] 🤝 Received assistance request from zone_2
+[zone_4] ❌ Not enough cars to assist.
+[zone_1] ✅ 2 car(s) in zone.
+[zone_4] ✅ 1 car(s) in zone.
+[zone_3] ✅ 1 car(s) in zone.
+[zone_2] ✅ 1 car(s) in zone.
+[zone_1] ✅ 2 car(s) in zone.
+[zone_4] ⚠️ No cars in zone, requesting help from other zones.
+[zone_1] 🤝 Received assistance request from zone_4
+[zone_1] ❌ Not enough cars to assist.
+[zone_2] 🤝 Received assistance request from zone_4
+[zone_2] ❌ Not enough cars to assist.
+[zone_3] 🤝 Received assistance request from zone_4
+[zone_3] ❌ Not enough cars to assist.
+[zone_3] ✅ 1 car(s) in zone.
+[zone_2] ✅ 1 car(s) in zone.
+[zone_1] ✅ 2 car(s) in zone.
+[zone_4] ✅ 1 car(s) in zone.
+[zone_3] ✅ 1 car(s) in zone.
+[zone_2] ✅ 1 car(s) in zone.
+[zone_1] ✅ 2 car(s) in zone.
+[zone_4] ✅ 1 car(s) in zone.
+[zone_3] ✅ 1 car(s) in zone.
+[zone_2] ✅ 1 car(s) in zone.
+[zone_1] ✅ 2 car(s) in zone.
+[zone_4] ✅ 1 car(s) in zone.
+[zone_3] ✅ 1 car(s) in zone.
+[zone_2] ✅ 1 car(s) in zone.
+[zone_1] ✅ 2 car(s) in zone.
+[zone_4] ✅ 1 car(s) in zone.
+[zone_3] ✅ 1 car(s) in zone.
+[zone_2] ✅ 1 car(s) in zone.
+[zone_1] ✅ 2 car(s) in zone.
+[zone_4] ✅ 1 car(s) in zone.
+[zone_3] ⚠️ No cars in zone, requesting help from other zones.
+[zone_1] 🤝 Received assistance request from zone_3
+[zone_1] 🚗 Offering car_1@localhost to zone_3
+[zone_2] 🤝 Received assistance request from zone_3
+[zone_2] ❌ Not enough cars to assist.
+[zone_3] ✅ Received car offer: car_1@localhost
+[zone_3] 🚦 Redirecting car_1@localhost to this zone.
+[zone_4] 🤝 Received assistance request from zone_3
+[zone_4] ❌ Not enough cars to assist.
+[zone_2] ⚠️ No cars in zone, requesting help from other zones.
+[zone_1] 🤝 Received assistance request from zone_2
+[zone_1] 🚗 Offering car_1@localhost to zone_2
+[zone_2] ✅ Received car offer: car_1@localhost
+[zone_2] 🚦 Redirecting car_1@localhost to this zone.
+[zone_3] 🤝 Received assistance request from zone_2
+[zone_3] ❌ Not enough cars to assist.
+[zone_4] 🤝 Received assistance request from zone_2
+[zone_4] ❌ Not enough cars to assist.
+[zone_1] ✅ 2 car(s) in zone.
+[zone_4] ⚠️ No cars in zone, requesting help from other zones.
+[zone_1] 🤝 Received assistance request from zone_4
+[zone_1] 🚗 Offering car_3@localhost to zone_4
+[zone_2] 🤝 Received assistance request from zone_4
+[zone_2] ❌ Not enough cars to assist.
+[zone_3] 🤝 Received assistance request from zone_4
+[zone_3] ❌ Not enough cars to assist.
+[zone_4] ✅ Received car offer: car_3@localhost
+[zone_4] 🚦 Redirecting car_3@localhost to this zone.
+[zone_3] ✅ 0 car(s) in zone.
+[zone_2] ✅ 0 car(s) in zone.
+[zone_1] ✅ 3 car(s) in zone.
+[zone_4] ✅ 1 car(s) in zone.
+[zone_3] ⚠️ No cars in zone, requesting help from other zones.
+[zone_1] 🤝 Received assistance request from zone_3
+[zone_1] ❌ Not enough cars to assist.
+[zone_2] 🤝 Received assistance request from zone_3
+[zone_2] ❌ Not enough cars to assist.
+[zone_4] 🤝 Received assistance request from zone_3
+[zone_4] ❌ Not enough cars to assist.
+[zone_2] ⚠️ No cars in zone, requesting help from other zones.
+[zone_1] 🤝 Received assistance request from zone_2
+[zone_1] ❌ Not enough cars to assist.
+[zone_3] 🤝 Received assistance request from zone_2
+[zone_3] ❌ Not enough cars to assist.
+[zone_4] 🤝 Received assistance request from zone_2
+[zone_4] ❌ Not enough cars to assist.
+[zone_1] ✅ 3 car(s) in zone.
+[zone_4] ✅ 1 car(s) in zone.
+[zone_3] ⚠️ No cars in zone, requesting help from other zones.
+[zone_1] 🤝 Received assistance request from zone_3
+[zone_1] ❌ Not enough cars to assist.
+[zone_2] 🤝 Received assistance request from zone_3
+[zone_2] ❌ Not enough cars to assist.
+[zone_4] 🤝 Received assistance request from zone_3
+[zone_4] ❌ Not enough cars to assist.
+[zone_2] ⚠️ No cars in zone, requesting help from other zones.
+[zone_1] 🤝 Received assistance request from zone_2
+[zone_1] ❌ Not enough cars to assist.
+[zone_3] 🤝 Received assistance request from zone_2
+[zone_3] ❌ Not enough cars to assist.
+[zone_4] 🤝 Received assistance request from zone_2
+[zone_4] ❌ Not enough cars to assist.
+[zone_1] ✅ 2 car(s) in zone.
+[zone_4] ⚠️ No cars in zone, requesting help from other zones.
+[zone_1] 🤝 Received assistance request from zone_4
+[zone_1] ❌ Not enough cars to assist.
+[zone_2] 🤝 Received assistance request from zone_4
+[zone_2] ❌ Not enough cars to assist.
+[zone_3] 🤝 Received assistance request from zone_4
+[zone_3] ❌ Not enough cars to assist.
+[zone_3] ⚠️ No cars in zone, requesting help from other zones.
+[zone_1] 🤝 Received assistance request from zone_3
+[zone_1] ❌ Not enough cars to assist.
+[zone_2] 🤝 Received assistance request from zone_3
+[zone_2] ❌ Not enough cars to assist.
+[zone_4] 🤝 Received assistance request from zone_3
+[zone_4] ❌ Not enough cars to assist.
+[zone_2] ⚠️ No cars in zone, requesting help from other zones.
+[zone_1] 🤝 Received assistance request from zone_2
+[zone_1] ❌ Not enough cars to assist.
+[zone_3] 🤝 Received assistance request from zone_2
+[zone_3] ❌ Not enough cars to assist.
+[zone_4] 🤝 Received assistance request from zone_2
+[zone_4] ❌ Not enough cars to assist.
+[zone_1] ✅ 2 car(s) in zone.
+[zone_4] ✅ 1 car(s) in zone.
+[zone_3] ⚠️ No cars in zone, requesting help from other zones.
+[zone_1] 🤝 Received assistance request from zone_3
+[zone_1] ❌ Not enough cars to assist.
+[zone_2] 🤝 Received assistance request from zone_3
+[zone_2] ❌ Not enough cars to assist.
+[zone_4] 🤝 Received assistance request from zone_3
+[zone_4] ❌ Not enough cars to assist.
+[zone_2] ⚠️ No cars in zone, requesting help from other zones.
+[zone_1] 🤝 Received assistance request from zone_2
+[zone_1] ❌ Not enough cars to assist.
+[zone_3] 🤝 Received assistance request from zone_2
+[zone_3] ❌ Not enough cars to assist.
+[zone_4] 🤝 Received assistance request from zone_2
+[zone_4] ❌ Not enough cars to assist.
+[zone_1] ✅ 2 car(s) in zone.
+[zone_4] ✅ 1 car(s) in zone.
+[zone_1] 🚕 Ride request from [1.0, 1.0] to [1.0, 8.0]
+[zone_3] ⚠️ No cars in zone, requesting help from other zones.
+[zone_1] 🤝 Received assistance request from zone_3
+[zone_1] ❌ Not enough cars to assist.
+[zone_2] 🤝 Received assistance request from zone_3
+[zone_2] ❌ Not enough cars to assist.
+[zone_4] 🤝 Received assistance request from zone_3
+[zone_4] 🚗 Offering car_2@localhost to zone_3
+[zone_2] ⚠️ No cars in zone, requesting help from other zones.
+[zone_1] 🤝 Received assistance request from zone_2
+[zone_1] ❌ Not enough cars to assist.
+[zone_3] ✅ Received car offer: car_2@localhost
+[zone_3] 🚦 Redirecting car_2@localhost to this zone.
+[zone_3] 🤝 Received assistance request from zone_2
+[zone_3] ❌ Not enough cars to assist.
+[zone_4] 🤝 Received assistance request from zone_2
+[zone_4] ❌ Not enough cars to assist.
+[zone_1] ✅ 2 car(s) in zone.
+[zone_1] ✅ Car car_5 is handling the goal.
+[zone_4] ⚠️ No cars in zone, requesting help from other zones.
+[zone_1] 🤝 Received assistance request from zone_4
+[zone_1] ❌ Not enough cars to assist.
+[zone_2] 🤝 Received assistance request from zone_4
+[zone_2] ❌ Not enough cars to assist.
+[zone_3] 🤝 Received assistance request from zone_4
+[zone_3] ❌ Not enough cars to assist.
+[zone_3] ✅ 0 car(s) in zone.
+[zone_2] ⚠️ No cars in zone, requesting help from other zones.
+[zone_1] 🤝 Received assistance request from zone_2
+[zone_1] ❌ Not enough cars to assist.
+[zone_3] 🤝 Received assistance request from zone_2
+[zone_3] ❌ Not enough cars to assist.
+[zone_4] 🤝 Received assistance request from zone_2
+[zone_4] ❌ Not enough cars to assist.
+[zone_1] ✅ 2 car(s) in zone.
+[zone_4] ⚠️ No cars in zone, requesting help from other zones.
+[zone_1] 🤝 Received assistance request from zone_4
+[zone_1] ❌ Not enough cars to assist.
+[zone_2] 🤝 Received assistance request from zone_4
+[zone_2] ❌ Not enough cars to assist.
+[zone_3] 🤝 Received assistance request from zone_4
+[zone_3] ❌ Not enough cars to assist.
+[zone_3] ✅ 1 car(s) in zone.
+[zone_2] ⚠️ No cars in zone, requesting help from other zones.
+[zone_1] 🤝 Received assistance request from zone_2
+[zone_1] ❌ Not enough cars to assist.
+[zone_3] 🤝 Received assistance request from zone_2
+[zone_3] ❌ Not enough cars to assist.
+[zone_4] 🤝 Received assistance request from zone_2
+[zone_4] ❌ Not enough cars to assist.
+[zone_1] ✅ 2 car(s) in zone.
+[zone_4] ⚠️ No cars in zone, requesting help from other zones.
+[zone_1] 🤝 Received assistance request from zone_4
+[zone_1] ❌ Not enough cars to assist.
+[zone_2] 🤝 Received assistance request from zone_4
+[zone_2] ❌ Not enough cars to assist.
+[zone_3] 🤝 Received assistance request from zone_4
+[zone_3] ❌ Not enough cars to assist.
+[zone_3] ✅ 1 car(s) in zone.
+[zone_2] ⚠️ No cars in zone, requesting help from other zones.
+[zone_1] 🤝 Received assistance request from zone_2
+[zone_1] ❌ Not enough cars to assist.
+[zone_3] 🤝 Received assistance request from zone_2
+[zone_3] ❌ Not enough cars to assist.
+[zone_4] 🤝 Received assistance request from zone_2
+[zone_4] ❌ Not enough cars to assist.
+[zone_1] ✅ 2 car(s) in zone.
+[zone_4] ✅ 1 car(s) in zone.
+[zone_3] ✅ 2 car(s) in zone.
+[zone_2] ⚠️ No cars in zone, requesting help from other zones.
+[zone_1] 🤝 Received assistance request from zone_2
+[zone_1] ❌ Not enough cars to assist.
+[zone_3] 🤝 Received assistance request from zone_2
+[zone_3] ❌ Not enough cars to assist.
+[zone_4] 🤝 Received assistance request from zone_2
+[zone_4] ❌ Not enough cars to assist.
+[zone_1] ✅ 2 car(s) in zone.
+[zone_4] ⚠️ No cars in zone, requesting help from other zones.
+[zone_1] 🤝 Received assistance request from zone_4
+[zone_1] ❌ Not enough cars to assist.
+[zone_2] 🤝 Received assistance request from zone_4
+[zone_2] ❌ Not enough cars to assist.
+[zone_3] 🤝 Received assistance request from zone_4
+[zone_3] ❌ Not enough cars to assist.
+[zone_3] ✅ 2 car(s) in zone.
+[zone_2] ⚠️ No cars in zone, requesting help from other zones.
+[zone_1] 🤝 Received assistance request from zone_2
+[zone_1] ❌ Not enough cars to assist.
+[zone_3] 🤝 Received assistance request from zone_2
+[zone_3] ❌ Not enough cars to assist.
+[zone_4] 🤝 Received assistance request from zone_2
+[zone_4] ❌ Not enough cars to assist.
+[zone_1] ✅ 2 car(s) in zone.
+[zone_4] ⚠️ No cars in zone, requesting help from other zones.
+[zone_1] 🤝 Received assistance request from zone_4
+[zone_1] ❌ Not enough cars to assist.
+[zone_2] 🤝 Received assistance request from zone_4
+[zone_2] ❌ Not enough cars to assist.
+[zone_3] 🤝 Received assistance request from zone_4
+[zone_3] ❌ Not enough cars to assist.
+[zone_3] ✅ 2 car(s) in zone.
+[zone_2] ⚠️ No cars in zone, requesting help from other zones.
+[zone_1] 🚕 Ride request from [18.0, 18.0] to [18.0, 15.0]
+[zone_1] 🤝 Received assistance request from zone_2
+[zone_1] ❌ Not enough cars to assist.
+[zone_3] 🤝 Received assistance request from zone_2
+[zone_3] ❌ Not enough cars to assist.
+[zone_4] 🤝 Received assistance request from zone_2
+[zone_4] ❌ Not enough cars to assist.
+[zone_1] ✅ 2 car(s) in zone.
+[zone_1] ✅ Car car_3 is handling the goal.
+[zone_4] ⚠️ No cars in zone, requesting help from other zones.
+[zone_1] 🤝 Received assistance request from zone_4
+[zone_1] ❌ Not enough cars to assist.
+[zone_2] 🤝 Received assistance request from zone_4
+[zone_2] ❌ Not enough cars to assist.
+[zone_3] 🤝 Received assistance request from zone_4
+[zone_3] ❌ Not enough cars to assist.
+[zone_3] ✅ 2 car(s) in zone.
+[zone_2] ⚠️ No cars in zone, requesting help from other zones.
+[zone_1] 🤝 Received assistance request from zone_2
+[zone_1] ❌ Not enough cars to assist.
+[zone_3] 🤝 Received assistance request from zone_2
+[zone_3] ❌ Not enough cars to assist.
+[zone_4] 🤝 Received assistance request from zone_2
+[zone_4] ❌ Not enough cars to assist.
+[zone_1] ✅ 2 car(s) in zone.
+[zone_4] ✅ 1 car(s) in zone.
+[zone_3] ✅ 2 car(s) in zone.
+[zone_2] ⚠️ No cars in zone, requesting help from other zones.
+[zone_1] 🤝 Received assistance request from zone_2
+[zone_1] ❌ Not enough cars to assist.
+[zone_3] 🤝 Received assistance request from zone_2
+[zone_3] ❌ Not enough cars to assist.
+[zone_4] 🤝 Received assistance request from zone_2
+[zone_4] ❌ Not enough cars to assist.
+[zone_1] ✅ 1 car(s) in zone.
+[zone_4] ✅ 1 car(s) in zone.
+[zone_3] ✅ 2 car(s) in zone.
+[zone_2] ⚠️ No cars in zone, requesting help from other zones.
+[zone_1] 🤝 Received assistance request from zone_2
+[zone_1] ❌ Not enough cars to assist.
+[zone_3] 🤝 Received assistance request from zone_2
+[zone_3] ❌ Not enough cars to assist.
+[zone_4] 🤝 Received assistance request from zone_2
+[zone_4] ❌ Not enough cars to assist.
+[zone_1] ✅ 2 car(s) in zone.
+[zone_4] ✅ 1 car(s) in zone.
+[zone_3] ✅ 2 car(s) in zone.
+[zone_2] ⚠️ No cars in zone, requesting help from other zones.
+[zone_1] 🤝 Received assistance request from zone_2
+[zone_1] ❌ Not enough cars to assist.
+[zone_3] 🤝 Received assistance request from zone_2
+[zone_3] ❌ Not enough cars to assist.
+[zone_4] 🤝 Received assistance request from zone_2
+[zone_4] ❌ Not enough cars to assist.
+[zone_1] ✅ 1 car(s) in zone.
+[zone_4] ✅ 1 car(s) in zone.
+[zone_3] ✅ 2 car(s) in zone.
+[zone_2] ⚠️ No cars in zone, requesting help from other zones.
+[zone_1] 🤝 Received assistance request from zone_2
+[zone_1] ❌ Not enough cars to assist.
+[zone_3] 🤝 Received assistance request from zone_2
+[zone_3] ❌ Not enough cars to assist.
+[zone_4] 🤝 Received assistance request from zone_2
+[zone_4] ❌ Not enough cars to assist.
+[zone_1] ✅ 1 car(s) in zone.
+[zone_4] ✅ 1 car(s) in zone.
+[zone_3] ✅ 2 car(s) in zone.
+[zone_2] ⚠️ No cars in zone, requesting help from other zones.
+[zone_1] 🤝 Received assistance request from zone_2
+[zone_1] ❌ Not enough cars to assist.
+[zone_3] 🤝 Received assistance request from zone_2
+[zone_3] ❌ Not enough cars to assist.
+[zone_4] 🤝 Received assistance request from zone_2
+[zone_4] ❌ Not enough cars to assist.
+[zone_1] ✅ 1 car(s) in zone.
+[zone_4] ⚠️ No cars in zone, requesting help from other zones.
+[zone_1] 🤝 Received assistance request from zone_4
+[zone_1] ❌ Not enough cars to assist.
+[zone_2] 🤝 Received assistance request from zone_4
+[zone_2] ❌ Not enough cars to assist.
+[zone_3] 🤝 Received assistance request from zone_4
+[zone_3] 🚗 Offering car_1@localhost to zone_4
+[zone_4] ✅ Received car offer: car_1@localhost
+[zone_4] 🚦 Redirecting car_1@localhost to this zone.
+[zone_3] ✅ 3 car(s) in zone.
+[zone_2] ⚠️ No cars in zone, requesting help from other zones.
+[zone_1] 🤝 Received assistance request from zone_2
+[zone_1] ❌ Not enough cars to assist.
+[zone_3] 🤝 Received assistance request from zone_2
+[zone_3] ❌ Not enough cars to assist.
+[zone_4] 🤝 Received assistance request from zone_2
+[zone_4] ❌ Not enough cars to assist.
+[zone_1] ✅ 1 car(s) in zone.
+[zone_4] ✅ 1 car(s) in zone.
+[zone_3] ✅ 3 car(s) in zone.
+[zone_2] ⚠️ No cars in zone, requesting help from other zones.
+[zone_1] 🤝 Received assistance request from zone_2
+[zone_1] ❌ Not enough cars to assist.
+[zone_3] 🤝 Received assistance request from zone_2
+[zone_3] ❌ Not enough cars to assist.
+[zone_4] 🤝 Received assistance request from zone_2
+[zone_4] ❌ Not enough cars to assist.
+[zone_1] ✅ 1 car(s) in zone.
+[zone_4] ✅ 1 car(s) in zone.
+[zone_3] ✅ 3 car(s) in zone.
+[zone_2] ⚠️ No cars in zone, requesting help from other zones.
+[zone_1] 🤝 Received assistance request from zone_2
+[zone_1] ❌ Not enough cars to assist.
+[zone_3] 🤝 Received assistance request from zone_2
+[zone_3] ❌ Not enough cars to assist.
+[zone_4] 🤝 Received assistance request from zone_2
+[zone_4] ❌ Not enough cars to assist.
+[zone_1] ✅ 1 car(s) in zone.
+[zone_4] ✅ 1 car(s) in zone.
+[zone_3] ✅ 3 car(s) in zone.
+[zone_2] ⚠️ No cars in zone, requesting help from other zones.
+[zone_1] 🤝 Received assistance request from zone_2
+[zone_1] ❌ Not enough cars to assist.
+[zone_3] 🤝 Received assistance request from zone_2
+[zone_3] ❌ Not enough cars to assist.
+[zone_4] 🤝 Received assistance request from zone_2
+[zone_4] ❌ Not enough cars to assist.
+[zone_1] ✅ 1 car(s) in zone.
+[zone_4] ✅ 1 car(s) in zone.
+[zone_3] ✅ 2 car(s) in zone.
+[zone_2] ⚠️ No cars in zone, requesting help from other zones.
+[zone_1] 🤝 Received assistance request from zone_2
+[zone_1] ❌ Not enough cars to assist.
+[zone_3] 🤝 Received assistance request from zone_2
+[zone_3] ❌ Not enough cars to assist.
+[zone_4] 🤝 Received assistance request from zone_2
+[zone_4] ❌ Not enough cars to assist.
+[zone_1] ✅ 1 car(s) in zone.
+[zone_4] ✅ 1 car(s) in zone.
+[zone_3] ✅ 2 car(s) in zone.
+[zone_2] ⚠️ No cars in zone, requesting help from other zones.
+[zone_1] 🤝 Received assistance request from zone_2
+[zone_1] ❌ Not enough cars to assist.
+[zone_3] 🤝 Received assistance request from zone_2
+[zone_3] ❌ Not enough cars to assist.
+[zone_4] 🤝 Received assistance request from zone_2
+[zone_4] ❌ Not enough cars to assist.
+[zone_1] ✅ 1 car(s) in zone.
+[zone_4] ✅ 1 car(s) in zone.
+[zone_3] ✅ 2 car(s) in zone.
+[zone_2] ⚠️ No cars in zone, requesting help from other zones.
+[zone_1] 🤝 Received assistance request from zone_2
+[zone_1] ❌ Not enough cars to assist.
+[zone_3] 🤝 Received assistance request from zone_2
+[zone_3] ❌ Not enough cars to assist.
+[zone_4] 🤝 Received assistance request from zone_2
+[zone_4] ❌ Not enough cars to assist.
+[zone_1] ✅ 2 car(s) in zone.
+[zone_4] ✅ 1 car(s) in zone.
+[zone_3] ✅ 2 car(s) in zone.
+[zone_2] ⚠️ No cars in zone, requesting help from other zones.
+[zone_1] 🤝 Received assistance request from zone_2
+[zone_1] ❌ Not enough cars to assist.
+[zone_3] 🤝 Received assistance request from zone_2
+[zone_3] ❌ Not enough cars to assist.
+[zone_4] 🤝 Received assistance request from zone_2
+[zone_4] ❌ Not enough cars to assist.
+[zone_1] ✅ 2 car(s) in zone.
+[zone_4] ✅ 1 car(s) in zone.
+[zone_3] ✅ 2 car(s) in zone.
+[zone_2] ⚠️ No cars in zone, requesting help from other zones.
+[zone_1] 🤝 Received assistance request from zone_2
+[zone_1] ❌ Not enough cars to assist.
+[zone_3] 🤝 Received assistance request from zone_2
+[zone_3] ❌ Not enough cars to assist.
+[zone_4] 🤝 Received assistance request from zone_2
+[zone_4] ❌ Not enough cars to assist.
+[zone_1] ✅ 1 car(s) in zone.
+[zone_4] ✅ 1 car(s) in zone.
+[zone_3] ✅ 1 car(s) in zone.
+[zone_2] ⚠️ No cars in zone, requesting help from other zones.
+[zone_1] 🤝 Received assistance request from zone_2
+[zone_1] ❌ Not enough cars to assist.
+[zone_3] 🤝 Received assistance request from zone_2
+[zone_3] ❌ Not enough cars to assist.
+[zone_4] 🤝 Received assistance request from zone_2
+[zone_4] ❌ Not enough cars to assist.
+[zone_1] ✅ 1 car(s) in zone.
+[zone_4] ✅ 1 car(s) in zone.
+[zone_3] ✅ 2 car(s) in zone.
+[zone_2] ⚠️ No cars in zone, requesting help from other zones.
+[zone_1] 🤝 Received assistance request from zone_2
+[zone_1] ❌ Not enough cars to assist.
+[zone_3] 🤝 Received assistance request from zone_2
+[zone_3] ❌ Not enough cars to assist.
+[zone_4] 🤝 Received assistance request from zone_2
+[zone_4] ❌ Not enough cars to assist.
+[zone_1] ✅ 1 car(s) in zone.
+[zone_4] ✅ 1 car(s) in zone.
+[zone_3] ✅ 1 car(s) in zone.
+[zone_2] ⚠️ No cars in zone, requesting help from other zones.
+[zone_1] 🤝 Received assistance request from zone_2
+[zone_1] ❌ Not enough cars to assist.
+[zone_3] 🤝 Received assistance request from zone_2
+[zone_3] ❌ Not enough cars to assist.
+[zone_4] 🤝 Received assistance request from zone_2
+[zone_4] ❌ Not enough cars to assist.
+[zone_1] ✅ 1 car(s) in zone.
+[zone_4] ✅ 1 car(s) in zone.
+[zone_3] ✅ 2 car(s) in zone.
+[zone_2] ✅ 1 car(s) in zone.
+[zone_1] ✅ 1 car(s) in zone.
+[zone_4] ✅ 1 car(s) in zone.
+[zone_3] ✅ 2 car(s) in zone.
+[zone_2] ✅ 1 car(s) in zone.
+[zone_1] ✅ 1 car(s) in zone.
+[zone_4] ✅ 1 car(s) in zone.
+[zone_3] ✅ 1 car(s) in zone.
+[zone_2] ✅ 1 car(s) in zone.
+[zone_1] ✅ 1 car(s) in zone.
+[zone_4] ✅ 1 car(s) in zone.
+[zone_3] ⚠️ No cars in zone, requesting help from other zones.
+[zone_1] 🤝 Received assistance request from zone_3
+[zone_1] ❌ Not enough cars to assist.
+[zone_2] 🤝 Received assistance request from zone_3
+[zone_2] ❌ Not enough cars to assist.
+[zone_4] 🤝 Received assistance request from zone_3
+[zone_4] ❌ Not enough cars to assist.
+[zone_2] ✅ 1 car(s) in zone.
+[zone_1] ✅ 1 car(s) in zone.
+[zone_4] ✅ 1 car(s) in zone.
+[zone_3] ✅ 1 car(s) in zone.
+[zone_2] ✅ 1 car(s) in zone.
+[zone_1] ✅ 1 car(s) in zone.
+[zone_4] ✅ 1 car(s) in zone.
+[zone_3] ✅ 1 car(s) in zone.
+[zone_2] ✅ 1 car(s) in zone.
+[zone_1] ✅ 1 car(s) in zone.
+[zone_4] ✅ 2 car(s) in zone.
+[zone_3] ⚠️ No cars in zone, requesting help from other zones.
+[zone_1] 🤝 Received assistance request from zone_3
+[zone_1] ❌ Not enough cars to assist.
+[zone_2] 🤝 Received assistance request from zone_3
+[zone_2] ❌ Not enough cars to assist.
+[zone_4] 🤝 Received assistance request from zone_3
+[zone_4] 🚗 Offering car_1@localhost to zone_3
+[zone_2] ✅ 1 car(s) in zone.
+[zone_3] ✅ Received car offer: car_1@localhost
+[zone_3] 🚦 Redirecting car_1@localhost to this zone.
+[zone_1] ✅ 1 car(s) in zone.
+[zone_4] ✅ 2 car(s) in zone.
+[zone_3] ✅ 1 car(s) in zone.
+[zone_2] ✅ 1 car(s) in zone.
+[zone_1] ✅ 1 car(s) in zone.
+[zone_4] ✅ 2 car(s) in zone.
+[zone_3] ⚠️ No cars in zone, requesting help from other zones.
+[zone_1] 🤝 Received assistance request from zone_3
+[zone_1] ❌ Not enough cars to assist.
+[zone_2] 🤝 Received assistance request from zone_3
+[zone_2] ❌ Not enough cars to assist.
+[zone_4] 🤝 Received assistance request from zone_3
+[zone_4] ❌ Not enough cars to assist.
+[zone_2] ✅ 1 car(s) in zone.
+[zone_1] ✅ 1 car(s) in zone.
+[zone_4] ✅ 1 car(s) in zone.
+[zone_3] ✅ 1 car(s) in zone.
+[zone_2] ✅ 1 car(s) in zone.
+[zone_1] ✅ 1 car(s) in zone.
+[zone_4] ✅ 1 car(s) in zone.
+[zone_3] ✅ 1 car(s) in zone.
+[zone_2] ✅ 1 car(s) in zone.
+[zone_1] ✅ 1 car(s) in zone.
+[zone_4] ✅ 1 car(s) in zone.
+[zone_3] ✅ 1 car(s) in zone.
+[zone_2] ✅ 1 car(s) in zone.
+^C[zone_1] ✅ 1 car(s) in zone.
+🛑 Caught CTRL+C, terminating zone managers...
+[1m[7m%[27m[1m[0m                                                                                                                                                                             ]2;rafaelbranco@fedora:~/Documentos/ISEP/OmniWatch/ros2_ws/agents]1;..os2_ws/agents]7;file://fedora/home/rafaelbranco/Documentos/ISEP/OmniWatch/ros2_ws/agents\[0m[27m[24m[J[39m[0m[49m[40m[39m rafaelbranco@fedora [44m[30m[30m ~/Documentos/ISEP/OmniWatch/ros2_ws/agents [43m[34m[30m  main ± [49m[33m[39m [K[?1h=[?2004h[1m[31me[0m[39m[1m[31me[0m[39m[90mxit[39m[1m[31me[1m[31mx[0m[39m[1m[31me[1m[31mx[1m[31mi[0m[39m[0m[32me[0m[32mx[0m[32mi[32mt[39m[?1l>[?2004l
+]2;exit]1;exit
+Script done on 2025-06-28 17:37:31+01:00 [COMMAND_EXIT_CODE="0"]
