@@ -21,7 +21,7 @@ DIST_THRESHOLD = 0.1     # metros
 ANGULAR_SPEED = 0.8      # rad/s
 LINEAR_SPEED = 1.0       # m/s
 pkg_share = get_package_share_directory('simple_car')
-model_path = os.path.join(pkg_share, 'model', 'ppo_simple_2_1')
+model_path = os.path.join(pkg_share, 'model', 'ppo_simple_random')
 
 class WaypointFollower(Node):
     def __init__(self):
