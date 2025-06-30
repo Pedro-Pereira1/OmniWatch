@@ -58,6 +58,13 @@ install(
   RENAME waypoint_follower
 )
 
+install(
+  PROGRAMS
+  src/waypoint_follower_rl.py
+  DESTINATION lib/${PROJECT_NAME}
+  RENAME waypoint_follower_rl
+)
+
 # 🚀 Instalar ficheiros de launch
 install(
   DIRECTORY launch
@@ -67,6 +74,11 @@ install(
 # 🧱 Instalar modelos SDF
 install(
   DIRECTORY models
+  DESTINATION share/${PROJECT_NAME}
+)
+
+install(
+  DIRECTORY model
   DESTINATION share/${PROJECT_NAME}
 )
 
